@@ -6,7 +6,19 @@ namespace gik299_project
     {
         static void Main(string[] args)
         {
-             
+
+
+            /*
+            public void Win()
+            {
+
+            }
+
+            public void Lose()
+            {
+
+            }
+            */
         }
     }
 }
