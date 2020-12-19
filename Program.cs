@@ -9,7 +9,9 @@ namespace gik299_project
             Menu menu = new Menu();
             menu.GameLogo();
 
-            Console.WriteLine("Cyber Dungeon!");
+            Console.WriteLine("Cyber Dungeon!")
+            Console.WriteLine("HEJ!");
+            
         }
     }
 }
