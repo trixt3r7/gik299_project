@@ -22,7 +22,7 @@ namespace gik299_project
                 Console.WriteLine("SKRRRRRT");
             }
 
-            
+            Console.WriteLine("Hej");
             
         }
     }
