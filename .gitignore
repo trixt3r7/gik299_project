@@ -4,3 +4,13 @@ _ReSharper.*
 bin
 obj
 packages
+obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs
+obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs
+obj/Debug/netcoreapp3.1/gik299_project.AssemblyInfo.cs
+obj/Debug/netcoreapp3.1/gik299_project.AssemblyInfoInputs.cache
+obj/Debug/netcoreapp3.1/gik299_project.assets.cache
+obj/gik299_project.csproj.nuget.dgspec.json
+obj/gik299_project.csproj.nuget.g.props
+obj/gik299_project.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
