@@ -7,6 +7,13 @@ namespace gik299_project
         static void Main(string[] args)
         {
 
+            Menu menu = new Menu(); //Instans
+
+            menu.GameLogo();
+
+
+
+            StartGame();
 
             /*
             public void Win()
@@ -19,6 +26,11 @@ namespace gik299_project
 
             }
             */
+        }
+
+        public static void StartGame()
+        {
+
         }
     }
 }

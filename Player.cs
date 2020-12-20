@@ -6,6 +6,14 @@ namespace gik299_project
 {
     class Player
     {
+
+        public string Name;
+        public int Health;
+        public int Keys;
+        public int Potions;
+        public int Steps;
+        public int[] Position = new int[2]{ 0, 9 };
+ 
         public void Movement()
         {
 
