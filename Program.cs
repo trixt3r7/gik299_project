@@ -16,15 +16,6 @@ namespace gik299_project
 
             Console.WriteLine("");
 
-            for (int i = 0; i < 100; i++)
-            {
-                if (i % 3 == 1)
-                {
-                    player.VisitedPosition[i] = true;
-                }
-                Console.WriteLine(player.VisitedPosition[i]);
-            }
-
             Console.WriteLine("");
 
             map.GenerateMap();

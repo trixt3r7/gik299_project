@@ -14,6 +14,15 @@ namespace gik299_project
         {
             bool playerPos = false;
 
+            for (int i = 0; i < 100; i++)
+            {
+                if (i % 2 == 1)
+                {
+                    player.VisitedPosition[i] = true;
+                }
+                //Console.WriteLine(player.VisitedPosition[i]);
+            }
+
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -30,23 +39,26 @@ namespace gik299_project
                         playerPos = false;
                     }
 
-                    if (!playerPos)
-                    {
-                        Console.ForegroundColor = ConsoleColor.DarkGray;
-                        Console.Write("■ "); //■
-                        Console.ResetColor();
-                    }
-                    else
+                    int temp = (i * 10 + j + 1) - 1;
+
+                    if (playerPos)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    if (true)
+
+                    else if (true)
                     {
-                        if (player.VisitedPosition[i] == true)
+                        if (player.VisitedPosition[temp] == true)
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
                             Console.Write("■ ");
                             Console.ResetColor();
                         }
