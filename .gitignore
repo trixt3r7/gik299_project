@@ -14,3 +14,4 @@ obj/gik299_project.csproj.nuget.g.props
 obj/gik299_project.csproj.nuget.g.targets
 obj/project.assets.json
 obj/project.nuget.cache
+.vs/slnx.sqlite
