@@ -4,26 +4,40 @@ namespace gik299_project
 {
     class Program
     {
+
+        static Map map = new Map();
+        static Player player = new Player();
+
         static void Main(string[] args)
         {
-            Menu menu = new Menu();
+
+            Menu menu = new Menu(); //Instans
             menu.GameLogo();
 
-            Console.WriteLine("Cyber Dungeon!");
-            Console.WriteLine("HEJ!");
-            bool Linus = true, Mattias = false;
+            Console.WriteLine("");
 
-            if (Linus == Mattias)
+            Console.WriteLine("");
+
+            map.GenerateMap();
+
+            StartGame();
+
+            /*
+            public void Win()
             {
-                Console.WriteLine("Thomas");
-            }
-            else
-            {
-                Console.WriteLine("SKRRRRRT");
+
             }
 
-            
-            
+            public void Lose()
+            {
+
+            }
+            */
+        }
+
+        public static void StartGame()
+        {
+
         }
     }
 }

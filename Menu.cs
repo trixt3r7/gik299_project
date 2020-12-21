@@ -19,5 +19,35 @@ namespace gik299_project
   /_____/\__,_/_/ /_/\__, /\___/\____/_/ /_/____/  
                     /____/");
         }
+
+        public void WelcomeText()
+        {
+
+        }
+
+        public void StoryText()
+        {
+
+        }
+
+        public void MainMenu()
+        {
+
+        }
+
+        public void Settings()
+        {
+
+        }
+
+        public void InGameMeny()
+        {
+
+        }
+
+        public void Credits()
+        {
+
+        }
     }
 }
