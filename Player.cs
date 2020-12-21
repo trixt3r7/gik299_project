@@ -8,10 +8,11 @@ namespace gik299_project
     {
 
         public string Name;
-        public int Health = 100;
-        public int Keys = 0;
+        public int Health = 90;
+        public int MaxHealth = 100;
+        public int Keys = 2;
         public int Potions = 0;
-        public int Steps = 0;
+        public int Steps = 26;
         public int[] Position = new int[2] { 9, 0 };
         public int[] PrevPosition = new int[2] {0, 0};
         public bool[] VisitedPosition = new bool[100];
