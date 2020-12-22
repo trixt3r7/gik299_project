@@ -11,10 +11,10 @@ namespace gik299_project
         static void Main(string[] args)
         {
 
-            Menu menu = new Menu(); //Instans
+            Menu menu = new Menu();
             menu.GameLogo();
 
-            Console.WriteLine("rtqwrwqr");
+            Console.WriteLine("");
 
             Console.WriteLine("");
 
@@ -22,17 +22,7 @@ namespace gik299_project
 
             StartGame();
 
-            /*
-            public void Win()
-            {
-
-            }
-
-            public void Lose()
-            {
-
-            }
-            */
+            
         }
 
         public static void StartGame()
