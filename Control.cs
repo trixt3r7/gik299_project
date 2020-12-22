@@ -10,5 +10,10 @@ namespace gik299_project
         {
 
         }
+        public void Movement()
+        {
+
+        }
+
     }
 }
