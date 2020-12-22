@@ -17,8 +17,6 @@ namespace gik299_project
 
             Console.WriteLine("");
 
-            Console.WriteLine("");
-
             menu.MainMenu();
 
             map.GenerateMap();
