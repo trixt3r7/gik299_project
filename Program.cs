@@ -14,7 +14,7 @@ namespace gik299_project
             Menu menu = new Menu();
             menu.GameLogo();
 
-            Console.WriteLine("");
+            player.ShowPlayerStats();
 
             Console.WriteLine("");
 

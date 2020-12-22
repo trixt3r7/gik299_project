@@ -42,10 +42,10 @@ namespace gik299_project
 
         public void ShowPlayerStats()
         {
-            ConsoleWriteLine"---STATS---");
+            Console.WriteLine("---STATS---");
             Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Health {}: {Health}/100");
-            Console.WriteLine($"Keys collected: {Keys}");
+            Console.WriteLine($"Health: {Health}/100 HP");
+            Console.WriteLine($"Keys collected: {Keys}/10");
             Console.WriteLine($"Steps taken: {Steps}");
         }
 
