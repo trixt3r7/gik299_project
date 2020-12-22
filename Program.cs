@@ -20,6 +20,7 @@ namespace gik299_project
 
             map.GenerateMap();
 
+            
             StartGame();
 
             

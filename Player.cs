@@ -40,6 +40,15 @@ namespace gik299_project
             // https://social.msdn.microsoft.com/Forums/vstudio/en-US/26f951f7-8d3d-4926-8705-bddc8a5f8873/i-need-help-with-c-numbers-and-percentages-in-a-few-lines-of-code?forum=csharpgeneral
         }
 
+        public void ShowPlayerStats()
+        {
+            ConsoleWriteLine"---STATS---");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"Health {}: {Health}/100");
+            Console.WriteLine($"Keys collected: {Keys}");
+            Console.WriteLine($"Steps taken: {Steps}");
+        }
+
         public void Damage()
         {
 
