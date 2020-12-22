@@ -7,6 +7,7 @@ namespace gik299_project
 
         static Map map = new Map();
         static Player player = new Player();
+        static Menu menu = new Menu();
 
         static void Main(string[] args)
         {
@@ -18,7 +19,11 @@ namespace gik299_project
 
             Console.WriteLine("");
 
+            menu.MainMenu();
+
             map.GenerateMap();
+
+            menu.InGameMeny();
 
             StartGame();
 
