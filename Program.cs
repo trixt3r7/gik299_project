@@ -28,7 +28,7 @@ namespace gik299_project
 
         public static void StartGame()
         {
-
+            player.ChooseCharacter();
         }
     }
 }

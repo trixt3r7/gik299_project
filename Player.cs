@@ -8,12 +8,13 @@ namespace gik299_project
     {
         public string Name;
         public int Health = 100;
+        public int HealthBoundary = 90;
         public int MaxHealth = 100;
         public int Keys = 0;
         public int Potions = 0;
         public int Steps = 0;
         public int[] Position = new int[2] { 9, 0 };
-        public int[] PrevPosition = new int[2] {0, 0};
+        public int[] PrevPosition = new int[2];
         public bool[] VisitedPosition = new bool[100];
 
 
@@ -26,12 +27,32 @@ namespace gik299_project
         {
             Console.WriteLine("You attack the [enemy].");
             AttackProbability();
+            HealthBoostChance();
+        }
+
+        public void HealthBoostChance()
+        {
+            Random rnd = new Random();
+            int result = rnd.Next(0, 100);
+            if (result < 10)
+            {
+                if (Health > HealthBoundary)
+                {
+                    Health += MaxHealth - Health;
+                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with additional health points. You now have {Health}/100 HP.");
+                }
+                else
+                {
+                    Health += 10;
+                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/100 HP.");
+                }
+            }
         }
 
         public void AttackProbability()
         {
             Random rnd = new Random();
-            int result = rnd.Next(1, 100);
+            int result = rnd.Next(0, 100);
             if (result < 20)
             {
                 Health -= 10;
@@ -49,9 +70,49 @@ namespace gik299_project
             Console.WriteLine($"Steps taken: {Steps}");
         }
 
+        public void ChooseCharacter()
+        {
+            Console.WriteLine("Choose a character!");
+            Console.WriteLine("1: 'philipsinnott'");
+            Console.WriteLine("2: 'ImStuffZ'");
+            Console.WriteLine("3: 'trixt3r7'");
+            Console.WriteLine("4: Custom character");
+
+            if (int.TryParse(Console.ReadLine(), out int CharacterMenu))
+            {
+                switch (CharacterMenu)
+                {
+                    case 1:
+                        Name = "philipsinnott";
+                        break;
+                    case 2:
+                        Name = "ImStuffZ";
+                        break;
+                    case 3:
+                        Name = "trixt3r7";
+                        break;
+                    case 4:
+                        Console.WriteLine("Enter the name of your custom character!");
+                        Name = Console.ReadLine();
+                        break;
+                    default:
+                        Console.WriteLine("You must chose an alternative ranging from 1-4.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("You must enter a valid number.");
+            }
+        }
         public void Damage()
         {
 
+        }
+
+        public void CurrentPlayerPosition()
+        {
+            
         }
 
         public void Settings()
