@@ -14,7 +14,7 @@ namespace gik299_project
             Menu menu = new Menu(); //Instans
             menu.GameLogo();
 
-            Console.WriteLine("");
+            Console.WriteLine("rtqwrwqr");
 
             Console.WriteLine("");
 
