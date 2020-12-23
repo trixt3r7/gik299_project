@@ -116,6 +116,7 @@ namespace gik299_project
                 Console.WriteLine("You must enter a valid number.");
             }
         }
+      
         public void Damage()
         {
 

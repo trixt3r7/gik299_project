@@ -6,6 +6,7 @@ namespace gik299_project
 {
     class Enemy
     {
+
         public string[] Names = new string[] { "Grunt", "Guard", "Assault", "Sniper", "Brute", "Netrunner" };
         public float DropRate;
 
@@ -21,11 +22,11 @@ namespace gik299_project
         {
             Random rnd = new Random();
 
-
         }
 
         public void Position()
         {
+
             Random rnd = new Random();
             int[] position = new int[10];
 
@@ -33,7 +34,6 @@ namespace gik299_project
             {
                 position[p] = rnd.Next(0, 100);
             }
-        }
-        
+        }    
     }
 }
