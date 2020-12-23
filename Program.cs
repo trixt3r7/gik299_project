@@ -7,7 +7,7 @@ namespace gik299_project
 
         static Map map = new Map();
         static Player player = new Player();
-
+        static Enemy enemy = new Enemy();
         static Menu menu = new Menu();
 
         static void Main(string[] args)
@@ -59,8 +59,8 @@ namespace gik299_project
 
             while (activeGame)
             {
-                if (input.caseSwitch == "menu") 
-                { 
+                if (input.caseSwitch == "menu")
+                {
 
                 }
                 else
@@ -84,11 +84,6 @@ namespace gik299_project
             menu.InGameMenu();
 
             StartGame();
-        }
-
-        public static void StartGame()
-        {
-
         }
 
         public static void StartGame()

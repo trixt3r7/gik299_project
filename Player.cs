@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace gik299_project
 {
@@ -28,6 +26,14 @@ namespace gik299_project
         public void Movement()
         {
 
+        }
+
+        public void SetName()
+        {
+            Console.Clear();
+            Console.CursorVisible = true;
+            Console.Write("\n\n\nPlease tell me your name: ");
+            Name = Console.ReadLine();
         }
 
         public void Attack()
@@ -116,7 +122,16 @@ namespace gik299_project
                 Console.WriteLine("You must enter a valid number.");
             }
         }
-      
+        public int PlayerPosition()
+        {
+            return ((Position[0] * 10 + Position[1]) + 1);
+        }
+
+        public int PlayerPrevPosition()
+        {
+            return ((PrevPosition[0] * 10 + PrevPosition[1]) + 1);
+        }
+
         public void Damage()
         {
 
@@ -124,7 +139,7 @@ namespace gik299_project
 
         public void CurrentPlayerPosition()
         {
-            
+
         }
 
         public void Settings()
