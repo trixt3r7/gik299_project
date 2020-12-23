@@ -6,7 +6,7 @@ namespace gik299_project
 {
     class Control
     {
-        public void Boundry()
+        public void Boundary()
         {
 
         }

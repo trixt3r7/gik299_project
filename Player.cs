@@ -6,6 +6,14 @@ namespace gik299_project
 {
     class Player
     {
+        // Instansiering av klasser
+        Enemy enemy = new Enemy();
+        Map map = new Map();
+        Control control = new Control();
+        Menu menu = new Menu();
+        Highscore highscore = new Highscore();
+        SaveLoad saveload = new SaveLoad();
+
         public string Name;
         public int Health = 100;
         public int HealthBoundary = 90;
@@ -17,7 +25,6 @@ namespace gik299_project
         public int[] PrevPosition = new int[2];
         public bool[] VisitedPosition = new bool[100];
 
-
         public void Movement()
         {
 
@@ -25,7 +32,7 @@ namespace gik299_project
 
         public void Attack()
         {
-            Console.WriteLine("You attack the [enemy].");
+            Console.WriteLine($"You attack the {enemy.GetRandomName()}.");
             AttackProbability();
             HealthBoostChance();
         }
@@ -39,12 +46,12 @@ namespace gik299_project
                 if (Health > HealthBoundary)
                 {
                     Health += MaxHealth - Health;
-                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with additional health points. You now have {Health}/100 HP.");
+                    Console.WriteLine($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth}.");
                 }
                 else
                 {
                     Health += 10;
-                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/100 HP.");
+                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/{MaxHealth} HP.");
                 }
             }
         }
@@ -95,8 +102,12 @@ namespace gik299_project
                         Console.WriteLine("Enter the name of your custom character!");
                         Name = Console.ReadLine();
                         break;
+                    case 1337:
+                        Name = "Thomas";
+                        MaxHealth = 200;
+                        break;
                     default:
-                        Console.WriteLine("You must chose an alternative ranging from 1-4.");
+                        Console.WriteLine("You must choose an alternative ranging from 1-4.");
                         break;
                 }
             }

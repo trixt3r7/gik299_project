@@ -16,7 +16,7 @@ namespace gik299_project
 
             player.ShowPlayerStats();
 
-            Console.WriteLine("");
+            player.Attack();
 
             map.GenerateMap();
 
