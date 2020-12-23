@@ -9,52 +9,49 @@ namespace gik299_project
 
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
+        public int KeyAmount = 10;
 
         public void GenerateMap()
         {
-            bool playerPos = false;
-
-            for (int i = 0; i < 100; i++)
+            for (int y = 0; y < 10; y++)
             {
-                if (i % 2 == 1)
+                for (int x = 0; x < 10; x++)
                 {
-                    player.VisitedPosition[i] = true;
+                    MapArea[y, x] = (y * 10 + x) + 1;
                 }
-                //Console.WriteLine(player.VisitedPosition[i]);
             }
 
-            for (int i = 0; i < 10; i++)
+        }
+
+        public void DrawMap(Player player)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t\t    ┌─────────────────────┬══─═══════──═════─═════──═■");
+            for (int y = 0; y < MapArea.GetLength(0); y++)
             {
-                for (int j = 0; j < 10; j++)
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("\t\t    │ ");
+                Console.ResetColor();
+                for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
 
-                    MapArea[i, j] = (i * 10 + j) + 1;
+                    MapArea[y, x] = (y * 10 + x) + 1;
 
-                    if (player.Position[0] == i && player.Position[1] == j)
-                    {
-                        playerPos = true;
-                    }
-                    else
-                    {
-                        playerPos = false;
-                    }
+                    int temp = (y * 10 + x + 1) - 1;
 
-                    int temp = (i * 10 + j + 1) - 1;
-
-                    if (playerPos)
+                    if (player.Position[0] == y && player.Position[1] == x)
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-
                     else if (true)
                     {
                         if (player.VisitedPosition[temp] == true)
                         {
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("■ ");
-                        Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("■ ");
+                            Console.ResetColor();
                         }
                         else
                         {
@@ -64,11 +61,71 @@ namespace gik299_project
                         }
                     }
                 }
-                Console.WriteLine();  
+                if (y == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("│");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("   POSITION");
+                    Console.ResetColor();
+                    Console.WriteLine("  [X-{0} Y-{1}]", player.Position[1], player.Position[0]);
+                }
+                else if (y == 3)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("├");
+                    Console.WriteLine("═─═══──════──══─═══──══■");
+                    Console.ResetColor();
+                }
+                else if (y == 5)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("│");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("   HEALTH");
+                    Console.ResetColor();
+                    Console.WriteLine("    [{0:D3}/{1}]", player.Health, player.MaxHealth);
+                }
+                else if (y == 6)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("│");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("   KEYS");
+                    Console.ResetColor();
+                    Console.WriteLine("      [{0}/{1}]", player.Keys, KeyAmount);
+                }
+                else if (y == 7)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("│");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("   STEPS");
+                    Console.ResetColor();
+                    Console.WriteLine("     [{0}/{1}]", player.Steps, 80); //80 ska bytas ut mot variabeln för gameoverCondition när den finns.
+                }
+                else if (y == 7)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("│");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("   POSITION");
+                    Console.ResetColor();
+                    Console.WriteLine("  [X-{0} Y-{1}]", player.Position[1], player.Position[0]);
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("│");
+                    Console.ResetColor();
+                }
             }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\t\t    └─────────────────────┴═──══─══──═══─══──══■");
+            Console.ResetColor();
+                
         }
-
-        public void KeyPosition()
+            public void KeyPosition()
         {
 
         }
