@@ -134,5 +134,35 @@ namespace gik299_project
                                                                                                 ");
 
         }
+
+        public void WelcomeText()
+        {
+
+        }
+
+        public void StoryText()
+        {
+
+        }
+
+        public void MainMenu()
+        {
+
+        }
+
+        public void Settings()
+        {
+
+        }
+
+        public void InGameMeny()
+        {
+
+        }
+
+        public void Credits()
+        {
+
+        }
     }
 }

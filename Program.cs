@@ -7,6 +7,7 @@ namespace gik299_project
 
         static Map map = new Map();
         static Player player = new Player();
+
         static Menu menu = new Menu();
 
         static void Main(string[] args)
@@ -88,6 +89,33 @@ namespace gik299_project
         public static void StartGame()
         {
 
+        }
+
+        public static void StartGame()
+        {
+            player.ChooseCharacter();
+        }
+
+        public static void Win()
+        {
+            Console.WriteLine("You unlock the door and successfully escape.");
+            Console.WriteLine("YOU WIN!");
+            Console.WriteLine("Press any key to continue...");
+        }
+
+        public static void Lose()
+        {
+            Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
+            Console.WriteLine("GAME OVER!");
+            Console.WriteLine("Press any key to continue...");
+        }
+
+        public static void CheckHealth()
+        {
+            if (player.Health < 1)
+            {
+                Lose();
+            }
         }
     }
 }
