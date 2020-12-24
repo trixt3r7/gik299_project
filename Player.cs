@@ -20,7 +20,7 @@ namespace gik299_project
         public int Potions = 0;
         public int Steps = 0;
         public int[] Position = new int[2] { 9, 0 };
-        public int[] PrevPosition = new int[2];
+        public int[] PrevPosition = new int[2] { 9, 0 };
         public bool[] VisitedPosition = new bool[100];
 
         public void Movement()

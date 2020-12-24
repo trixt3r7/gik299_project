@@ -47,8 +47,7 @@ namespace gik299_project
             menu.WelcomeText();
             Console.ReadKey();
             Console.Clear();
-            menu.StoryText();
-            Console.ReadKey();
+            menu.StoryText(player);
             Console.Clear();
 
             Control input = new Control();
