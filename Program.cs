@@ -18,11 +18,11 @@ namespace gik299_project
             {
                 menu.GameLogo();
                 menu.MainMenu();
-                ConsoleKeyInfo keypress = Console.ReadKey();
+                ConsoleKeyInfo keypress = Console.ReadKey(true);
 
                 if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
                 {
-                    player.SetName();
+                    player.ChooseCharacter();
                     break;
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')

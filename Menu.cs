@@ -46,7 +46,8 @@ namespace gik299_project
         }
         public void WelcomeText()
         {
-            Console.WriteLine("\nSome Welcome Text Hehe...");
+            Player player = new Player();
+            Console.WriteLine($"\nGreetings {player.Name}... Other Welcome Text");
         }
 
         public void StoryText(Player player)

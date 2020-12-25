@@ -85,10 +85,10 @@ namespace gik299_project
 
         public void ChooseCharacter()
         {
-            Console.WriteLine("Choose a character!");
-            Console.WriteLine("1: 'philipsinnott'");
-            Console.WriteLine("2: 'ImStuffZ'");
-            Console.WriteLine("3: 'trixt3r7'");
+            Console.WriteLine("[Choose a character]");
+            Console.WriteLine("1: Sample 1");
+            Console.WriteLine("2: Sample 2");
+            Console.WriteLine("3: Sample 3");
             Console.WriteLine("4: Custom character");
 
             if (int.TryParse(Console.ReadLine(), out int CharacterMenu))
