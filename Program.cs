@@ -22,6 +22,7 @@ namespace gik299_project
 
                 if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
                 {
+                    menu.BootUp();
                     player.ChooseCharacter();
                     break;
                 }
