@@ -15,7 +15,7 @@ namespace gik299_project
 
         public void GenerateMap()
         {
-            TotalKeys = KeyPos();
+            TotalKeys = KeyPos(); //TotalKeys can be called outside of this class.
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 10; x++)
@@ -38,7 +38,7 @@ namespace gik299_project
             }
         }
         */
-        public int[] KeyPos()
+        private int[] KeyPos()
         {
             Random rng = new Random();
 
@@ -46,9 +46,9 @@ namespace gik299_project
             for (int i = 0; i < 10; i++)
             {
                 KeyPosition[i] = rng.Next(1,100);
-                //Något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
+                //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
             }
-            return KeyPosition;
+            return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
         }
 
         public void DrawMap(Player player)

@@ -15,6 +15,7 @@ namespace gik299_project
 
             while (true)
             {
+                Console.WriteLine("\n");
                 menu.GameLogo();
                 menu.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey();
@@ -54,19 +55,20 @@ namespace gik299_project
 
             bool activeGame = true;
 
-            string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.
+            string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
 
-            int[] generatedKeys = map.TotalKeys;
+            int[] generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
 
-            while (activeGame)
+            while (activeGame) //Game is running.
             {
 
+                //Checks if the player is in the same spot as a key.
                 for (int i = 0; i < 10; i++)
                 {
                     if (player.PlayerPosition() == generatedKeys[i])
                     {
-                        player.Keys++;
-                        generatedKeys[i] = 0;
+                        player.Keys++; //Adds a key to the player stats.
+                        generatedKeys[i] = -1; //Puts the picked up key outside of the map so it cannot be picked up again.
                     }
                 }
 
@@ -100,7 +102,7 @@ namespace gik299_project
                 input.PlayerInput(player);
             }
 
-            while (!activeGame)
+            while (!activeGame) //Game is over.
             {
                 Console.Clear();
                 menu.Credits();
