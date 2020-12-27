@@ -8,8 +8,6 @@ namespace gik299_project
     {
 
         Menu menu = new Menu();
-        static Map map = new Map();
-        static Player player = new Player();
 
         public string caseSwitch;
 
@@ -88,20 +86,6 @@ namespace gik299_project
             if (player.VisitedPosition[player.PlayerPrevPosition() - 1] == false)
             {
                 player.VisitedPosition[player.PlayerPrevPosition() - 1] = true;
-            }
-        }
-
-        public void KeyTest()
-        {
-            for (int i = 0; i < KeyPosition.Length; i++)
-            {
-                if (player.PlayerPosition() == KeyPosition[i])
-                {
-                    player.Keys += 1;
-                    KeyPosition[i] = 0;
-                    Console.WriteLine("You found a keycard, you now have: {0}/{1}", player.Keys, map.TotalKeys.Length);
-                }
-
             }
         }
 

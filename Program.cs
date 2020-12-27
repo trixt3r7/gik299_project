@@ -58,10 +58,26 @@ namespace gik299_project
 
             int[] generatedKeys = map.TotalKeys;
 
-
-
             while (activeGame)
             {
+
+                for (int i = 0; i < 10; i++)
+                {
+                    if (player.PlayerPosition() == generatedKeys[i])
+                    {
+                        player.Keys++;
+                        generatedKeys[i] = 0;
+                    }
+                }
+
+                if (player.PlayerPosition() == 10 && player.Keys < 10)
+                {
+                    Console.WriteLine("You have reached the exit but you do not yet have 10 keys.");
+                }
+                else if (player.PlayerPosition() == 10 && player.Keys == 10) {
+                    Console.WriteLine("You have escaped and won the game. Press any button for credits.");
+                    activeGame = false;
+                }
 
                 if (input.caseSwitch == "menu") 
                 { 
@@ -82,6 +98,14 @@ namespace gik299_project
                     menu.ActionMenu();
                 }
                 input.PlayerInput(player);
+            }
+
+            while (!activeGame)
+            {
+                Console.Clear();
+                menu.Credits();
+                Console.ReadKey();
+                Environment.Exit(1);
             }
 
 

@@ -15,6 +15,7 @@ namespace gik299_project
 
         public void GenerateMap()
         {
+            TotalKeys = KeyPos();
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 10; x++)
@@ -22,7 +23,6 @@ namespace gik299_project
                     MapArea[y, x] = (y * 10 + x) + 1;
                 }
             }
-            TotalKeys = KeyPos();
         }
 
         /*
@@ -46,6 +46,7 @@ namespace gik299_project
             for (int i = 0; i < 10; i++)
             {
                 KeyPosition[i] = rng.Next(1,100);
+                //Något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
             }
             return KeyPosition;
         }
