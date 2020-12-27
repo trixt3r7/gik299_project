@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace gik299_project
 {
@@ -24,30 +25,72 @@ namespace gik299_project
         {
             Console.ResetColor();
         }
+        public void Indent()
+        {
+            Console.Write("                    ");
+        }
 
         public void GameLogo()
         {
-            PriColor(); Console.WriteLine("                                                 ______      __");
-            SecColor(); Console.Write("                        ■■■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"   / ____/_  __/ /_  ___  _____       "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■");
-            PriColor(); Console.Write("                        ■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"    / /   / / / / __ \/ _ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■■■");
-            SecColor(); Console.Write("                        ■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"     / /___/ /_/ / /_/ /  __/ /      "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■");
-            PriColor(); Console.Write("                        ■■■■■■■■■■■■"); SecColor(); Console.Write(@"  ____"); PriColor(); Console.WriteLine(@"    \____/\__, /_.___/\___/_/     ■■■■■■■■■■■■■■■■■■■■");
-            SecColor(); Console.Write("                        ■■■■■■■■■■"); SecColor(); Console.Write(@"   / __ \__  ____"); PriColor(); Console.Write(@"/____/");
-            SecColor(); Console.WriteLine(@"__  ___  ____  ____  _____      ■■■■■■■");
-            PriColor(); Console.Write("                        ■■■■■■■■"); SecColor(); Console.Write(@"    / / / / / / / __ \/ __ `/ _ \/ __ \/ __ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■");
-            SecColor(); Console.Write("                        ■■■■■■"); SecColor(); Console.Write(@"     / /_/ / /_/ / / / / /_/ /  __/ /_/ / / / (__  )    "); SecColor(); Console.WriteLine("■■■■■■■■■■");
-            PriColor(); Console.Write("                        ■■■■"); SecColor(); Console.Write(@"      /_____/\__,_/_/ /_/\__, /\___/\____/_/ /_/____/  "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■");
-            SecColor(); Console.WriteLine("                                                    /____/");
+            Indent(); PriColor(); Console.WriteLine("                         ______      __");
+            Indent(); SecColor(); Console.Write("■■■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"   / ____/_  __/ /_  ___  _____       "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■");
+            Indent(); PriColor(); Console.Write("■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"    / /   / / / / __ \/ _ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■■■■");
+            Indent(); SecColor(); Console.Write("■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"     / /___/ /_/ / /_/ /  __/ /      "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■■");
+            Indent(); PriColor(); Console.Write("■■■■■■■■■■■■"); SecColor(); Console.Write(@"  ____"); PriColor(); Console.WriteLine(@"    \____/\__, /_.___/\___/_/     ■■■■■■■■■■■■■■■■■■■■■");
+            Indent(); SecColor(); Console.Write("■■■■■■■■■■"); SecColor(); Console.Write(@"   / __ \__  ____"); PriColor(); Console.Write(@"/____/");
+            SecColor(); Console.WriteLine(@"__  ___  ____  ____  _____      ■■■■■■■■");
+            Indent(); PriColor(); Console.Write("■■■■■■■■"); SecColor(); Console.Write(@"    / / / / / / / __ \/ __ `/ _ \/ __ \/ __ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■■");
+            Indent(); SecColor(); Console.Write("■■■■■■"); SecColor(); Console.Write(@"     / /_/ / /_/ / / / / /_/ /  __/ /_/ / / / (__  )    "); SecColor(); Console.WriteLine("■■■■■■■■■■■");
+            Indent(); PriColor(); Console.Write("■■■■"); SecColor(); Console.Write(@"      /_____/\__,_/_/ /_/\__, /\___/\____/_/ /_/____/  "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■■");
+            Indent(); SecColor(); Console.WriteLine("                            /____/");
             ResetColor();
         }
         public void WelcomeText()
         {
-            Console.WriteLine("\nSome Welcome Text Hehe...");
+            Player player = new Player();
+            Console.WriteLine($"\nGreetings {player.Name}... Other Welcome Text");
         }
 
-        public void StoryText()
+        public void StoryText(Player player)
         {
-            Console.WriteLine("\n*A very epic story*");
+            GameLogo();
+            Indent(); PriColor(); Console.Write("A.I. GHOST: "); ResetColor(); Console.WriteLine("Time to wake up {0}.", player.Name);
+            Indent(); TerColor(); Console.Write("{0}: ", player.Name); ResetColor(); Console.WriteLine("What the hell? Feels like I have been run over by a truck.");
+            Indent(); Console.WriteLine("Where am I?.");
+            Indent(); PriColor(); Console.Write("A.I. GHOST: "); ResetColor(); Console.WriteLine("You have been captured by 'The Nordstroms' and their boss");
+            Indent(); Console.WriteLine("Taserface wants to take you out himself and is on his way here right");
+            Indent(); Console.WriteLine("now. They found out that it was you that stole the Military Grade");
+            Indent(); Console.WriteLine("for their rivalry faction 'Night Runners'.And want to make an");
+            Indent(); Console.WriteLine("example of you.");
+            Indent(); TerColor(); Console.Write("{0}: ", player.Name); ResetColor(); Console.WriteLine("What the...");
+            Indent(); PriColor(); Console.Write("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural");
+            Indent(); Console.WriteLine("transplant is severely damaged and you need to seek out a Neurodoc");
+            Indent(); Console.WriteLine("ASAP.");
+            Console.WriteLine();
+            Indent(); PriColor(); Console.WriteLine("Press [Enter] key to go to next page..."); ResetColor();
+            Console.CursorVisible = false;
+            Indent(); Console.ReadLine();
+
+            Console.Clear();
+            GameLogo();
+            Indent(); PriColor(); Console.Write("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at");
+            Indent(); Console.WriteLine("the north east exit. I have located a weapon outside this room that");
+            Indent(); Console.WriteLine("will be useful. List of objectives required to exit the base below:");
+            Console.WriteLine();
+            Indent(); TerColor(); Console.WriteLine("[OBJECTIVES]"); ResetColor();
+            Indent(); Console.WriteLine("1. Find the 10 keycards located in 10 different rooms. They could be ");
+            Indent(); Console.WriteLine("located in the same room as enemies.");
+            Indent(); Console.WriteLine("2. Reach the northeast exit before your health reaches 0 health,");
+            Indent(); Console.WriteLine("and in under 80 moves before Taserface and the rest of the faction  ");
+            Indent(); Console.WriteLine("arrives.");
+            Indent(); Console.WriteLine("3. Watch out for the faction members that are gathered in 10 different");
+            Indent(); Console.WriteLine("rooms.");
+
+            Console.WriteLine();
+            Indent(); PriColor(); Console.WriteLine("Press [Enter] to start playing."); ResetColor();
+            Indent(); Console.ReadLine();
+            Console.CursorVisible = true;
+            Console.Clear();
         }
 
         public void MainMenu()
@@ -130,6 +173,45 @@ namespace gik299_project
                                           /____/                                           
                                                                                                 ");
 
+        }
+
+        public void InGameMeny()
+        {
+
+        }
+
+        public void BootUp()
+        {
+            Indent(); Console.Write("BOOTING: ");
+            for (int i = 0; i < 20; i++)
+            {
+                Console.Write($"#");
+                Thread.Sleep(25); // Speed of animation
+            }
+            Console.Write(" [OK]");
+            Indent(); Console.WriteLine("");
+
+            string connect = ">";
+            Indent(); Console.Write("INITIALIZING CONNECTION: ");
+            for (int i = 0; i < 6; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    connect = "-";
+                }
+                else
+                {
+                    connect = ">";
+                }
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write($"{connect}");
+                    Thread.Sleep(50); // Speed of animation
+                }
+                Console.Write("\b\b\b");
+            }
+            Console.WriteLine(">>>  [OK]");
+            Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
         }
     }
 }

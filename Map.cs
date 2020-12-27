@@ -108,6 +108,7 @@ namespace gik299_project
                 else if (y == 5)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+
                     Console.Write("│");
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("   HEALTH");
@@ -159,3 +160,4 @@ namespace gik299_project
         }
     }
 }
+

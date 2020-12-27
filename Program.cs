@@ -7,6 +7,7 @@ namespace gik299_project
 
         static Map map = new Map();
         static Player player = new Player();
+        static Enemy enemy = new Enemy();
         static Menu menu = new Menu();
 
         static void Main(string[] args)
@@ -18,11 +19,12 @@ namespace gik299_project
                 Console.WriteLine("\n");
                 menu.GameLogo();
                 menu.MainMenu();
-                ConsoleKeyInfo keypress = Console.ReadKey();
+                ConsoleKeyInfo keypress = Console.ReadKey(true);
 
                 if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
                 {
-                    player.SetName();
+                    menu.BootUp();
+                    player.ChooseCharacter();
                     break;
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
@@ -47,8 +49,7 @@ namespace gik299_project
             menu.WelcomeText();
             Console.ReadKey();
             Console.Clear();
-            menu.StoryText();
-            Console.ReadKey();
+            menu.StoryText(player);
             Console.Clear();
 
             Control input = new Control();
@@ -61,7 +62,6 @@ namespace gik299_project
 
             while (activeGame) //Game is running.
             {
-
                 //Checks if the player is in the same spot as a key.
                 for (int i = 0; i < 10; i++)
                 {
@@ -118,7 +118,29 @@ namespace gik299_project
 
         public static void StartGame()
         {
+            player.ChooseCharacter();
+        }
 
+        public static void Win()
+        {
+            Console.WriteLine("You unlock the door and successfully escape.");
+            Console.WriteLine("YOU WIN!");
+            Console.WriteLine("Press any key to continue...");
+        }
+
+        public static void Lose()
+        {
+            Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
+            Console.WriteLine("GAME OVER!");
+            Console.WriteLine("Press any key to continue...");
+        }
+
+        public static void CheckHealth()
+        {
+            if (player.Health < 1)
+            {
+                Lose();
+            }
         }
     }
 }
