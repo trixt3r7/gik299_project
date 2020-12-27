@@ -10,9 +10,12 @@ namespace gik299_project
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
         public int KeyAmount = 10;
+        public int[] TotalKeys;
+        //public int[] KeyPosition = new int[10];
 
         public void GenerateMap()
         {
+            TotalKeys = KeyPos(); //TotalKeys can be called outside of this class.
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 10; x++)
@@ -20,7 +23,32 @@ namespace gik299_project
                     MapArea[y, x] = (y * 10 + x) + 1;
                 }
             }
+        }
 
+        /*
+        public void GenerateKeyPos()
+        {
+            Random rng = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                do
+                {
+                    KeyPosition[i] = rng.Next(1,100);
+                }
+            }
+        }
+        */
+        private int[] KeyPos()
+        {
+            Random rng = new Random();
+
+            int[] KeyPosition = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                KeyPosition[i] = rng.Next(1,100);
+                //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
+            }
+            return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
         }
 
         public void DrawMap(Player player)

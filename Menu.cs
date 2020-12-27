@@ -149,7 +149,8 @@ namespace gik299_project
 
         public void Credits()
         {
-
+            Console.WriteLine("'Epic Credits'");
+            QuitGame();
         }
 
         public void QuitGame()

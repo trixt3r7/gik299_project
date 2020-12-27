@@ -7,6 +7,7 @@ namespace gik299_project
     class Control
     {
         Menu menu = new Menu();
+
         public string caseSwitch;
 
         public void PlayerInput(Player player)
@@ -87,9 +88,5 @@ namespace gik299_project
             }
         }
 
-        public void Boundry()
-        {
-
-        }
     }
 }

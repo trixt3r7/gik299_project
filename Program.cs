@@ -16,6 +16,7 @@ namespace gik299_project
 
             while (true)
             {
+                Console.WriteLine("\n");
                 menu.GameLogo();
                 menu.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
@@ -55,12 +56,33 @@ namespace gik299_project
 
             bool activeGame = true;
 
-            string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.
+            string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
 
-            while (activeGame)
+            int[] generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
+
+            while (activeGame) //Game is running.
             {
-                if (input.caseSwitch == "menu")
+                //Checks if the player is in the same spot as a key.
+                for (int i = 0; i < 10; i++)
                 {
+                    if (player.PlayerPosition() == generatedKeys[i])
+                    {
+                        player.Keys++; //Adds a key to the player stats.
+                        generatedKeys[i] = -1; //Puts the picked up key outside of the map so it cannot be picked up again.
+                    }
+                }
+
+                if (player.PlayerPosition() == 10 && player.Keys < 10)
+                {
+                    Console.WriteLine("You have reached the exit but you do not yet have 10 keys.");
+                }
+                else if (player.PlayerPosition() == 10 && player.Keys == 10) {
+                    Console.WriteLine("You have escaped and won the game. Press any button for credits.");
+                    activeGame = false;
+                }
+
+                if (input.caseSwitch == "menu") 
+                { 
 
                 }
                 else
@@ -78,6 +100,14 @@ namespace gik299_project
                     menu.ActionMenu();
                 }
                 input.PlayerInput(player);
+            }
+
+            while (!activeGame) //Game is over.
+            {
+                Console.Clear();
+                menu.Credits();
+                Console.ReadKey();
+                Environment.Exit(1);
             }
 
 
