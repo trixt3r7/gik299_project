@@ -56,8 +56,11 @@ namespace gik299_project
 
             string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.
 
+            int[] generatedKeys = map.TotalKeys;
+
             while (activeGame)
             {
+
                 if (input.caseSwitch == "menu") 
                 { 
 

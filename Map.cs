@@ -10,6 +10,7 @@ namespace gik299_project
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
         public int KeyAmount = 10;
+        public int[] TotalKeys;
         //public int[] KeyPosition = new int[10];
 
         public void GenerateMap()
@@ -21,7 +22,7 @@ namespace gik299_project
                     MapArea[y, x] = (y * 10 + x) + 1;
                 }
             }
-
+            TotalKeys = KeyPos();
         }
 
         /*
