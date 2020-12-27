@@ -18,10 +18,17 @@ namespace gik299_project
             return RandomName;
         }
 
-        public void Count()
+        public int[] EnemyCount()
         {
             Random rnd = new Random();
-
+            int randomizer = rnd.Next(1, 4);
+            int count = 10;
+            int[] enemyCount = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                enemyCount[i] = randomizer;
+            }
+            return enemyCount;
         }
 
         public void Position()
