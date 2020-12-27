@@ -10,7 +10,7 @@ namespace gik299_project
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
         public int KeyAmount = 10;
-        public List <int> KeyPosition = new List<int>();
+        //public int[] KeyPosition = new int[10];
 
         public void GenerateMap()
         {
@@ -24,17 +24,29 @@ namespace gik299_project
 
         }
 
-        public void GenerateKeys()
+        /*
+        public void GenerateKeyPos()
         {
             Random rng = new Random();
-
             for (int i = 0; i < 10; i++)
             {
                 do
                 {
-                    KeyPosition[i] = rng.Next(1, 100);
-                } while 
+                    KeyPosition[i] = rng.Next(1,100);
+                }
             }
+        }
+        */
+        public int[] KeyPos()
+        {
+            Random rng = new Random();
+
+            int[] KeyPosition = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                KeyPosition[i] = rng.Next(1,100);
+            }
+            return KeyPosition;
         }
 
         public void DrawMap(Player player)
