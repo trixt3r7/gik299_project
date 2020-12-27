@@ -8,6 +8,9 @@ namespace gik299_project
     {
 
         Menu menu = new Menu();
+        static Map map = new Map();
+        static Player player = new Player();
+
         public string caseSwitch;
 
         public void PlayerInput(Player player)
@@ -88,9 +91,19 @@ namespace gik299_project
             }
         }
 
-        public void Boundry()
+        public void KeyTest()
         {
+            for (int i = 0; i < KeyPosition.Length; i++)
+            {
+                if (player.PlayerPosition() == KeyPosition[i])
+                {
+                    player.Keys += 1;
+                    KeyPosition[i] = 0;
+                    Console.WriteLine("You found a keycard, you now have: {0}/{1}", player.Keys, map.TotalKeys.Length);
+                }
 
+            }
         }
+
     }
 }
