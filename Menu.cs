@@ -180,6 +180,8 @@ namespace gik299_project
 
         }
 
+        // Lägga in flera rader med flashiflash
+        // 10% chans till blue screen
         public void BootUp()
         {
             Indent(); Console.Write("BOOTING: ");
