@@ -51,7 +51,7 @@ namespace gik299_project
                 if (Health > HealthBoundary)
                 {
                     Health += MaxHealth - Health;
-                    menu.PadTextWL($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth}.");
+                    Console.WriteLine($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth} HP.");
                 }
                 else
                 {
