@@ -13,7 +13,6 @@ namespace gik299_project
 
         public string GetRandomName()
         {
-
             Random rdm = new Random();
             int index = rdm.Next(Names.Length);
             string RandomName = Names[index];
