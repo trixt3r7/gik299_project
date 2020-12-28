@@ -19,6 +19,7 @@ namespace gik299_project
                     {
                         Console.Beep(200, 150);
                         menu.CenterText("You have reach the top wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -33,6 +34,7 @@ namespace gik299_project
                     {
                         Console.Beep(200, 150);
                         menu.CenterText("You have reach the right wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -47,6 +49,7 @@ namespace gik299_project
                     {
                         Console.Beep(200, 150);
                         menu.CenterText("You have reach the down wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -61,6 +64,7 @@ namespace gik299_project
                     {
                         Console.Beep(200, 150);
                         menu.CenterText("You have reach the left wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {

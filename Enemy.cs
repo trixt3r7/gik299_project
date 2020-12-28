@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace gik299_project
 {
@@ -65,6 +64,6 @@ namespace gik299_project
             {
                 position[p] = rnd.Next(0, 100);
             }
-        }    
+        }
     }
 }
