@@ -14,12 +14,13 @@ namespace gik299_project
 
         static void Main(string[] args)
         {
+
             menu.WindowSettings();
             StartMenu();
 
-
         }
         /*------------------------- MAIN ENDS -------------------------*/
+
 
         public static void StartMenu()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using NAudio.Wave;
 
 namespace gik299_project
 {
@@ -333,36 +334,50 @@ namespace gik299_project
         // 10% chans till blue screen
         public void BootUp()
         {
-            Indent(); Console.Write("BOOTING: ");
-            for (int i = 0; i < 20; i++)
-            {
-                Console.Write($"#");
-                Thread.Sleep(25); // Speed of animation
-            }
-            Console.Write(" [OK]");
-            Indent(); Console.WriteLine("");
 
-            string connect = ">";
-            Indent(); Console.Write("INITIALIZING CONNECTION: ");
-            for (int i = 0; i < 6; i++)
+            using (var audioFile = new AudioFileReader("dial_up.wav"))
+            using (var outputDevice = new WaveOutEvent())
             {
-                if (i % 2 == 0)
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+                while (outputDevice.PlaybackState == PlaybackState.Playing)
                 {
-                    connect = "-";
+                    Indent(); Console.Write("BOOTING: ");
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Console.Write($"#");
+                        Thread.Sleep(25); // Speed of animation
+                    }
+                    Console.Write(" [OK]");
+                    Indent(); Console.WriteLine("");
+
+                    string connect = ">";
+                    Indent(); Console.Write("INITIALIZING CONNECTION: ");
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            connect = "-";
+                        }
+                        else
+                        {
+                            connect = ">";
+                        }
+                        for (int j = 0; j < 3; j++)
+                        {
+                            Console.Write($"{connect}");
+                            Thread.Sleep(50); // Speed of animation
+                        }
+                        Console.Write("\b\b\b");
+                    }
+                    Console.WriteLine(">>>  [OK]");
+                    Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
                 }
-                else
-                {
-                    connect = ">";
-                }
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write($"{connect}");
-                    Thread.Sleep(50); // Speed of animation
-                }
-                Console.Write("\b\b\b");
             }
-            Console.WriteLine(">>>  [OK]");
-            Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
+
+            Console.WriteLine("\nPress any button to Log in.");
+            Console.ReadKey();
+            
         }
     }
 }
