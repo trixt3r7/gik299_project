@@ -19,7 +19,6 @@ namespace gik299_project
 
 
         }
-        /*------------------------- MAIN ENDS -------------------------*/
 
         public static void StartMenu()
         {
@@ -36,7 +35,7 @@ namespace gik299_project
                     Console.Clear();
                     menu.GameLogo();
                     menu.HrLine();
-                    menu.BootUp();
+                    menu.QuickBootUp();  // Quick bootup for development
                     menu.Indent();
                     player.ChooseCharacter();
                     InGame();
@@ -57,7 +56,6 @@ namespace gik299_project
                 }
                 else
                 {
-                    // Nödvändig? Kolla upp
                     Console.Clear();
                 }
             }
@@ -68,16 +66,11 @@ namespace gik299_project
             Console.Clear();
             menu.GameLogo();
             menu.HrLine();
+            map.MapSettings();
             map.GenerateMap();
             enemy.GenerateEnemies();
-            //Console.Clear();
-            //menu.WelcomeText();
-            //Console.ReadKey();
-            //Console.Clear();
             menu.StoryText(player);
-            //Console.Clear();
             Console.CursorVisible = true;
-
 
             bool activeGame = true;
 
@@ -86,19 +79,10 @@ namespace gik299_project
             List<int> generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
             List<int> generatedEnemies = enemy.TotalEnemies; //Generates TotalEnemies before the game starts.
 
+            string keyRoom = "";
+
             while (activeGame) //Game is running.
             {
-                //Checks if the player is in the same spot as a key.
-                for (int i = 0; i < 10; i++)
-                {
-                    if (player.PlayerPosition() == generatedKeys[i])
-                    {
-                        Console.Beep(1400, 100);
-                        player.Keys++; //Adds a key to the player stats.
-                        generatedKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
-                    }
-                }
-
                 for (int i = 0; i < 10; i++)
                 {
                     if (player.PlayerPosition() == generatedEnemies[i])
@@ -134,6 +118,10 @@ namespace gik299_project
                 menu.SmallGameLogo();
                 menu.HrLine2();
                 map.DrawMap(player);
+                menu.HrLine2();
+                // Print what room player is in.
+                RoomText(keyRoom);
+
 
                 if (input.caseSwitch == "menu")
                 {
@@ -144,6 +132,19 @@ namespace gik299_project
                     menu.ActionMenu();
                 }
                 input.PlayerInput(player);
+
+                keyRoom = ""; // Reset if set, before checking for key again
+                //Checks if the player is in the same spot as a key.
+                for (int i = 0; i < 10; i++)
+                {
+                    if (player.PlayerPosition() == generatedKeys[i])
+                    {
+                        Console.Beep(1400, 100);
+                        player.Keys++; //Adds a key to the player stats.
+                        generatedKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
+                        keyRoom = $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{map.KeyAmount}";
+                    }
+                }
             }
 
             while (!activeGame) //Game is over.
@@ -159,25 +160,26 @@ namespace gik299_project
 
             // StartGame();
         }
-
-        //public static void StartGame()
-        //{
-        //    player.ChooseCharacter();
-        //}
-
-        //public static void Win()
-        //{
-        //    Console.WriteLine("You unlock the door and successfully escape.");
-        //    Console.WriteLine("YOU WIN!");
-        //    Console.WriteLine("Press any key to continue...");
-        //}
-
-        //public static void Lose()
-        //{
-        //    Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
-        //    Console.WriteLine("GAME OVER!");
-        //    Console.WriteLine("Press any key to continue...");
-        //}
+        private static void RoomText(string keyRoom)
+        {
+            if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
+            {
+                menu.PadTextW("You reached a wall, you can't go any further in that direction.");
+            }
+            else if (keyRoom.Length == 0 && player.Steps > 0)
+            {
+                menu.PadTextW($"ROOM {player.PlayerPosition()}: {map.RoomInformation[player.PlayerPosition()]}");
+            }
+            else if (keyRoom.Length > 0)
+            {
+                menu.PadTextW(keyRoom);
+            }
+            else if (player.Steps == 0)
+            {
+                menu.PadTextW("You found a Weapon.");
+            }
+            Console.WriteLine();
+        }
 
         //public static void CheckHealth()
         //{

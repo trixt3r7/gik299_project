@@ -1,25 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace gik299_project
 {
     class Map
     {
+        //static Player player = new Player();
+        Menu menu = new Menu();
 
-        public int[,] MapArea = new int[10, 10];
-        static Player player = new Player();
+        public int[,] MapArea;
         public int KeyAmount = 10;
         public List<int> TotalKeys;
+        public string[] RoomInformation;
+
+        public void MapSettings()
+        {
+            MapArea = new int[10, 10];
+            KeyAmount = 10;
+            TotalKeys = KeyPos();
+            RoomInformation = AssignRooms();
+        }
 
         public void GenerateMap()
         {
-            TotalKeys = KeyPos();
-            for (int y = 0; y < 10; y++)
+            // TotalKeys = KeyPos();
+            for (int y = 0; y < MapArea.GetLength(0); y++)
             {
-                for (int x = 0; x < 10; x++)
+                for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
-                    MapArea[y, x] = (y * 10 + x) + 1;
+                    MapArea[y, x] = (y * MapArea.GetLength(0) + x) + 1;
                 }
             }
         }
@@ -33,7 +42,7 @@ namespace gik299_project
             {
                 int numberToAdd;
 
-                do numberToAdd = rng.Next(1,100);
+                do numberToAdd = rng.Next(1, 100);
                 while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
 
                 randomNumbers.Add(numberToAdd);
@@ -58,11 +67,11 @@ namespace gik299_project
         public void DrawMap(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    ┌─────────────────────┬══─═══════──═════─═════──═■");
+            menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("\t\t    │ ");
+                menu.PadTextW("│ ");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
@@ -154,14 +163,53 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    └─────────────────────┴═──══─══──═══─══──══■");
+            menu.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
             Console.ResetColor();
-                
+
         }
-            public void KeyPosition()
+        public void KeyPosition()
         {
 
         }
+
+        public string[] AssignRooms()
+        {
+            // Randomize what to tell in each room
+            Random rand = new Random();
+            // Hold all the randomized info about each room
+            string[] emptyRoomText = new string[101];
+
+            // Random strings text
+            string[] roomInformation = new string[] {
+                "The room is empty, where to next?",
+                "Nothing here, where to next?",
+                "Nothing of value in this room, where to next?",
+                "You enter a storage room but there seems to be nothing of use,\n        where to next?",
+                "You almost stepped on a mine but managed to avoid it, where to next?"
+            };
+
+            // Assign a string to each room from RoomInformation
+            for (int i = 1; i < emptyRoomText.Length; i++)
+            {
+                if (i == 10)
+                {
+                    emptyRoomText[i] = "You have reached the exit. But don't have all the keycards.\n        Check for the other keycards.";
+                }
+                else if (i == 91)
+                {
+                    emptyRoomText[i] = "The holding cell where you started.";
+                }
+                else if (TotalKeys.Contains(i))
+                {
+                    emptyRoomText[i] = "You have picked up a keycard in this room earlier.\n        There is nothing more of use here.";
+                }
+                else
+                {
+                    emptyRoomText[i] = roomInformation[rand.Next(0, roomInformation.Length)];
+                }
+            }
+            return emptyRoomText;
+        }
+
     }
 }
-
