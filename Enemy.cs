@@ -21,7 +21,7 @@ namespace gik299_project
         public int[] EnemyCount()
         {
             Random rnd = new Random();
-            int randomizer = rnd.Next(1, 4);
+            int randomizer = rnd.Next(3);
             int count = 10;
             int[] enemyCount = new int[count];
             for (int i = 0; i < count; i++)
