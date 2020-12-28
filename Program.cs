@@ -9,50 +9,73 @@ namespace gik299_project
         static Player player = new Player();
         static Enemy enemy = new Enemy();
         static Menu menu = new Menu();
+        static Control input = new Control();
 
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
+            menu.WindowSettings();
+            StartMenu();
 
+
+        }
+        /*------------------------- MAIN ENDS -------------------------*/
+
+        public static void StartMenu()
+        {
+            Console.CursorVisible = false;
             while (true)
             {
-                Console.WriteLine("\n");
+                //Console.WriteLine("\n");
                 menu.GameLogo();
                 menu.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
 
                 if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
                 {
+                    Console.Clear();
+                    menu.GameLogo();
+                    menu.HrLine();
                     menu.BootUp();
+                    menu.Indent();
                     player.ChooseCharacter();
-                    break;
+                    InGame();
+                    //break;
+                }
+                else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
+                {
+                    menu.PadTextWL("Show Highscore");
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
-
+                    menu.PadTextWL("Show Credits");
                 }
                 else if (keypress.KeyChar == 'q' || keypress.KeyChar == 'Q')
                 {
-                    Console.Clear();
-                    menu.QuitGame();
-                    Console.ReadKey();
-                    Environment.Exit(1);
+                    // Exit the game
+                    Environment.Exit(0);
                 }
                 else
                 {
+                    // Nödvändig? Kolla upp
                     Console.Clear();
                 }
             }
+        }
 
+        public static void InGame()
+        {
+            Console.Clear();
+            menu.GameLogo();
+            menu.HrLine();
             map.GenerateMap();
-            Console.Clear();
-            menu.WelcomeText();
-            Console.ReadKey();
-            Console.Clear();
+            //Console.Clear();
+            //menu.WelcomeText();
+            //Console.ReadKey();
+            //Console.Clear();
             menu.StoryText(player);
-            Console.Clear();
+            //Console.Clear();
+            Console.CursorVisible = true;
 
-            Control input = new Control();
 
             bool activeGame = true;
 
@@ -76,19 +99,21 @@ namespace gik299_project
                 {
                     Console.WriteLine("You have reached the exit but you do not yet have 10 keys.");
                 }
-                else if (player.PlayerPosition() == 10 && player.Keys == 10) {
+                else if (player.PlayerPosition() == 10 && player.Keys == 10)
+                {
                     Console.WriteLine("You have escaped and won the game. Press any button for credits.");
                     activeGame = false;
                 }
 
-                if (input.caseSwitch == "menu") 
-                { 
+                if (input.caseSwitch == "menu")
+                {
 
                 }
                 else
                 {
                     Console.WriteLine(consoleTextField);
                 }
+                Console.Clear();
                 menu.GameLogo();
                 map.DrawMap(player);
                 if (input.caseSwitch == "menu")
@@ -113,34 +138,34 @@ namespace gik299_project
 
             menu.InGameMenu();
 
-            StartGame();
+            // StartGame();
         }
 
-        public static void StartGame()
-        {
-            player.ChooseCharacter();
-        }
+        //public static void StartGame()
+        //{
+        //    player.ChooseCharacter();
+        //}
 
-        public static void Win()
-        {
-            Console.WriteLine("You unlock the door and successfully escape.");
-            Console.WriteLine("YOU WIN!");
-            Console.WriteLine("Press any key to continue...");
-        }
+        //public static void Win()
+        //{
+        //    Console.WriteLine("You unlock the door and successfully escape.");
+        //    Console.WriteLine("YOU WIN!");
+        //    Console.WriteLine("Press any key to continue...");
+        //}
 
-        public static void Lose()
-        {
-            Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
-            Console.WriteLine("GAME OVER!");
-            Console.WriteLine("Press any key to continue...");
-        }
+        //public static void Lose()
+        //{
+        //    Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
+        //    Console.WriteLine("GAME OVER!");
+        //    Console.WriteLine("Press any key to continue...");
+        //}
 
-        public static void CheckHealth()
-        {
-            if (player.Health < 1)
-            {
-                Lose();
-            }
-        }
+        //public static void CheckHealth()
+        //{
+        //    if (player.Health < 1)
+        //    {
+        //        Lose();
+        //    }
+        //}
     }
 }

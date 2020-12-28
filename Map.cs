@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace gik299_project
 {
+
     class Map
     {
+        Menu menu = new Menu();
 
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
@@ -45,7 +45,7 @@ namespace gik299_project
             int[] KeyPosition = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                KeyPosition[i] = rng.Next(1,100);
+                KeyPosition[i] = rng.Next(1, 100);
                 //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
             }
             return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
@@ -54,11 +54,11 @@ namespace gik299_project
         public void DrawMap(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    ┌─────────────────────┬══─═══════──═════─═════──═■");
+            menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("\t\t    │ ");
+                menu.PadTextW("│ ");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
@@ -150,14 +150,13 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    └─────────────────────┴═──══─══──═══─══──══■");
+            menu.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
             Console.ResetColor();
-                
+
         }
-            public void KeyPosition()
+        public void KeyPosition()
         {
 
         }
     }
 }
-
