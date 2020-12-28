@@ -11,7 +11,6 @@ namespace gik299_project
         static Player player = new Player();
         public int KeyAmount = 10;
         public int[] TotalKeys;
-        //public int[] KeyPosition = new int[10];
 
         public void GenerateMap()
         {
@@ -25,19 +24,6 @@ namespace gik299_project
             }
         }
 
-        /*
-        public void GenerateKeyPos()
-        {
-            Random rng = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                do
-                {
-                    KeyPosition[i] = rng.Next(1,100);
-                }
-            }
-        }
-        */
         private int[] KeyPos()
         {
             Random rng = new Random();

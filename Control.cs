@@ -19,7 +19,7 @@ namespace gik299_project
                 case "goup":
                     if (player.Position[0] == 0) //Om spelaren är högst upp i array 0 kan de inte gå högre.
                     {
-                        Console.WriteLine("                                             You have reach the top wall");
+                        Console.WriteLine("                                             You have reached the top wall");
                     }
                     else
                     {
@@ -32,7 +32,7 @@ namespace gik299_project
                 case "goright":
                     if (player.Position[1] == 9)
                     {
-                        Console.WriteLine("                                             You have reach the right wall");
+                        Console.WriteLine("                                             You have reached the right wall");
                     }
                     else
                     {
@@ -45,7 +45,7 @@ namespace gik299_project
                 case "godown":
                     if (player.Position[0] == 9)
                     {
-                        Console.WriteLine("                                             You have reach the down wall");
+                        Console.WriteLine("                                             You have reached the down wall");
                     }
                     else
                     {
@@ -58,7 +58,7 @@ namespace gik299_project
                 case "goleft":
                     if (player.Position[1] == 0)
                     {
-                        Console.WriteLine("                                             You have reach the left wall");
+                        Console.WriteLine("                                             You have reached the left wall");
                     }
                     else
                     {
