@@ -205,7 +205,7 @@ namespace gik299_project
         }
         public void ConfirmToMainMenu()
         {
-            PadTextW("Do you really want to main menu? Type [Y] for Yes or [Any key] to continue.");
+            PadTextW("Do you really want to return to main menu? Type [Y] for Yes or [Any key] to continue.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
