@@ -23,11 +23,13 @@ namespace gik299_project
         {
             TotalEnemies = EnemyPos();
         }
+        Player player = new Player();
+        private int enemyCount;
 
-        public int[] EnemyCount()
+        public static int[] EnemyCount()
         {
             Random rnd = new Random();
-            int randomizer = rnd.Next(3);
+            int randomizer = rnd.Next(1, 4);
             int count = 10;
             int[] enemyCount = new int[count];
             for (int i = 0; i < count; i++)
@@ -35,6 +37,27 @@ namespace gik299_project
                 enemyCount[i] = randomizer;
             }
             return enemyCount;
+        }
+
+        
+        public void CheckEnemiesLeft()
+        {
+            if (enemyCount == 0)
+            {
+                Console.WriteLine($"You enter a room with an {GetRandomName()} but he's asleep and doesn't hear you, where to next?");
+            }
+            else if (enemyCount == 1)
+            {
+                Console.WriteLine($"You enter a room where a {GetRandomName()} sees you. What do you do?");
+            }
+            else if (enemyCount == 2)
+            {
+                Console.WriteLine($"You enter a room with [2] enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
+            }
+            else (enemyCount == 3)
+            {
+                Console.WriteLine($"- You enter a room with [3] enemies a {GetRandomName()}, {GetRandomName()} and {GetRandomName()}. What do you do?");
+            }
         }
 
         public List<int> EnemyPos()
@@ -57,7 +80,6 @@ namespace gik299_project
 
         public void Position()
         {
-
             Random rnd = new Random();
             int[] position = new int[10];
 
