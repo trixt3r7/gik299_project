@@ -89,7 +89,7 @@ namespace gik299_project
             CenterText(@" / ___/_ __/ /  ___ ____  / _ \__ _____  ___  ___ ___  ___  ___");
             CenterText(@"/ /__/ // / _ \/ -_) __/ / // / // / _ \/ _ `/ -_) _ \/ _ \(_-<");
             CenterText(@"\___/\_, /_.__/\__/_/   /____/\_,_/_//_/\_, /\__/\___/_//_/___/");
-            CenterText(@" ≡≡ /___/ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ /___/ ≡≡≡≡≡≡ 2023 ≡≡≡≡≡ ");
+            CenterText(@" ≡≡ /___/ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ /___/ ≡≡≡≡≡≡ 2021 ≡≡≡≡≡ ");
             ResetColor();
         }
         public void WelcomeText()
@@ -106,7 +106,7 @@ namespace gik299_project
             PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("You have been captured by 'The Nordstroms' and their boss");
             PadTextWL("Taserface wants to take you out himself and is on his way here right");
             PadTextWL("now. They found out that it was you that stole the Military Grade");
-            PadTextWL("for their rivalry faction 'Night Runners'.And want to make an");
+            PadTextWL("for their rivalry faction 'Night Runners'. He wants to make an");
             PadTextWL("example of you.");
             TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the...");
             PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural");
@@ -339,7 +339,25 @@ namespace gik299_project
                 Console.Write($"#");
                 Thread.Sleep(25); // Speed of animation
             }
-            Console.Write(" [OK]");
+            Console.Write("       [OK]");
+            Indent(); Console.WriteLine("");
+
+            Indent(); Console.Write("CHECK NEURAL CONNECTION: ");
+            for (int i = 0; i < 10; i++)
+            {
+                if (i > 3 && i < 8)
+                {
+                    Console.Write($"X");
+                    Thread.Sleep(300); // Speed of animation
+                }
+                else
+                {
+                    Console.Write($"#");
+                    Thread.Sleep(50); // Speed of animation
+                }
+
+            }
+            Console.Write(" [FAILED]");
             Indent(); Console.WriteLine("");
 
             string connect = ">";
@@ -361,7 +379,7 @@ namespace gik299_project
                 }
                 Console.Write("\b\b\b");
             }
-            Console.WriteLine(">>>  [OK]");
+            Console.WriteLine(">>>        [OK]");
             Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
         }
     }

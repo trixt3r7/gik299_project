@@ -97,11 +97,11 @@ namespace gik299_project
 
                 if (player.PlayerPosition() == 10 && player.Keys < 10)
                 {
-                    Console.WriteLine("You have reached the exit but you do not yet have 10 keys.");
+                    menu.PadTextWL("You have reached the exit but you do not yet have 10 keys.");
                 }
                 else if (player.PlayerPosition() == 10 && player.Keys == 10)
                 {
-                    Console.WriteLine("You have escaped and won the game. Press any button for credits.");
+                    menu.PadTextWL("You have escaped and won the game. Press any button for credits.");
                     activeGame = false;
                 }
 
@@ -113,9 +113,12 @@ namespace gik299_project
                 {
                     Console.WriteLine(consoleTextField);
                 }
+
                 Console.Clear();
-                menu.GameLogo();
+                menu.SmallGameLogo();
+                menu.HrLine2();
                 map.DrawMap(player);
+
                 if (input.caseSwitch == "menu")
                 {
                     menu.InGameMenu();
