@@ -32,7 +32,7 @@ namespace gik299_project
         {
             Console.Clear();
             Console.CursorVisible = true;
-            Console.Write("\n\n\nPlease tell me your name: ");
+            menu.PadTextW("\n\n\nPlease tell me your name: ");
             Name = Console.ReadLine();
         }
 
@@ -51,12 +51,12 @@ namespace gik299_project
                 if (Health > HealthBoundary)
                 {
                     Health += MaxHealth - Health;
-                    Console.WriteLine($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth}.");
+                    menu.PadTextWL($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth}.");
                 }
                 else
                 {
                     Health += 10;
-                    Console.WriteLine($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/{MaxHealth} HP.");
+                    menu.PadTextWL($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/{MaxHealth} HP.");
                 }
             }
         }
@@ -68,28 +68,29 @@ namespace gik299_project
             if (result < 20)
             {
                 Health -= 10;
-                Console.WriteLine($"The [enemy] hits you back and you lose 10 health points. You now have {Health} health points remaining.");
+                menu.PadTextWL($"The [enemy] hits you back and you lose 10 health points. You now have {Health} health points remaining.");
             }
             // https://social.msdn.microsoft.com/Forums/vstudio/en-US/26f951f7-8d3d-4926-8705-bddc8a5f8873/i-need-help-with-c-numbers-and-percentages-in-a-few-lines-of-code?forum=csharpgeneral
         }
 
         public void ShowPlayerStats()
         {
-            Console.WriteLine("---STATS---");
-            Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Health: {Health}/100 HP");
-            Console.WriteLine($"Keys collected: {Keys}/10");
-            Console.WriteLine($"Steps taken: {Steps}");
+            menu.PadTextWL("---STATS---");
+            menu.PadTextWL($"Name: {Name}");
+            menu.PadTextWL($"Health: {Health}/100 HP");
+            menu.PadTextWL($"Keys collected: {Keys}/10");
+            menu.PadTextWL($"Steps taken: {Steps}");
         }
 
         public void ChooseCharacter()
         {
-            Console.WriteLine("[Choose a character]");
-            Console.WriteLine("1: Sample 1");
-            Console.WriteLine("2: Sample 2");
-            Console.WriteLine("3: Sample 3");
-            Console.WriteLine("4: Custom character");
-
+            Console.WriteLine();
+            menu.PadTextWL("[Choose a character]");
+            menu.PadTextWL("1: Sample 1");
+            menu.PadTextWL("2: Sample 2");
+            menu.PadTextWL("3: Sample 3");
+            menu.PadTextWL("4: Custom character");
+            menu.Indent();
             if (int.TryParse(Console.ReadLine(), out int CharacterMenu))
             {
                 switch (CharacterMenu)
@@ -104,7 +105,7 @@ namespace gik299_project
                         Name = "sample_3";
                         break;
                     case 4:
-                        Console.WriteLine("Enter the name of your custom character!");
+                        menu.PadTextW("Enter the name of your custom character: ");
                         Name = Console.ReadLine();
                         break;
                     case 1337:
@@ -112,13 +113,13 @@ namespace gik299_project
                         MaxHealth = 200;
                         break;
                     default:
-                        Console.WriteLine("You must choose an alternative ranging from 1-4.");
+                        menu.PadTextWL("You must choose an alternative ranging from 1-4.");
                         break;
                 }
             }
             else
             {
-                Console.WriteLine("You must enter a valid number.");
+                menu.PadTextWL("You must enter a valid number.");
             }
         }
         public int PlayerPosition()
