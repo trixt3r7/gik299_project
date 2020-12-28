@@ -133,7 +133,7 @@ namespace gik299_project
 
         public void Flee()
         {
-            
+            PrevPosition.CopyTo(Position, 0);
         }
 
         public void Damage()
