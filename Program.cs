@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace gik299_project
 {
@@ -68,6 +69,7 @@ namespace gik299_project
             menu.GameLogo();
             menu.HrLine();
             map.GenerateMap();
+            enemy.GenerateEnemies();
             //Console.Clear();
             //menu.WelcomeText();
             //Console.ReadKey();
@@ -81,7 +83,8 @@ namespace gik299_project
 
             string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
 
-            int[] generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
+            List<int> generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
+            List<int> generatedEnemies = enemy.TotalEnemies; //Generates TotalEnemies before the game starts.
 
             while (activeGame) //Game is running.
             {
@@ -90,8 +93,21 @@ namespace gik299_project
                 {
                     if (player.PlayerPosition() == generatedKeys[i])
                     {
+                        Console.Beep(1400, 100);
                         player.Keys++; //Adds a key to the player stats.
-                        generatedKeys[i] = -1; //Puts the picked up key outside of the map so it cannot be picked up again.
+                        generatedKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
+                    }
+                }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    if (player.PlayerPosition() == generatedEnemies[i])
+                    {
+                        Console.Beep(80, 200);
+
+                        //PÅ DEN HÄR RADEN SKA MAN HAMNA I EN FIGHT.
+
+                        generatedEnemies[i] = 0;
                     }
                 }
 

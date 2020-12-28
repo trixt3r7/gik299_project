@@ -9,13 +9,20 @@ namespace gik299_project
 
         public string[] Names = new string[] { "Grunt", "Guard", "Assault", "Sniper", "Brute", "Netrunner" };
         public float DropRate;
+        public List<int> TotalEnemies;
 
         public string GetRandomName()
         {
+
             Random rdm = new Random();
             int index = rdm.Next(Names.Length);
             string RandomName = Names[index];
             return RandomName;
+        }
+
+        public void GenerateEnemies()
+        {
+            TotalEnemies = EnemyPos();
         }
 
         public int[] EnemyCount()
@@ -29,6 +36,24 @@ namespace gik299_project
                 enemyCount[i] = randomizer;
             }
             return enemyCount;
+        }
+
+        public List<int> EnemyPos()
+        {
+
+            List<int> randomNumbers = new List<int>();
+            Random rng = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                int numberToAdd;
+
+                do numberToAdd = rng.Next(1, 100);
+                while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
+
+                randomNumbers.Add(numberToAdd);
+            }
+            return randomNumbers;
         }
 
         public void Position()
