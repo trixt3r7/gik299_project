@@ -95,13 +95,13 @@ namespace gik299_project
                 switch (CharacterMenu)
                 {
                     case 1:
-                        Name = "philipsinnott";
+                        Name = "sample_1";
                         break;
                     case 2:
-                        Name = "ImStuffZ";
+                        Name = "sample_2";
                         break;
                     case 3:
-                        Name = "trixt3r7";
+                        Name = "sample_3";
                         break;
                     case 4:
                         Console.WriteLine("Enter the name of your custom character!");
@@ -133,7 +133,7 @@ namespace gik299_project
 
         public void Flee()
         {
-
+            
         }
 
         public void Damage()
