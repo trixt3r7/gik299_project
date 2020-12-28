@@ -89,7 +89,7 @@ namespace gik299_project
             CenterText(@" / ___/_ __/ /  ___ ____  / _ \__ _____  ___  ___ ___  ___  ___");
             CenterText(@"/ /__/ // / _ \/ -_) __/ / // / // / _ \/ _ `/ -_) _ \/ _ \(_-<");
             CenterText(@"\___/\_, /_.__/\__/_/   /____/\_,_/_//_/\_, /\__/\___/_//_/___/");
-            CenterText(@" ≡≡ /___/ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ /___/ ≡≡≡≡≡≡ 2023 ≡≡≡≡≡ ");
+            CenterText(@" ≡≡ /___/ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ /___/ ≡≡≡≡≡≡ 2021 ≡≡≡≡≡ ");
             ResetColor();
         }
         public void WelcomeText()
@@ -106,7 +106,7 @@ namespace gik299_project
             PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("You have been captured by 'The Nordstroms' and their boss");
             PadTextWL("Taserface wants to take you out himself and is on his way here right");
             PadTextWL("now. They found out that it was you that stole the Military Grade");
-            PadTextWL("for their rivalry faction 'Night Runners'.And want to make an");
+            PadTextWL("for their rivalry faction 'Night Runners'. He wants to make an");
             PadTextWL("example of you.");
             TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the...");
             PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural");
@@ -205,7 +205,7 @@ namespace gik299_project
         }
         public void ConfirmToMainMenu()
         {
-            PadTextW("Do you really want to main menu? Type [Y] for Yes or [Any key] to continue.");
+            PadTextW("Do you really want to return to main menu? Type [Y] for Yes or [Any key] to continue.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
@@ -331,19 +331,63 @@ namespace gik299_project
 
         // Lägga in flera rader med flashiflash
         // 10% chans till blue screen
+        public void QuickBootUp()
+        {
+            Indent(); Console.Write("BOOTING: ");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write($"#");
+                // Yield the rest of the time slice.
+                Thread.Sleep(25);
+            }
+            PriColor(); Console.WriteLine("    [OK]"); ResetColor();
+            PadTextWL("CONNECTION ESTABLISHED");
+        }
         public void BootUp()
         {
             Indent(); Console.Write("BOOTING: ");
             for (int i = 0; i < 20; i++)
             {
                 Console.Write($"#");
-                Thread.Sleep(25); // Speed of animation
+                // Yield the rest of the time slice.
+                Thread.Sleep(25);
             }
-            Console.Write(" [OK]");
+            PriColor(); Console.Write("    [OK]"); ResetColor();
             Indent(); Console.WriteLine("");
 
+            Indent(); Console.Write("NEURAL LINK: ");
+            for (int i = 0; i < 16; i++)
+            {
+                if (i > 3 && i < 8 || i > 10 && i < 12)
+                {
+                    Console.Write($"X");
+                    Thread.Sleep(300); // Speed of animation
+                }
+                else
+                {
+                    Console.Write($"#");
+                    Thread.Sleep(50); // Speed of animation
+                }
+
+            }
+            SecColor(); Console.Write("    [FAILED]"); ResetColor();
+
+            //MEMORY CHECK
+            Indent(); Console.WriteLine("");
+            Indent(); Console.Write("MEMORY CHECK:    TB");
+            Console.CursorVisible = false;
+            for (int i = 0; i < 33; i++)
+            {
+
+                Console.SetCursorPosition(22, Console.CursorTop);
+                Console.Write(i);
+                Thread.Sleep(50);
+            }
+            Console.Write(" TB");
+            PriColor(); Console.WriteLine("              [OK]"); ResetColor();
+            Console.CursorVisible = true;
             string connect = ">";
-            Indent(); Console.Write("INITIALIZING CONNECTION: ");
+            Indent(); Console.Write("INITIALIZING UPLINK: ");
             for (int i = 0; i < 6; i++)
             {
                 if (i % 2 == 0)
@@ -354,14 +398,16 @@ namespace gik299_project
                 {
                     connect = ">";
                 }
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     Console.Write($"{connect}");
-                    Thread.Sleep(50); // Speed of animation
+                    // Yield the rest of the time slice.
+                    Thread.Sleep(50);
                 }
-                Console.Write("\b\b\b");
+                Console.Write("\b\b\b\b\b\b\b\b");
             }
-            Console.WriteLine(">>>  [OK]");
+            Console.Write(">>>>>>>>");
+            PriColor(); Console.WriteLine("    [OK]"); ResetColor();
             Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
         }
     }
