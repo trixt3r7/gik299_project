@@ -38,7 +38,6 @@ namespace gik299_project
 
         public void Attack()
         {
-            Console.WriteLine($"You attack the {enemy.GetRandomName()}.");
             AttackProbability();
             HealthBoostChance();
         }
@@ -130,6 +129,11 @@ namespace gik299_project
         public int PlayerPrevPosition()
         {
             return ((PrevPosition[0] * 10 + PrevPosition[1]) + 1);
+        }
+
+        public void Flee()
+        {
+
         }
 
         public void Damage()

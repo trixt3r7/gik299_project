@@ -88,5 +88,37 @@ namespace gik299_project
             }
         }
 
+        Enemy enemy = new Enemy();
+        public string PlayerAction(Player player)
+        {
+            string input = Console.ReadLine();
+            
+            switch (input)
+            {
+                case "attack":
+                case "Attack":
+                case "ATTACK":
+                    Console.WriteLine($"You attack the {enemy.GetRandomName()}.");
+                    player.Attack();
+                    break;
+                case "flee":
+                case "Flee":
+                case "FLEE":
+                    Console.WriteLine($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
+                    player.Flee();
+                    break;
+                case "goup":
+                case "godown":
+                case "goleft":
+                case "goright":
+                    Console.WriteLine("Movement is not allowed while in combat.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid input, please try again.");
+                    break;
+            }
+            return input;
+        }
+
     }
 }
