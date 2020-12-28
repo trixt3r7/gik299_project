@@ -1,21 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace gik299_project
 {
-
     class Map
     {
-        Menu menu = new Menu();
 
         public int[,] MapArea = new int[10, 10];
         static Player player = new Player();
         public int KeyAmount = 10;
-        public int[] TotalKeys;
-        //public int[] KeyPosition = new int[10];
+        public List<int> TotalKeys;
 
         public void GenerateMap()
         {
-            TotalKeys = KeyPos(); //TotalKeys can be called outside of this class.
+            TotalKeys = KeyPos();
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 10; x++)
@@ -25,40 +24,45 @@ namespace gik299_project
             }
         }
 
-        /*
-        public void GenerateKeyPos()
+        public List<int> KeyPos()
         {
-            Random rng = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                do
-                {
-                    KeyPosition[i] = rng.Next(1,100);
-                }
-            }
-        }
-        */
-        private int[] KeyPos()
-        {
+            List<int> randomNumbers = new List<int>();
             Random rng = new Random();
 
-            int[] KeyPosition = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                KeyPosition[i] = rng.Next(1, 100);
-                //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
+                int numberToAdd;
+
+                do numberToAdd = rng.Next(1,100);
+                while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
+
+                randomNumbers.Add(numberToAdd);
             }
-            return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
+            return randomNumbers;
         }
+
+
+        //private int[] KeyPos()
+        //{
+        //    Random rng = new Random();
+
+        //    int[] KeyPosition = new int[10];
+        //    for (int i = 0; i < 10; i++)
+        //    {
+        //        KeyPosition[i] = rng.Next(1,100);
+        //        //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
+        //    }
+        //    return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
+        //}
 
         public void DrawMap(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
+            Console.WriteLine("\t\t    ┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                menu.PadTextW("│ ");
+                Console.Write("\t\t    │ ");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
@@ -150,13 +154,14 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            menu.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
+            Console.WriteLine("\t\t    └─────────────────────┴═──══─══──═══─══──══■");
             Console.ResetColor();
-
+                
         }
-        public void KeyPosition()
+            public void KeyPosition()
         {
 
         }
     }
 }
+
