@@ -134,6 +134,12 @@ namespace gik299_project
         public void Flee()
         {
             PrevPosition.CopyTo(Position, 0);
+            Random rdm = new Random();
+            int prob = rdm.Next(11);
+            if (prob < 1)
+            {
+                Health -= 10;
+            }
         }
 
         public void Damage()
