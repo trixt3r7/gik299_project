@@ -22,7 +22,6 @@ namespace gik299_project
         {
             TotalEnemies = EnemyPos();
         }
-        Player player = new Player();
         private int enemyCount;
 
         public static int[] EnemyCount()
@@ -53,7 +52,7 @@ namespace gik299_project
             {
                 Console.WriteLine($"You enter a room with [2] enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
             }
-            else (enemyCount == 3)
+            else if (enemyCount == 3)
             {
                 Console.WriteLine($"- You enter a room with [3] enemies a {GetRandomName()}, {GetRandomName()} and {GetRandomName()}. What do you do?");
             }
