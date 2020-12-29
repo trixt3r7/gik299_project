@@ -18,7 +18,7 @@ namespace gik299_project
                     if (player.Position[0] == 0) //Om spelaren är högst upp i array 0 kan de inte gå högre.
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the top wall");
+                        menu.CenterText("You have reached the top wall");
                         player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
@@ -93,32 +93,30 @@ namespace gik299_project
                 player.VisitedPosition[player.PlayerPrevPosition() - 1] = true;
             }
         }
-
-        Enemy enemy = new Enemy();
         public string PlayerAction(Player player)
         {
             menu.Indent();
+            Console.WriteLine($"{player.Name}");
             string input = Console.ReadLine();
-
             switch (input)
             {
                 case "attack":
                 case "Attack":
                 case "ATTACK":
-                    menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
+                   // menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
                     player.Attack();
                     break;
                 case "flee":
                 case "Flee":
                 case "FLEE":
-                    menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
+                   // menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
                     player.Flee();
                     break;
                 case "goup":
                 case "godown":
                 case "goleft":
                 case "goright":
-                    menu.PadTextWL("Movement is not allowed while in combat.");
+                   // menu.PadTextWL("Movement is not allowed while in combat.");
                     break;
                 default:
                     menu.PadTextWL("Invalid input, please try again.");

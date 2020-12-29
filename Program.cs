@@ -77,23 +77,13 @@ namespace gik299_project
             string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
 
             List<int> generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
-            List<int> generatedEnemies = enemy.TotalEnemies; //Generates TotalEnemies before the game starts.
+            // List<int> generatedEnemies = enemy.Positions; //Generates TotalEnemies before the game starts.
 
             string keyRoom = "";
 
             while (activeGame) //Game is running.
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    if (player.PlayerPosition() == generatedEnemies[i])
-                    {
-                        Console.Beep(80, 200);
-
-                        //PÅ DEN HÄR RADEN SKA MAN HAMNA I EN FIGHT.
-
-                        generatedEnemies[i] = 0;
-                    }
-                }
+                enemy.CheckForEnemies(player);
 
                 if (player.PlayerPosition() == 10 && player.Keys < 10)
                 {
