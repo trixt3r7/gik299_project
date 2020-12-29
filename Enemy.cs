@@ -10,7 +10,7 @@ namespace gik299_project
         public float DropRate;
         public List<int> Positions;
         public int[] EnemyCounts = new int[10];
-        public int count = 50;
+        public int count = 10;
 
         Control control = new Control();
         Menu menu = new Menu();
@@ -43,7 +43,7 @@ namespace gik299_project
 
         public void ComparePos()
         {
-            
+
         }
 
         public void CheckForEnemies(Player player)
