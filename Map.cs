@@ -64,7 +64,12 @@ namespace gik299_project
         //    return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
         //}
 
-        public void DrawMap(Player player)
+        private int CalcNum(int y, int x)
+        {
+            return y * 10 + x + 1;
+        }
+
+        public void DrawMap(Player player, Enemy enemy)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
@@ -76,13 +81,25 @@ namespace gik299_project
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
 
-                    MapArea[y, x] = (y * 10 + x) + 1;
+                    MapArea[y, x] = CalcNum(y, x);
 
-                    int temp = (y * 10 + x + 1) - 1;
+                    int temp = CalcNum(y, x) - 1;
 
                     if (player.Position[0] == y && player.Position[1] == x)
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else if (TotalKeys.Contains(CalcNum(y, x)))
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else if (enemy.Positions.Contains(CalcNum(y, x)))
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }

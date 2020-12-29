@@ -107,7 +107,7 @@ namespace gik299_project
                 Console.Clear();
                 menu.SmallGameLogo();
                 menu.HrLine2();
-                map.DrawMap(player);
+                map.DrawMap(player, enemy);
                 menu.HrLine2();
                 // Print what room player is in.
                 RoomText(keyRoom);
