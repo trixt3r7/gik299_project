@@ -103,15 +103,14 @@ namespace gik299_project
             PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine($"Time to wake up {player.Name}.");
             TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the hell? Feels like I have been run over by a truck.");
             PadTextWL("Where am I?.");
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("You have been captured by 'The Nordstroms' and their boss");
-            PadTextWL("Taserface wants to take you out himself and is on his way here right");
-            PadTextWL("now. They found out that it was you that stole the Military Grade");
-            PadTextWL("for their rivalry faction 'Night Runners'. He wants to make an");
-            PadTextWL("example of you.");
+            PriColor(); PadTextW("A.I. GHOST: "); ResetColor();
+            Console.WriteLine("You have been captured by 'The Nordstroms' and their boss Taserface");
+            PadTextWL("wants to take you out himself and is on his way here right now. They found ");
+            PadTextWL("out that it was you that stole the Military Grade Droid for their");
+            PadTextWL("rivalry faction 'Night Runners'. He wants to make an example of you.");
             TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the...");
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural");
-            PadTextWL("transplant is severely damaged and you need to seek out a Neurodoc");
-            PadTextWL("ASAP.");
+            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural transplant");
+            PadTextWL("is severely damaged and you need to seek out a Neurodoc ASAP.");
             Console.WriteLine();
             PriColor(); PadTextWL("Press [Enter] key to go to next page..."); ResetColor();
             Console.CursorVisible = false;
@@ -121,18 +120,16 @@ namespace gik299_project
             GameLogo();
             HrLine();
 
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at");
-            PadTextWL("the north east exit. I have located a weapon outside this room that");
-            PadTextWL("will be useful. List of objectives required to exit the base below:");
+            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at the north");
+            PadTextWL("east exit. I have located a weapon outside this room that will be useful.");
+            PadTextWL("List of objectives required to exit the base is listed below:");
             Console.WriteLine();
             TerColor(); PadTextWL("[OBJECTIVES]"); ResetColor();
-            PadTextWL("1. Find the 10 keycards located in 10 different rooms. They could be ");
-            PadTextWL("located in the same room as enemies.");
-            PadTextWL("2. Reach the northeast exit before your health reaches 0 health,");
-            PadTextWL("and in under 80 moves before Taserface and the rest of the faction  ");
-            PadTextWL("arrives.");
-            PadTextWL("3. Watch out for the faction members that are gathered in 10 different");
-            PadTextWL("rooms.");
+            PadTextWL("1. Find the 10 keycards located in 10 different rooms. They could be located");
+            PadTextWL("   in the same room as enemies.");
+            PadTextWL("2. Reach the northeast exit before your health reaches 0 health, and in");
+            PadTextWL("   under 80 moves before Taserface and the rest of the faction arrives.");
+            PadTextWL("3. Watch out for the faction members that are gathered in 10 different rooms.");
 
             Console.WriteLine();
             PriColor(); PadTextWL("Press [Enter] to start playing."); ResetColor();
@@ -189,7 +186,7 @@ namespace gik299_project
         }
         public void ConfirmQuit()
         {
-            PadTextW("Do you really want to Quit? Type [Y] for Yes or [Any key] to continue.");
+            PadTextW("Do you really want to Quit? Type [Y] for Yes or [Any key] to cancel quit.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
@@ -205,7 +202,7 @@ namespace gik299_project
         }
         public void ConfirmToMainMenu()
         {
-            PadTextW("Do you really want to return to main menu? Type [Y] for Yes or [Any key] to continue.");
+            PadTextW("Confirm return to main menu by typing [Y] for Yes or [Any key] to cancel.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
@@ -216,7 +213,7 @@ namespace gik299_project
                     Program.StartMenu();
                     break;
                 default:
-                    PadTextWL("Resuming Game...");
+                    PadTextWL("Returning to main menu canceled.");
                     break;
             }
         }
@@ -263,10 +260,40 @@ namespace gik299_project
 
         }
 
+        private void PlayOrQuit()
+        {
+            CenterText("What do you want to do next?");
+            CenterText("[S] Start a new game   [M] Go to Main menu   [Q] Quit Game");
+            ConsoleKeyInfo keypress = Console.ReadKey(true);
+            // Only reacts to keys listed in below if, else if statements
+            if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
+            {
+                Program.InGame();
+            }
+            else if (keypress.KeyChar == 'm' || keypress.KeyChar == 'M')
+            {
+                Console.Clear();
+                Program.StartMenu();
+            }
+            else if (keypress.KeyChar == 'q' || keypress.KeyChar == 'Q')
+            {
+                // Exit the application
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.Clear();
+                SmallGameLogo();
+                Console.WriteLine();
+                CenterText("You entered invalid input, please try again.");
+                Console.WriteLine();
+                PlayOrQuit();
+            }
+        }
+
         public void Win()
         {
             Console.Clear();
-            PriColor();
             SmallGameLogo();
             Console.WriteLine();
             CenterText("You managed to unlock the door and escape.");
@@ -278,17 +305,12 @@ namespace gik299_project
             CenterText(@"/_/\____/\__,_/     |__/|__/_/_/ /_(_)   ");
             ResetColor();
             Console.WriteLine();
-
-            CenterText("Press [Enter] key to return to main menu...");
-            Console.ReadLine();
-            Console.Clear();
-            Program.StartMenu();
+            PlayOrQuit();
         }
 
         public void Lose()
         {
             Console.Clear();
-            PriColor();
             SmallGameLogo();
             Console.WriteLine();
             CenterText("Your health reached 0.");
@@ -300,16 +322,12 @@ namespace gik299_project
             CenterText(@"\____/\__,_/_/ /_/ /_/\___/   \____/ |___/\___/_/  (_)   ");
             ResetColor();
             Console.WriteLine();
-            CenterText("Press [Enter] key to return to main menu...");
-            Console.ReadLine();
-            Console.Clear();
-            Program.StartMenu();
+            PlayOrQuit();
         }
 
         public void LoseBoss()
         {
             Console.Clear();
-            PriColor();
             SmallGameLogo();
             Console.WriteLine();
             CenterText("You didn't manage to escape in time.");
@@ -322,10 +340,7 @@ namespace gik299_project
             CenterText(@"\____/\__,_/_/ /_/ /_/\___/   \____/ |___/\___/_/  (_)   ");
             ResetColor();
             Console.WriteLine();
-            CenterText("Press [Enter] key to return to main menu...");
-            Console.ReadLine();
-            Console.Clear();
-            Program.StartMenu();
+            PlayOrQuit();
         }
 
 
@@ -388,7 +403,7 @@ namespace gik299_project
             Console.CursorVisible = true;
             string connect = ">";
             Indent(); Console.Write("INITIALIZING UPLINK: ");
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if (i % 2 == 0)
                 {

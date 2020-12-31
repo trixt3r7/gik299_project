@@ -18,7 +18,7 @@ namespace gik299_project
                     if (player.Position[0] == 0) //Om spelaren är högst upp i array 0 kan de inte gå högre.
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reached the top wall");
+                        //menu.CenterText("You have reached the top wall");
                         player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
@@ -33,7 +33,7 @@ namespace gik299_project
                     if (player.Position[1] == 9)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the right wall");
+                        // menu.CenterText("You have reach the right wall");
                         player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
@@ -48,7 +48,7 @@ namespace gik299_project
                     if (player.Position[0] == 9)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the down wall");
+                        //menu.CenterText("You have reach the down wall");
                         player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
@@ -63,7 +63,7 @@ namespace gik299_project
                     if (player.Position[1] == 0)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the left wall");
+                        //menu.CenterText("You have reach the left wall");
                         player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
@@ -71,7 +71,7 @@ namespace gik299_project
                         player.Position.CopyTo(player.PrevPosition, 0);
                         player.Position[1]--;
                         player.Steps++;
-                        menu.CenterText("Going left");
+                        //menu.CenterText("Going left");
                     }
                     break;
                 case "attack":
@@ -103,20 +103,20 @@ namespace gik299_project
                 case "attack":
                 case "Attack":
                 case "ATTACK":
-                   // menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
+                    // menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
                     player.Attack();
                     break;
                 case "flee":
                 case "Flee":
                 case "FLEE":
-                   // menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
+                    // menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
                     player.Flee();
                     break;
                 case "goup":
                 case "godown":
                 case "goleft":
                 case "goright":
-                   // menu.PadTextWL("Movement is not allowed while in combat.");
+                    // menu.PadTextWL("Movement is not allowed while in combat.");
                     break;
                 default:
                     menu.PadTextWL("Invalid input, please try again.");

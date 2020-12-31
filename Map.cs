@@ -184,9 +184,19 @@ namespace gik299_project
             Console.ResetColor();
 
         }
-        public void KeyPosition()
-        {
 
+        public string CheckForKey(Player player)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (player.PlayerPosition() == TotalKeys[i])
+                {
+                    player.Keys++; //Adds a key to the player stats.
+                    TotalKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
+                    return $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{KeyAmount}";
+                }
+            }
+            return "";
         }
 
         public string[] AssignRooms()
