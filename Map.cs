@@ -23,12 +23,14 @@ namespace gik299_project
 
         public void GenerateMap()
         {
-            // TotalKeys = KeyPos();
+            int roomNr = 1;
+            // Fill the array with 1-100+ [0,0] = 1, [9,9] = 100
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
-                    MapArea[y, x] = (y * MapArea.GetLength(0) + x) + 1;
+                    MapArea[y, x] = roomNr;
+                    roomNr++;
                 }
             }
         }
@@ -50,27 +52,9 @@ namespace gik299_project
             return randomNumbers;
         }
 
-
-        //private int[] KeyPos()
-        //{
-        //    Random rng = new Random();
-
-        //    int[] KeyPosition = new int[10];
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        KeyPosition[i] = rng.Next(1,100);
-        //        //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
-        //    }
-        //    return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
-        //}
-
-        private int CalcNum(int y, int x)
-        {
-            return y * 10 + x + 1;
-        }
-
         public void DrawMap(Player player, Enemy enemy)
         {
+            int roomNr = 0; // Used to check array values 1-100+
             Console.ForegroundColor = ConsoleColor.Red;
             menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
@@ -80,10 +64,10 @@ namespace gik299_project
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
+                    roomNr++;
+                    MapArea[y, x] = roomNr;
 
-                    MapArea[y, x] = CalcNum(y, x);
-
-                    int temp = CalcNum(y, x) - 1;
+                    int visited = roomNr - 1; // VisitedPosition bool is 0-99+, therefore -1
 
                     if (player.Position[0] == y && player.Position[1] == x)
                     {
@@ -91,32 +75,29 @@ namespace gik299_project
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (TotalKeys.Contains(CalcNum(y, x)))
+                    else if (TotalKeys.Contains(roomNr))
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (enemy.Positions.Contains(CalcNum(y, x)))
+                    else if (enemy.Positions.Contains(roomNr))
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (true)
+                    else if (player.VisitedPosition[visited] == true)
                     {
-                        if (player.VisitedPosition[temp] == true)
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("■ ");
-                            Console.ResetColor();
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.Write("■ ");
-                            Console.ResetColor();
-                        }
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.Write("■ ");
+                        Console.ResetColor();
                     }
                 }
                 if (y == 1)
