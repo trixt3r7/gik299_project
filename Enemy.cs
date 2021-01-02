@@ -7,7 +7,6 @@ namespace gik299_project
     {
 
         public string[] Names = new string[] { "Grunt", "Guard", "Assault", "Sniper", "Brute", "Netrunner" };
-        public float DropRate;
         public List<int> Positions;
         public int[] EnemyCounts = new int[10];
         private int MapSize;

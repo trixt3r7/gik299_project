@@ -6,24 +6,38 @@ namespace gik299_project
     {
         // Instansiering av klasser
         Enemy enemy = new Enemy();
-        Map map = new Map();
-        Control control = new Control();
         Menu menu = new Menu();
-        SaveLoad saveload = new SaveLoad();
 
         public string Name;
-        public int Health = 100;
-        public int HealthBoundary = 90;
-        public int MaxHealth = 100;
-        public int Keys = 0;
-        public int Potions = 0;
-        public int Steps = 0;
-        public int MaxSteps = 95;
-        public int MapSize = 10;
-        public int[] Position = new int[2] { 9, 0 };
-        public int[] PrevPosition = new int[2] { 9, 0 };
-        public bool[] VisitedPosition = new bool[100];
-        public int EnemiesKilled = 0;
+        public int Health;
+        public int HealthBoundary;
+        public int MaxHealth;
+        public int Keys;
+        public int Potions;
+        public int Steps;
+        public int MaxSteps;
+        public int MapSize;
+        public int[] Position;
+        public int[] PrevPosition;
+        public bool[] VisitedPosition;
+        public int EnemiesKilled;
+
+        public void Settings()
+        {
+            Name = "";
+            Health = 100;
+            HealthBoundary = 90;
+            MaxHealth = 100;
+            Keys = 0;
+            Potions = 0;
+            Steps = 0;
+            MaxSteps = 95;
+            MapSize = 10;
+            Position = new int[2] { 9, 0 };
+            PrevPosition = new int[2] { 9, 0 };
+            VisitedPosition = new bool[100];
+            EnemiesKilled = 0;
+        }
 
         public void Movement()
         {

@@ -62,6 +62,7 @@ namespace gik299_project
             Console.Clear();
             menu.GameLogo();
             menu.HrLine();
+            player.Settings();
             map.MapSettings();
             map.GenerateMap();
             enemy.GenerateEnemies();
@@ -91,14 +92,17 @@ namespace gik299_project
                 // Print what room player is in.
                 RoomText(keyRoom, enemyRoom);
                 menu.ActionMenu();
-
                 input.PlayerInput(player);
 
                 // Check if have all keys and are at exit
-                if (player.PlayerPosition() == 10 && player.Keys == 10)
+                if (player.PlayerPosition() == player.MapSize && player.Keys == map.KeyAmount)
                 {
                     activeGame = false;
+                    Console.WriteLine(highscore.CalculateScore(player));
+                    highscore.ListPlayers();
+                    Console.ReadLine();
                     menu.Win();
+
                 }
 
                 //Checks if the player is in the same spot as a key.
