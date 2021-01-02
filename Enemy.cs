@@ -10,6 +10,7 @@ namespace gik299_project
         public float DropRate;
         public List<int> Positions;
         public int[] EnemyCounts = new int[10];
+        private int MapSize;
         public int count = 10;
 
         Control control = new Control();
@@ -25,6 +26,7 @@ namespace gik299_project
 
         public void GenerateEnemies()
         {
+            MapSize = 100;
             Positions = EnemyPosition();
             EnemyCounts = EnemyCount();
         }
@@ -51,8 +53,15 @@ namespace gik299_project
             {
                 if (player.PlayerPosition() == Positions[i])
                 {
+                    Console.Clear();
+                    menu.SmallGameLogo();
+                    Console.WriteLine();
+                    menu.HrLine2();
+
                     if (EnemyCounts[i] == 1)
                     {
+                        AsciiArt1();
+                        menu.HrLine2();
                         menu.PadTextWL($"You enter a room where a {GetRandomName()} sees you. What do you do?");
                         menu.FightMenu();
                         CheckEnemiesLeft(player, i);
@@ -61,6 +70,8 @@ namespace gik299_project
 
                     else if (EnemyCounts[i] == 2)
                     {
+                        AsciiArt2();
+                        menu.HrLine2();
                         menu.PadTextWL($"You enter a room with 2 enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
                         menu.FightMenu();
                         CheckEnemiesLeft(player, i);
@@ -68,6 +79,8 @@ namespace gik299_project
                     }
                     else if (EnemyCounts[i] == 3)
                     {
+                        AsciiArt3();
+                        menu.HrLine2();
                         menu.PadTextWL($"You enter a room with 3 enemies, a {GetRandomName()}, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
                         menu.FightMenu();
                         CheckEnemiesLeft(player, i);
@@ -100,7 +113,7 @@ namespace gik299_project
                     menu.PadTextWL("You successfully flee and rebound to your previous location.");
                     break;
                 }
-            } 
+            }
         }
 
         public List<int> EnemyPosition()
@@ -113,12 +126,87 @@ namespace gik299_project
             {
                 int numberToAdd;
 
-                do numberToAdd = rng.Next(1, 100);
-                while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
+                do numberToAdd = rng.Next(1, MapSize);
+                while (randomNumbers.Contains(numberToAdd) || numberToAdd == (MapSize + 1 - (MapSize / 10)) || numberToAdd == MapSize / 10);
 
                 randomNumbers.Add(numberToAdd);
             }
             return randomNumbers;
+        }
+
+        public void AsciiArt1()
+        {
+            menu.SecColor();
+            menu.PadTextWL("                 .&&&&%%%%&&).                                         ");
+            menu.PadTextWL("              .#%%#%%#&&&&&&%%#.                                       ");
+            menu.PadTextWL("              &#&&&&%%%&&&&&@@%%(                                        ");
+            menu.PadTextWL("             ,%#&%&%#&&##@/****)##                                         ");
+            menu.PadTextWL("             %#%#%%#%%&&/(**()**)#                                      ");
+            menu.PadTextWL("            ,%#%#@%#@@@@@/(****)/@                                    ");
+            menu.PadTextWL("         %%##%%###(&@@&&&%&@@@%##%@%        __                           ");
+            menu.PadTextWL("       &#&#*##((##(%@@@@%#%%#&&%%%%%@&/    &&%#                        ");
+            menu.PadTextWL("     %%/##@%(####((&@@@&&&%%%%&%%@&&&&&%&%%#&&&&@&&&#&&%&&%&##              ");
+            menu.PadTextWL("    #%(#%%@%%%@@##(#&(#(#(/(&@%%%@@@&%@@%&&&&&%&&(//            ");
+            menu.PadTextWL("   %%#(@%#%%@%@&/%%#(((#(#(#%&&&&@&&%/((@##(       ");
+            menu.PadTextWL("  ##((%%#%&@(#((&%(%%#((##%%####(&%&((/(/((/,     ");
+            menu.PadTextWL("  *#%((#(((##&/&&&%#&%&%##@%#####%@(%/(((//&/#*                         ");
+            menu.PadTextWL("  %&%##((#%#%#((&%#@@%%##(@######(%&%@&#///&/(&//                       ");
+            menu.PadTextWL("  %(#@##%@(@#@#%&@@@@&&&@@@&&%%#%#%%(&%%%%@#(//(%(                      ");
+            menu.PadTextWL("  &#((&####(#%&(#%%%@#%###@((###@@(#(#//###%@%#%*                       ");
+            menu.PadTextWL("     &%%((%((%@#####@(((((@###%%@@%#@/(#  %(##%                        ");
+            menu.PadTextWL("     &%&@&#%##@#((##&#(#((@####(%#(%%%@%                               ");
+            menu.PadTextWL("     %#&(%#%%%%%######((##%###%#@%%%%####*                              ");
+            menu.PadTextWL("       %#@@%@######@@%&%@@#%@#@#%%%######%(                             ");
+            menu.PadTextWL("       (%%(###%@&#@@@%#%&&@%@%%%%#&&##%(/%%# ");
+            menu.ResetColor();
+        }
+        public void AsciiArt2()
+        {
+            menu.SecColor();
+            menu.PadTextWL(@"                                    -+oo+.                                       ");
+            menu.PadTextWL(@"                                  .dMMMMMM/                        sddyo`        ");
+            menu.PadTextWL(@"                                  .oMoMMMoo\\.                    yMMMMMm.       ");
+            menu.PadTextWL(@"   aAmmmmmmmAa                     BoMMMMN` \\                    oNoMMMs\\      ");
+            menu.PadTextWL(@"   |MMMMMMMNMMMdNmh:-.`             oNMMMMNNM}}o/                 vOMMMMds\\     ");
+            menu.PadTextWL(@"         \OsyMMMMMMMMMMMmhhhhhhhhhhdNMMMMMMMMMMMMh`                 `dMMMMM}}    ");
+            menu.PadTextWL(@"             ./+ooooshNMMMMMMMMMMMMMMMMMMMMMMMMMMMm`                -MMMMMMMMh   ");
+            menu.PadTextWL(@"                       .:oydmNNMMMMMMMMMMMMMMMMMMMMm.               yMMMMMMMMM+  ");
+            menu.PadTextWL(@"                                `/hMMMMMMMMMMMMMMMMMMs              sMMMMMMMMMm  ");
+            menu.PadTextWL(@"                                    /NMMMMMMMMMMN:oNMMMd-           /yNMMMMMMMMM`");
+            menu.PadTextWL(@"                                    .MMMMMMMMMMy  `yMMMy          /msMMMMMMMMMM. ");
+            menu.PadTextWL(@"                                    .MMMMMMMMMMs    oNMMs        +MMMMMMMMMMMMMo ");
+            menu.PadTextWL(@"                                    hMMMMMMMMMMy     .hMM/      dMMMMhyMMMMMMMMd ");
+            menu.PadTextWL(@"                                   /MMMMMMMMMMMMd`     NMN`     /MM/ `mMMMMMMMMh ");
+            menu.PadTextWL(@"                                   hMMMMMMMMMMMMMd     sNMo    /MM/  `MMMMMMMMM- ");
+            menu.PadTextWL(@"                                  -MMMMMMMMMMMMMMMs     `-.   /MM/   yMMMMMMMMs  ");
+            menu.PadTextWL(@"                                  /MMMMMMMMMMMMMMMM:         /M/    sMMMMMMMMh   ");
+            menu.PadTextWL(@"                                  -MMMMMMMMyMMMMMMMm        /X/    `yMMMMMMMMM/  ");
+            menu.PadTextWL(@"                                  .MMMMMMMy /MMMMMMM/            .mMMMMMMMMMM`   ");
+            menu.ResetColor();
+        }
+        public void AsciiArt3()
+        {
+            menu.SecColor();
+            menu.PadTextWL(@"                                      MMMMMMN                                    ");
+            menu.PadTextWL(@"             ::.                    .MMMMMMMMm                    -/:            ");
+            menu.PadTextWL(@"            hMMMd`                  `NMMMMMMmm                   smMMy           ");
+            menu.PadTextWL(@"            dNmMM+                   hM_aMa_M/                   dMMMs           ");
+            menu.PadTextWL(@"            /NMMm:             ___.-:mmMMMMMMN_                `:dMMMms+-        ");
+            menu.PadTextWL(@"         `+ydMMMMMMmd-        /ydNMMMMMAmmmAMN++\             :NMMMMMMMMMo       ");
+            menu.PadTextWL(@"         mMMMMMMMMMMMM-      +MMMMMMMMMMMMMMMMMd+`       \\  -MMMMMMMMMMMh    _  ");
+            menu.PadTextWL(@"       :MMMMMMMMMMMMMm.    `NMMMMMMMMMMMMMMMMMMMN:        \\.NMhNMMMMMMMMM\/sh/  ");
+            menu.PadTextWL(@"       oMMMMMMMMMMmMMMs    `MMMMMMMMMMMMMMMMMMMMMN.        yMM MMMMMMMMMMMMN+/   ");
+            menu.PadTextWL(@"       .NMNNMMMMMMMshMM+    .MMMMMMMMMMMMMMMMMMMMMMm.       `hMMMMMMMMMMMo:o+    ");
+            menu.PadTextWL(@"      /yMM+mMMMMMMMmdMM.    sMMMM MMMMMMMMMMMMMM MMMNo       `yMMMMMMMMMM`/y     ");
+            menu.PadTextWL(@"     /+MMd:MMMMMMMMMMMh    `mMMMMM MMMMMMMMMMMMM MMMN`       `NMMMMMMMMMh+       ");
+            menu.PadTextWL(@"    //+mMmNMMMMMMMMMMN.     `dMMMMM MMMMMMMMMMMMM MMMMm:       mMMMMMMMMM`       ");
+            menu.PadTextWL(@"   //+/MNohMMMMMMMMMM+       -NMMXXXXXMMMMMMMXXXXXMMMMMd/:.`   hmMMdMMMMd        ");
+            menu.PadTextWL(@"   /+/    +MMMMMMMMMm         `:sMXXXXXMMMMMMXXXXXXXXXXXXXXXXXXXXXXXXXXXX|-      ");
+            menu.PadTextWL(@"  /+/     -MMMMyMMMMo           oMMMMMmmmm\MMMXXXXXXXXXXXXXXXXXXXXXXXXXX|-       ");
+            menu.PadTextWL(@"           NMMM:MMMM/          /MMMMMMMMMM|mmmmmmmmmmmM.`    `.so+..-///+        ");
+            menu.PadTextWL(@"           NMMN mMMM:          NMMMMMMMMMMMMMMMMMMMMMMM`      -MMM. +MMM.        ");
+            menu.PadTextWL(@"           NMMy /MMM-         -MMMMMMMMMMMMMMMMMMMMMMMM-      `NMm  `NMM.        ");
+            menu.ResetColor();
         }
     }
 }

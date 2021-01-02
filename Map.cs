@@ -40,12 +40,12 @@ namespace gik299_project
             List<int> randomNumbers = new List<int>();
             Random rng = new Random();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < KeyAmount; i++)
             {
                 int numberToAdd;
 
-                do numberToAdd = rng.Next(1, 100);
-                while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
+                do numberToAdd = rng.Next(1, MapArea.Length + 1);
+                while (randomNumbers.Contains(numberToAdd) || numberToAdd == (MapArea.Length + 1 - MapArea.GetLength(1)) || numberToAdd == MapArea.GetLength(1));
 
                 randomNumbers.Add(numberToAdd);
             }
@@ -142,7 +142,7 @@ namespace gik299_project
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("   STEPS");
                     Console.ResetColor();
-                    Console.WriteLine("     [{0}/{1}]", player.Steps, 80); //80 ska bytas ut mot variabeln för gameoverCondition när den finns.
+                    Console.WriteLine("     [{0}/{1}]", player.Steps, player.MaxSteps);
                 }
                 else if (y == 7)
                 {
@@ -168,14 +168,11 @@ namespace gik299_project
 
         public string CheckForKey(Player player)
         {
-            for (int i = 0; i < 10; i++)
+            if (TotalKeys.Contains(player.PlayerPosition()))
             {
-                if (player.PlayerPosition() == TotalKeys[i])
-                {
-                    player.Keys++; //Adds a key to the player stats.
-                    TotalKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
-                    return $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{KeyAmount}";
-                }
+                player.Keys++; //Adds a key to the player stats.
+                TotalKeys.Remove(player.PlayerPosition()); //Remove picked up key so it cannot be picked up again.
+                return $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{KeyAmount}";
             }
             return "";
         }
@@ -185,7 +182,7 @@ namespace gik299_project
             // Randomize what to tell in each room
             Random rand = new Random();
             // Hold all the randomized info about each room
-            string[] emptyRoomText = new string[101];
+            string[] emptyRoomText = new string[MapArea.Length + 1];
 
             // Random strings text
             string[] roomInformation = new string[] {
@@ -205,7 +202,7 @@ namespace gik299_project
             // Assign a string to each room from RoomInformation
             for (int i = 1; i < emptyRoomText.Length; i++)
             {
-                if (i == 10)
+                if (i == MapArea.GetLength(1))
                 {
                     emptyRoomText[i] = "You have reached the exit. But don't have all the keycards.\n        Check for the other keycards.";
                 }
@@ -213,7 +210,7 @@ namespace gik299_project
                 {
                     emptyRoomText[i] = "You find yourself in a very   n i c e   room.";
                 }
-                else if (i == 91)
+                else if (i == (MapArea.Length + 1 - MapArea.GetLength(1)))
                 {
                     emptyRoomText[i] = "The holding cell where you started.";
                 }

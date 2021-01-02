@@ -55,7 +55,7 @@ namespace gik299_project
             Console.Clear();
             menu.GameLogo();
             menu.HrLine();
-            menu.BootUp();  // Quick bootup for development
+            menu.QuickBootUp();  // Quick bootup for development
             menu.Indent();
             player.ChooseCharacter();
 

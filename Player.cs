@@ -18,6 +18,8 @@ namespace gik299_project
         public int Keys = 0;
         public int Potions = 0;
         public int Steps = 0;
+        public int MaxSteps = 95;
+        public int MapSize = 10;
         public int[] Position = new int[2] { 9, 0 };
         public int[] PrevPosition = new int[2] { 9, 0 };
         public bool[] VisitedPosition = new bool[100];
@@ -124,12 +126,12 @@ namespace gik299_project
         }
         public int PlayerPosition()
         {
-            return ((Position[0] * 10 + Position[1]) + 1);
+            return (Position[0] * MapSize + Position[1]) + 1;
         }
 
         public int PlayerPrevPosition()
         {
-            return ((PrevPosition[0] * 10 + PrevPosition[1]) + 1);
+            return (PrevPosition[0] * MapSize + PrevPosition[1]) + 1;
         }
 
         public void Flee()
