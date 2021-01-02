@@ -32,11 +32,10 @@ namespace gik299_project
         public int[] EnemyCount()
         {
             Random rnd = new Random();
-            int randomizer = rnd.Next(1, 4);
             int[] enemyCount = new int[count];
             for (int i = 0; i < count; i++)
             {
-                enemyCount[i] = randomizer;
+                enemyCount[i] = rnd.Next(1, 4);
             }
             return enemyCount;
         }
@@ -52,35 +51,54 @@ namespace gik299_project
             {
                 if (player.PlayerPosition() == Positions[i])
                 {
-                    Console.Beep(80, 200);
-
-                    //PÅ DEN HÄR RADEN SKA MAN HAMNA I EN FIGHT.
-                    // Positions[i] = 0;
-
-                    if (EnemyCounts[i] == 0)
+                    if (EnemyCounts[i] == 1)
                     {
-                        Console.WriteLine($"You enter a room with an {GetRandomName()} but he's asleep and doesn't hear you, where to next?");
+                        menu.PadTextWL($"You enter a room where a {GetRandomName()} sees you. What do you do?");
+                        menu.FightMenu();
+                        CheckEnemiesLeft(player, i);
+                        break;
                     }
-                    else if (EnemyCounts[i] == 1)
-                    {
-                        Console.WriteLine($"You enter a room where a {GetRandomName()} sees you. What do you do?");
-                    }
+
                     else if (EnemyCounts[i] == 2)
                     {
-                        Console.WriteLine($"You enter a room with [2] enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
+                        menu.PadTextWL($"You enter a room with 2 enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
+                        menu.FightMenu();
+                        CheckEnemiesLeft(player, i);
+                        break;
                     }
                     else if (EnemyCounts[i] == 3)
                     {
-                        Console.WriteLine($"- You enter a room with [3] enemies a {GetRandomName()}, {GetRandomName()} and {GetRandomName()}. What do you do?");
+                        menu.PadTextWL($"You enter a room with 3 enemies, a {GetRandomName()}, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
+                        menu.FightMenu();
+                        CheckEnemiesLeft(player, i);
+                        break;
                     }
-                    else
-                    {
-                        Console.WriteLine("bla");
-                    }
-                    menu.FightMenu();
-                    control.PlayerAction(player);
                 }
             }
+        }
+
+        public void CheckEnemiesLeft(Player player, int i)
+        {
+            string ActionEvent = control.PlayerAction(player);
+            while (EnemyCounts[i] > 0)
+            {
+                if (ActionEvent == "attack")
+                {
+                    EnemyCounts[i]--;
+                    if (EnemyCounts[i] > 0)
+                    {
+                        menu.PadTextWL($"There are {EnemyCounts[i]} enemies left to fight.");
+                    }
+                    else if (EnemyCounts[i] == 0)
+                    {
+                        menu.PadTextWL("You have eliminated all enemies in this room. Where to next?");
+                    }
+                }
+                else if (ActionEvent == "flee")
+                {
+                    menu.PadTextWL("You successfully flee and rebound to your previous location.");
+                }
+            } 
         }
 
         public List<int> EnemyPosition()
@@ -100,16 +118,5 @@ namespace gik299_project
             }
             return randomNumbers;
         }
-
-        /* public void Position()
-        {
-            Random rnd = new Random();
-            int[] position = new int[10];
-
-            foreach (int p in position)
-            {
-                position[p] = rnd.Next(0, 100);
-            }
-         } */
     }
 }

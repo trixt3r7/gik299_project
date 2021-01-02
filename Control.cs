@@ -96,27 +96,23 @@ namespace gik299_project
         public string PlayerAction(Player player)
         {
             menu.Indent();
-            Console.WriteLine($"{player.Name}");
+            Console.Write($"{player.Name}: ");
             string input = Console.ReadLine();
             switch (input)
             {
                 case "attack":
-                case "Attack":
-                case "ATTACK":
-                    // menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
                     player.Attack();
+                    menu.PadTextWL($"You kill an enemy.");
                     break;
                 case "flee":
-                case "Flee":
-                case "FLEE":
-                    // menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
                     player.Flee();
+                    // menu.PadTextWL($"You successfully flee. You return to your previous position.");
                     break;
                 case "goup":
                 case "godown":
                 case "goleft":
-                case "goright":
-                    // menu.PadTextWL("Movement is not allowed while in combat.");
+                case "goright": 
+                    menu.PadTextWL("Movement is not allowed while in combat.");
                     break;
                 default:
                     menu.PadTextWL("Invalid input, please try again.");

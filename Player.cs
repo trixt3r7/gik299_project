@@ -56,7 +56,7 @@ namespace gik299_project
                 else
                 {
                     Health += 10;
-                    menu.PadTextWL($"As you kill an [enemy], you are by good fortune granted with an additional 10 health points. You now have {Health}/{MaxHealth} HP.");
+                    menu.PadTextWL($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with an additional 10 health points. You now have {Health}/{MaxHealth} HP.");
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace gik299_project
             if (result < 20)
             {
                 Health -= 10;
-                menu.PadTextWL($"The [enemy] hits you back and you lose 10 health points. You now have {Health} health points remaining.");
+                menu.PadTextWL($"The {enemy.GetRandomName()} hits you back and you lose 10 health points. You now have {Health} health points remaining.");
             }
             // https://social.msdn.microsoft.com/Forums/vstudio/en-US/26f951f7-8d3d-4926-8705-bddc8a5f8873/i-need-help-with-c-numbers-and-percentages-in-a-few-lines-of-code?forum=csharpgeneral
         }
@@ -86,9 +86,9 @@ namespace gik299_project
         {
             Console.WriteLine();
             menu.PadTextWL("[Choose a character]");
-            menu.PadTextWL("1: Sample 1");
-            menu.PadTextWL("2: Sample 2");
-            menu.PadTextWL("3: Sample 3");
+            menu.PadTextWL("1: philipsinnott");
+            menu.PadTextWL("2: matteh");
+            menu.PadTextWL("3: linuz");
             menu.PadTextWL("4: Custom character");
             menu.Indent();
             if (int.TryParse(Console.ReadLine(), out int CharacterMenu))
@@ -96,13 +96,13 @@ namespace gik299_project
                 switch (CharacterMenu)
                 {
                     case 1:
-                        Name = "sample_1";
+                        Name = "philipsinnott";
                         break;
                     case 2:
-                        Name = "sample_2";
+                        Name = "matteh";
                         break;
                     case 3:
-                        Name = "sample_3";
+                        Name = "linuz";
                         break;
                     case 4:
                         menu.PadTextW("Enter the name of your custom character: ");
@@ -141,21 +141,6 @@ namespace gik299_project
             {
                 Health -= 10;
             }
-        }
-
-        public void Damage()
-        {
-
-        }
-
-        public void CurrentPlayerPosition()
-        {
-
-        }
-
-        public void Settings()
-        {
-
         }
     }
 }
