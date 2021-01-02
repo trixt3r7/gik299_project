@@ -85,6 +85,7 @@ namespace gik299_project
                 if (ActionEvent == "attack")
                 {
                     EnemyCounts[i]--;
+                    player.EnemiesKilled++;
                     if (EnemyCounts[i] > 0)
                     {
                         menu.PadTextWL($"There are {EnemyCounts[i]} enemies left to fight.");

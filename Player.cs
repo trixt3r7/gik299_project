@@ -9,7 +9,6 @@ namespace gik299_project
         Map map = new Map();
         Control control = new Control();
         Menu menu = new Menu();
-        Highscore highscore = new Highscore();
         SaveLoad saveload = new SaveLoad();
 
         public string Name;
@@ -22,6 +21,7 @@ namespace gik299_project
         public int[] Position = new int[2] { 9, 0 };
         public int[] PrevPosition = new int[2] { 9, 0 };
         public bool[] VisitedPosition = new bool[100];
+        public int EnemiesKilled = 0;
 
         public void Movement()
         {

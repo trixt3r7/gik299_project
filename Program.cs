@@ -9,6 +9,7 @@ namespace gik299_project
         static Enemy enemy = new Enemy();
         static Menu menu = new Menu();
         static Control input = new Control();
+        static Highscore highscore = new Highscore();
 
         static void Main(string[] args)
         {
@@ -88,7 +89,6 @@ namespace gik299_project
                 menu.HrLine2();
                 // Print what room player is in.
                 RoomText(keyRoom);
-
                 menu.ActionMenu();
 
                 input.PlayerInput(player);
@@ -121,6 +121,8 @@ namespace gik299_project
             if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
             {
                 menu.PadTextW("You reached a wall, you can't go any further in that direction.");
+                highscore.CalculateScore();
+                highscore.ListPlayers();
             }
             else if (keyRoom.Length == 0 && player.Steps > 0)
             {
