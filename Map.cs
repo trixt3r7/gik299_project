@@ -193,7 +193,12 @@ namespace gik299_project
                 "Nothing here, where to next?",
                 "Nothing of value in this room, where to next?",
                 "You enter a storage room but there seems to be nothing of use,\n        where to next?",
-                "You almost stepped on a mine but managed to avoid it, where to next?"
+                "You almost stepped on a mine but managed to avoid it, where to next?",
+                "Nothing interesting here... where to next?",
+                "You enter a room with a key, but an enemy steals it.",
+                "You enter a room and hear Canon in D by Johann Pachelbel... but nothing\n        of value seems to exist here. Where to next?",
+                "You enter a room and hear the wonderful Clair de Lune, L. 32. However, \n        nothing of value seems to exist here. Where to next?",
+                "You enter a room with a single frame painting of an old man, and his   \n        eyes seem to follow you as you explore the room. However, nothing of value\n        seems to exist here. Where to next?",
             };
 
             // Assign a string to each room from RoomInformation
