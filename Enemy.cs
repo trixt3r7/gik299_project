@@ -47,8 +47,9 @@ namespace gik299_project
 
         }
 
-        public void CheckForEnemies(Player player)
+        public string CheckForEnemies(Player player)
         {
+            string ActionEvent = "";
             for (int i = 0; i < count; i++)
             {
                 if (player.PlayerPosition() == Positions[i])
@@ -64,7 +65,7 @@ namespace gik299_project
                         menu.HrLine2();
                         menu.PadTextWL($"You enter a room where a {GetRandomName()} sees you. What do you do?");
                         menu.FightMenu();
-                        CheckEnemiesLeft(player, i);
+                        ActionEvent = CheckEnemiesLeft(player, i);
                         break;
                     }
 
@@ -74,7 +75,7 @@ namespace gik299_project
                         menu.HrLine2();
                         menu.PadTextWL($"You enter a room with 2 enemies, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
                         menu.FightMenu();
-                        CheckEnemiesLeft(player, i);
+                        ActionEvent = CheckEnemiesLeft(player, i);
                         break;
                     }
                     else if (EnemyCounts[i] == 3)
@@ -83,18 +84,21 @@ namespace gik299_project
                         menu.HrLine2();
                         menu.PadTextWL($"You enter a room with 3 enemies, a {GetRandomName()}, a {GetRandomName()} and a {GetRandomName()}. What do you do?");
                         menu.FightMenu();
-                        CheckEnemiesLeft(player, i);
+                        ActionEvent = CheckEnemiesLeft(player, i);
                         break;
                     }
                 }
             }
+            return ActionEvent;
         }
 
-        public void CheckEnemiesLeft(Player player, int i)
+        public string CheckEnemiesLeft(Player player, int i)
         {
+            string ActionEvent;
+
             while (EnemyCounts[i] > 0)
             {
-                string ActionEvent = control.PlayerAction(player);
+                ActionEvent = control.PlayerAction(player);
                 if (ActionEvent == "attack")
                 {
                     EnemyCounts[i]--;
@@ -105,15 +109,15 @@ namespace gik299_project
                     }
                     else if (EnemyCounts[i] == 0)
                     {
-                        menu.PadTextWL("You have eliminated all enemies in this room. Where to next?");
+                        return ("You have eliminated all enemies in this room. Where to next?");
                     }
                 }
                 else if (ActionEvent == "flee")
                 {
-                    menu.PadTextWL("You successfully flee and rebound to your previous location.");
-                    break;
+                    return ("You successfully flee and rebound to your previous location.");
                 }
             }
+            return "";
         }
 
         public List<int> EnemyPosition()

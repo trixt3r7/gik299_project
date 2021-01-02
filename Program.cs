@@ -77,10 +77,11 @@ namespace gik299_project
             //List<int> generatedEnemies = enemy.Positions; // Generates TotalEnemies before the game starts.
 
             string keyRoom = "";
+            string enemyRoom = "";
 
             while (activeGame) //Game is running.
             {
-                enemy.CheckForEnemies(player);
+                enemyRoom = enemy.CheckForEnemies(player);
 
                 Console.Clear();
                 menu.SmallGameLogo();
@@ -88,7 +89,7 @@ namespace gik299_project
                 map.DrawMap(player, enemy);
                 menu.HrLine2();
                 // Print what room player is in.
-                RoomText(keyRoom);
+                RoomText(keyRoom, enemyRoom);
                 menu.ActionMenu();
 
                 input.PlayerInput(player);
@@ -116,11 +117,19 @@ namespace gik299_project
             }
         }
 
-        private static void RoomText(string keyRoom)
+        private static void RoomText(string keyRoom, string enemyRoom)
         {
-            if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
+            if (keyRoom.Length == 0 && enemyRoom.Length == 0 && player.Steps > 0)
             {
-                menu.PadTextW("You reached a wall, you can't go any further in that direction.");
+                menu.PadTextW($"ROOM {player.PlayerPosition()}: {map.RoomInformation[player.PlayerPosition()]}");
+            }
+            else if (keyRoom.Length > 0)
+            {
+                menu.PadTextW(keyRoom);
+            }
+            else if (enemyRoom.Length > 0)
+            {
+                menu.PadTextW($"ROOM {player.PlayerPosition()}: {enemyRoom}");
             }
             else if (keyRoom.Length == 0 && player.Steps > 0)
             {
@@ -129,6 +138,10 @@ namespace gik299_project
             else if (keyRoom.Length > 0)
             {
                 menu.PadTextW(keyRoom);
+            }
+            else if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
+            {
+                menu.PadTextW("You reached a wall, you can't go any further in that direction.");
             }
             else if (player.Steps == 0)
             {
