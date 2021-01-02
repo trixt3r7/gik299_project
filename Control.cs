@@ -49,7 +49,7 @@ namespace gik299_project
                     break;
                 case "down":
                 case "godown":
-                    if (player.Position[0] == map.MapArea.GetLength(0) - 1)
+                    if (player.Position[0] == 9)
                     {
                         Console.Beep(200, 150);
                         player.Position.CopyTo(player.PrevPosition, 0);
