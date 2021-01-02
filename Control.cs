@@ -5,20 +5,24 @@ namespace gik299_project
     class Control
     {
         Menu menu = new Menu();
+        Map map = new Map();
 
         public string caseSwitch;
 
         public void PlayerInput(Player player)
         {
+            menu.TerColor();
             menu.PadTextW($"{player.Name}: ");
+            menu.ResetColor();
             caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
+                case "up":
                 case "goup":
                     if (player.Position[0] == 0) //Om spelaren är högst upp i array 0 kan de inte gå högre.
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the top wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -28,11 +32,12 @@ namespace gik299_project
                         menu.CenterText("Going up");
                     }
                     break;
+                case "right":
                 case "goright":
-                    if (player.Position[1] == 9)
+                    if (player.Position[1] == player.MapSize - 1)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the right wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -42,11 +47,12 @@ namespace gik299_project
                         menu.CenterText("Going right");
                     }
                     break;
+                case "down":
                 case "godown":
                     if (player.Position[0] == 9)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the down wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
@@ -56,18 +62,18 @@ namespace gik299_project
                         menu.CenterText("Going down");
                     }
                     break;
+                case "left":
                 case "goleft":
                     if (player.Position[1] == 0)
                     {
                         Console.Beep(200, 150);
-                        menu.CenterText("You have reach the left wall");
+                        player.Position.CopyTo(player.PrevPosition, 0);
                     }
                     else
                     {
                         player.Position.CopyTo(player.PrevPosition, 0);
                         player.Position[1]--;
                         player.Steps++;
-                        menu.CenterText("Going left");
                     }
                     break;
                 case "attack":
@@ -84,31 +90,32 @@ namespace gik299_project
                     break;
             }
 
+            // Game Over if exeeding max steps taken
+            if (player.Steps > player.MaxSteps)
+            {
+                menu.LoseBoss();
+            }
+
             if (player.VisitedPosition[player.PlayerPrevPosition() - 1] == false)
             {
                 player.VisitedPosition[player.PlayerPrevPosition() - 1] = true;
             }
         }
-
-        Enemy enemy = new Enemy();
         public string PlayerAction(Player player)
         {
+            string input;
             menu.Indent();
-            string input = Console.ReadLine();
-
+            Console.Write($"{player.Name}: ");
+            input = Console.ReadLine();
             switch (input)
             {
                 case "attack":
-                case "Attack":
-                case "ATTACK":
-                    menu.PadTextWL($"You attack the {enemy.GetRandomName()}.");
                     player.Attack();
+                    menu.PadTextWL($"You kill an enemy.");
                     break;
                 case "flee":
-                case "Flee":
-                case "FLEE":
-                    menu.PadTextWL($"You successfully flee the {enemy.GetRandomName()} and rebound to your previous location.");
                     player.Flee();
+                    // menu.PadTextWL($"You successfully flee. You return to your previous position.");
                     break;
                 case "goup":
                 case "godown":

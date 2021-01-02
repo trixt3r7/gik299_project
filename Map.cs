@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace gik299_project
 {
     class Map
     {
+        //static Player player = new Player();
+        Menu menu = new Menu();
 
-        public int[,] MapArea = new int[10, 10];
-        static Player player = new Player();
+        public int[,] MapArea;
         public int KeyAmount = 10;
         public List<int> TotalKeys;
+        public string[] RoomInformation;
+
+        public void MapSettings()
+        {
+            MapArea = new int[10, 10];
+            KeyAmount = 10;
+            TotalKeys = KeyPos();
+            RoomInformation = AssignRooms();
+        }
 
         public void GenerateMap()
         {
-            TotalKeys = KeyPos();
-            for (int y = 0; y < 10; y++)
+            int roomNr = 1;
+            // Fill the array with 1-100+ [0,0] = 1, [9,9] = 100
+            for (int y = 0; y < MapArea.GetLength(0); y++)
             {
-                for (int x = 0; x < 10; x++)
+                for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
-                    MapArea[y, x] = (y * 10 + x) + 1;
+                    MapArea[y, x] = roomNr;
+                    roomNr++;
                 }
             }
         }
@@ -29,47 +40,34 @@ namespace gik299_project
             List<int> randomNumbers = new List<int>();
             Random rng = new Random();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < KeyAmount; i++)
             {
                 int numberToAdd;
 
-                do numberToAdd = rng.Next(1,100);
-                while (randomNumbers.Contains(numberToAdd) || numberToAdd == 91 || numberToAdd == 10);
+                do numberToAdd = rng.Next(1, MapArea.Length + 1);
+                while (randomNumbers.Contains(numberToAdd) || numberToAdd == (MapArea.Length + 1 - MapArea.GetLength(1)) || numberToAdd == MapArea.GetLength(1));
 
                 randomNumbers.Add(numberToAdd);
             }
             return randomNumbers;
         }
 
-
-        //private int[] KeyPos()
-        //{
-        //    Random rng = new Random();
-
-        //    int[] KeyPosition = new int[10];
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        KeyPosition[i] = rng.Next(1,100);
-        //        //Här ska det vara något som jämför så inte samma värde skickas ut flera gånger. AKA 2 nycklar i samma ruta.
-        //    }
-        //    return KeyPosition; //Returns the array so it can be called as TotalKeys in the GenerateMap function.
-        //}
-
-        public void DrawMap(Player player)
+        public void DrawMap(Player player, Enemy enemy)
         {
+            int roomNr = 0; // Used to check array values 1-100+
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    ┌─────────────────────┬══─═══════──═════─═════──═■");
+            menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("\t\t    │ ");
+                menu.PadTextW("│ ");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
+                    roomNr++;
+                    MapArea[y, x] = roomNr;
 
-                    MapArea[y, x] = (y * 10 + x) + 1;
-
-                    int temp = (y * 10 + x + 1) - 1;
+                    int visited = roomNr - 1; // VisitedPosition bool is 0-99+, therefore -1
 
                     if (player.Position[0] == y && player.Position[1] == x)
                     {
@@ -77,20 +75,29 @@ namespace gik299_project
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (true)
+                    else if (TotalKeys.Contains(roomNr))
                     {
-                        if (player.VisitedPosition[temp] == true)
-                        {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("■ ");
-                            Console.ResetColor();
-                        }
-                        else
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkGray;
-                            Console.Write("■ ");
-                            Console.ResetColor();
-                        }
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else if (enemy.Positions.Contains(roomNr))
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else if (player.VisitedPosition[visited] == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
+                        Console.Write("■ ");
+                        Console.ResetColor();
                     }
                 }
                 if (y == 1)
@@ -135,7 +142,7 @@ namespace gik299_project
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.Write("   STEPS");
                     Console.ResetColor();
-                    Console.WriteLine("     [{0}/{1}]", player.Steps, 80); //80 ska bytas ut mot variabeln för gameoverCondition när den finns.
+                    Console.WriteLine("     [{0}/{1}]", player.Steps, player.MaxSteps);
                 }
                 else if (y == 7)
                 {
@@ -154,14 +161,70 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\t\t    └─────────────────────┴═──══─══──═══─══──══■");
+            menu.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
             Console.ResetColor();
-                
-        }
-            public void KeyPosition()
-        {
 
         }
+
+        public string CheckForKey(Player player)
+        {
+            if (TotalKeys.Contains(player.PlayerPosition()))
+            {
+                player.Keys++; //Adds a key to the player stats.
+                TotalKeys.Remove(player.PlayerPosition()); //Remove picked up key so it cannot be picked up again.
+                return $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{KeyAmount}";
+            }
+            return "";
+        }
+
+        public string[] AssignRooms()
+        {
+            // Randomize what to tell in each room
+            Random rand = new Random();
+            // Hold all the randomized info about each room
+            string[] emptyRoomText = new string[MapArea.Length + 1];
+
+            // Random strings text
+            string[] roomInformation = new string[] {
+                "The room is empty, where to next?",
+                "Nothing here, where to next?",
+                "Nothing of value in this room, where to next?",
+                "You enter a storage room but there seems to be nothing of use,\n        where to next?",
+                "You almost stepped on a mine but managed to avoid it, where to next?",
+                "Nothing interesting here... where to next?",
+                "You enter a room with a key, but an enemy steals it.",
+                "You enter a room and hear Canon in D by Johann Pachelbel... but nothing\n        of value seems to exist here. Where to next?",
+                "You enter a room and hear the wonderful Clair de Lune, L. 32. However, \n        nothing of value seems to exist here. Where to next?",
+                "You enter a room with a single framed painting of an old man, and his   \n        eyes seem to follow you as you explore the room. However, nothing of value\n        seems to exist here. Where to next?",
+                "You enter a room where the floor is covered with water,\n        you tiptoe through the puddles."
+            };
+
+            // Assign a string to each room from RoomInformation
+            for (int i = 1; i < emptyRoomText.Length; i++)
+            {
+                if (i == MapArea.GetLength(1))
+                {
+                    emptyRoomText[i] = "You have reached the exit. But don't have all the keycards.\n        Check for the other keycards.";
+                }
+                else if (i == 69)
+                {
+                    emptyRoomText[i] = "You find yourself in a very   n i c e   room.";
+                }
+                else if (i == (MapArea.Length + 1 - MapArea.GetLength(1)))
+                {
+                    emptyRoomText[i] = "The holding cell where you started.";
+                }
+                else if (TotalKeys.Contains(i))
+                {
+                    emptyRoomText[i] = "You have picked up a keycard in this room earlier.\n        There is nothing more of use here.";
+                }
+                else
+                {
+                    emptyRoomText[i] = roomInformation[rand.Next(0, roomInformation.Length)];
+                }
+            }
+            return emptyRoomText;
+        }
+
     }
 }
-

@@ -1,46 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace gik299_project
 {
     class Program
     {
-
         static Map map = new Map();
         static Player player = new Player();
         static Enemy enemy = new Enemy();
         static Menu menu = new Menu();
         static Control input = new Control();
+        static Highscore highscore = new Highscore();
 
         static void Main(string[] args)
         {
             menu.WindowSettings();
             StartMenu();
-
-
         }
-        /*------------------------- MAIN ENDS -------------------------*/
 
         public static void StartMenu()
         {
             Console.CursorVisible = false;
             while (true)
             {
-                //Console.WriteLine("\n");
                 menu.GameLogo();
                 menu.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
 
                 if (keypress.KeyChar == 's' || keypress.KeyChar == 'S')
                 {
-                    Console.Clear();
-                    menu.GameLogo();
-                    menu.HrLine();
-                    menu.BootUp();
-                    menu.Indent();
-                    player.ChooseCharacter();
                     InGame();
-                    //break;
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
@@ -57,7 +45,6 @@ namespace gik299_project
                 }
                 else
                 {
-                    // Nödvändig? Kolla upp
                     Console.Clear();
                 }
             }
@@ -68,114 +55,89 @@ namespace gik299_project
             Console.Clear();
             menu.GameLogo();
             menu.HrLine();
+            menu.QuickBootUp();  // Quick bootup for development
+            menu.Indent();
+            player.ChooseCharacter();
+
+            Console.Clear();
+            menu.GameLogo();
+            menu.HrLine();
+            map.MapSettings();
             map.GenerateMap();
             enemy.GenerateEnemies();
-            //Console.Clear();
-            //menu.WelcomeText();
-            //Console.ReadKey();
-            //Console.Clear();
-            menu.StoryText(player);
-            //Console.Clear();
+            // Commented out below for faster testing in development
+            //menu.StoryText(player);
             Console.CursorVisible = true;
-
 
             bool activeGame = true;
 
-            string consoleTextField = input.caseSwitch; //Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
+            string consoleTextField = input.caseSwitch; // Displays text at the top of the menu when you either write a non-existent command or get a command output.      TEMPORARY
 
-            List<int> generatedKeys = map.TotalKeys; //Generates TotalKeys before the game starts.
-            List<int> generatedEnemies = enemy.TotalEnemies; //Generates TotalEnemies before the game starts.
+            //List<int> generatedKeys = map.TotalKeys; // Generates TotalKeys before the game starts.
+            //List<int> generatedEnemies = enemy.Positions; // Generates TotalEnemies before the game starts.
+
+            string keyRoom = "";
 
             while (activeGame) //Game is running.
             {
-                //Checks if the player is in the same spot as a key.
-                for (int i = 0; i < 10; i++)
-                {
-                    if (player.PlayerPosition() == generatedKeys[i])
-                    {
-                        Console.Beep(1400, 100);
-                        player.Keys++; //Adds a key to the player stats.
-                        generatedKeys[i] = 0; //Puts the picked up key outside of the map so it cannot be picked up again.
-                    }
-                }
+                enemy.CheckForEnemies(player);
 
-                for (int i = 0; i < 10; i++)
-                {
-                    if (player.PlayerPosition() == generatedEnemies[i])
-                    {
-                        Console.Beep(80, 200);
-
-                        //PÅ DEN HÄR RADEN SKA MAN HAMNA I EN FIGHT.
-
-                        generatedEnemies[i] = 0;
-                    }
-                }
-
-                if (player.PlayerPosition() == 10 && player.Keys < 10)
-                {
-                    Console.WriteLine("You have reached the exit but you do not yet have 10 keys.");
-                }
-                else if (player.PlayerPosition() == 10 && player.Keys == 10)
-                {
-                    Console.WriteLine("You have escaped and won the game. Press any button for credits.");
-                    activeGame = false;
-                }
-
-                if (input.caseSwitch == "menu")
-                {
-
-                }
-                else
-                {
-                    Console.WriteLine(consoleTextField);
-                }
                 Console.Clear();
-                menu.GameLogo();
-                map.DrawMap(player);
-                if (input.caseSwitch == "menu")
-                {
-                    menu.InGameMenu();
-                }
-                else
-                {
-                    menu.ActionMenu();
-                }
+                menu.SmallGameLogo();
+                menu.HrLine2();
+                map.DrawMap(player, enemy);
+                menu.HrLine2();
+                // Print what room player is in.
+                RoomText(keyRoom);
+                menu.ActionMenu();
+
                 input.PlayerInput(player);
+
+                // Check if have all keys and are at exit
+                if (player.PlayerPosition() == 10 && player.Keys == 10)
+                {
+                    activeGame = false;
+                    menu.Win();
+                }
+
+                //Checks if the player is in the same spot as a key.
+                keyRoom = map.CheckForKey(player);
             }
 
+            // Onödig while loop med activeGame?
+            // Checks bör göras innan om spelaren dör, vinner, stänger ner
             while (!activeGame) //Game is over.
             {
                 Console.Clear();
                 menu.Credits();
                 Console.ReadKey();
-                Environment.Exit(1);
+                StartMenu();
+                //Environment.Exit(1);
             }
-
-
-            menu.InGameMenu();
-
-            // StartGame();
         }
 
-        //public static void StartGame()
-        //{
-        //    player.ChooseCharacter();
-        //}
+        private static void RoomText(string keyRoom)
+        {
+            if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
+            {
+                menu.PadTextW("You reached a wall, you can't go any further in that direction.");
+            }
+            else if (keyRoom.Length == 0 && player.Steps > 0)
+            {
+                menu.PadTextW($"ROOM {player.PlayerPosition()}: {map.RoomInformation[player.PlayerPosition()]}");
+            }
+            else if (keyRoom.Length > 0)
+            {
+                menu.PadTextW(keyRoom);
+            }
+            else if (player.Steps == 0)
+            {
+                menu.PadTextW("You found a Weapon.");
+            }
+            Console.WriteLine();
+        }
 
-        //public static void Win()
-        //{
-        //    Console.WriteLine("You unlock the door and successfully escape.");
-        //    Console.WriteLine("YOU WIN!");
-        //    Console.WriteLine("Press any key to continue...");
-        //}
-
-        //public static void Lose()
-        //{
-        //    Console.WriteLine($"The {enemy.GetRandomName()} attacks you back and your health reaches 0.");
-        //    Console.WriteLine("GAME OVER!");
-        //    Console.WriteLine("Press any key to continue...");
-        //}
-
+        // Check health bör göras när man slåss mot fiender.
         //public static void CheckHealth()
         //{
         //    if (player.Health < 1)
