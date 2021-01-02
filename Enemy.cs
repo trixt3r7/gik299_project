@@ -79,9 +79,9 @@ namespace gik299_project
 
         public void CheckEnemiesLeft(Player player, int i)
         {
-            string ActionEvent = control.PlayerAction(player);
             while (EnemyCounts[i] > 0)
             {
+                string ActionEvent = control.PlayerAction(player);
                 if (ActionEvent == "attack")
                 {
                     EnemyCounts[i]--;
@@ -97,6 +97,7 @@ namespace gik299_project
                 else if (ActionEvent == "flee")
                 {
                     menu.PadTextWL("You successfully flee and rebound to your previous location.");
+                    break;
                 }
             } 
         }

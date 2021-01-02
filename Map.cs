@@ -198,7 +198,8 @@ namespace gik299_project
                 "You enter a room with a key, but an enemy steals it.",
                 "You enter a room and hear Canon in D by Johann Pachelbel... but nothing\n        of value seems to exist here. Where to next?",
                 "You enter a room and hear the wonderful Clair de Lune, L. 32. However, \n        nothing of value seems to exist here. Where to next?",
-                "You enter a room with a single frame painting of an old man, and his   \n        eyes seem to follow you as you explore the room. However, nothing of value\n        seems to exist here. Where to next?",
+                "You enter a room with a single framed painting of an old man, and his   \n        eyes seem to follow you as you explore the room. However, nothing of value\n        seems to exist here. Where to next?",
+                "You enter a room where the floor is covered with water,\n        you tiptoe through the puddles."
             };
 
             // Assign a string to each room from RoomInformation
@@ -207,6 +208,10 @@ namespace gik299_project
                 if (i == 10)
                 {
                     emptyRoomText[i] = "You have reached the exit. But don't have all the keycards.\n        Check for the other keycards.";
+                }
+                else if (i == 69)
+                {
+                    emptyRoomText[i] = "You find yourself in a very   n i c e   room.";
                 }
                 else if (i == 91)
                 {

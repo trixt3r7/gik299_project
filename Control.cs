@@ -95,9 +95,10 @@ namespace gik299_project
         }
         public string PlayerAction(Player player)
         {
+            string input;
             menu.Indent();
             Console.Write($"{player.Name}: ");
-            string input = Console.ReadLine();
+            input = Console.ReadLine();
             switch (input)
             {
                 case "attack":

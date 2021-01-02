@@ -385,7 +385,7 @@ namespace gik299_project
                 }
 
             }
-            SecColor(); Console.Write("    [FAILED]"); ResetColor();
+            SecColor(); Console.Write("    [DAMAGED]"); ResetColor();
 
             //MEMORY CHECK
             Indent(); Console.WriteLine("");
