@@ -55,7 +55,7 @@ namespace gik299_project
             Console.Clear();
             menu.GameLogo();
             menu.HrLine();
-            menu.BootUp();  // Quick bootup for development
+            menu.QuickBootUp();  // Quick bootup for development
             menu.Indent();
             player.ChooseCharacter();
 
@@ -121,8 +121,6 @@ namespace gik299_project
             if (player.PlayerPrevPosition() == player.PlayerPosition() && player.Steps > 0) // Check for wall
             {
                 menu.PadTextW("You reached a wall, you can't go any further in that direction.");
-                highscore.CalculateScore();
-                highscore.ListPlayers();
             }
             else if (keyRoom.Length == 0 && player.Steps > 0)
             {

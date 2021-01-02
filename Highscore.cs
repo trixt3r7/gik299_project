@@ -10,11 +10,7 @@ namespace gik299_project
         const int StartingScore = 1000;
         Dictionary<string, int> players = new Dictionary<string, int>();
 
-
-        // Instansiera klasser
         Player player = new Player();
-        // Menu menu = new Menu();
-        
         public void CalculateScore()
         {
             string playerName = player.Name;
