@@ -380,11 +380,9 @@ namespace gik299_project
                     Thread.Sleep(25); // Speed of animation
                 }
                 PrimaryColor(); Console.Write("    [OK]"); ResetColor();
-
             }
 
             Indent(); Console.WriteLine("");
-
             Indent(); Console.Write("NEURAL LINK: ");
             for (int i = 0; i < 16; i++)
             {
@@ -493,7 +491,6 @@ namespace gik299_project
                                                                                                                                       
 ");
             Console.ReadKey();
-            Console.BackgroundColor = ConsoleColor.Blue;
             ResetColor();
             Console.Clear();
         }
