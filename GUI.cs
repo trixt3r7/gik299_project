@@ -10,7 +10,7 @@ namespace gik299_project
             // Game Area = 8 spaces + 80 chars + 8 spaces
             Console.Title = "Cyber Dungeons";
             Console.SetWindowSize(97, 40);
-            //Console.SetBufferSize(89, 40); // Remove scrollbars
+            Console.SetBufferSize(97, 40); // Remove scrollbars
 
             // Console.CursorVisible = false;
         }
@@ -343,9 +343,6 @@ namespace gik299_project
             PlayOrQuit();
         }
 
-
-        // Lägga in flera rader med flashiflash
-        // 10% chans till blue screen
         public void QuickBootUp()
         {
             Indent(); Console.Write("BOOTING: ");
@@ -367,6 +364,25 @@ namespace gik299_project
                 Thread.Sleep(25); // Speed of animation
             }
             PrimaryColor(); Console.Write("    [OK]"); ResetColor();
+
+            // Easter egg: Blue Screen Of Dead
+            Random random = new Random();
+            int bsod = random.Next(1, 100);
+            if (bsod < 50)
+            {
+                BSOD();
+                GameLogo();
+                HrLine();
+                Indent(); Console.Write("BOOTING: ");
+                for (int i = 0; i < 20; i++)
+                {
+                    Console.Write($"#");
+                    Thread.Sleep(25); // Speed of animation
+                }
+                PrimaryColor(); Console.Write("    [OK]"); ResetColor();
+
+            }
+
             Indent(); Console.WriteLine("");
 
             Indent(); Console.Write("NEURAL LINK: ");
@@ -421,6 +437,65 @@ namespace gik299_project
             Console.Write(">>>>>>>>");
             PrimaryColor(); Console.WriteLine("    [OK]"); ResetColor();
             Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
+        }
+
+        public void BSOD()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(@"                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                          SYSTEM ERROR                                           
+                                                                                                 
+              A fatal exeption 0E76534801 has occured at 0026:00001D2. The current               
+              application will be terminated.                                                    
+                                                                                                 
+              * Press any key to terminate the current application.                              
+              * Press CTRL+ALT+DEL again to restart your computer. You will                      
+                lose any unsaved information in all applications.                                
+                                                                                                 
+                                 Press any key to continue                                       
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                 
+                                                                                                                                      
+");
+            Console.ReadKey();
+            Console.BackgroundColor = ConsoleColor.Blue;
+            ResetColor();
+            Console.Clear();
         }
     }
 }
