@@ -5,18 +5,18 @@ namespace gik299_project
 {
     class Map
     {
-        Menu menu = new Menu();
+        GUI gui = new GUI();
 
         public int[,] MapArea;
         public int KeyAmount = 10;
-        public List<int> TotalKeys;
+        public List<int> KeyPositions;
         public string[] RoomInformation;
 
         public void MapSettings()
         {
             MapArea = new int[10, 10];
             KeyAmount = 10;
-            TotalKeys = KeyPos();
+            KeyPositions = GenerateKeys();
             RoomInformation = AssignRooms();
         }
 
@@ -34,7 +34,7 @@ namespace gik299_project
             }
         }
 
-        public List<int> KeyPos()
+        public List<int> GenerateKeys()
         {
             List<int> randomNumbers = new List<int>();
             Random rng = new Random();
@@ -55,11 +55,11 @@ namespace gik299_project
         {
             int roomNr = 0; // Used to check array values 1-100+
             Console.ForegroundColor = ConsoleColor.Red;
-            menu.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
+            gui.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                menu.PadTextW("│ ");
+                gui.PadTextW("│ ");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
@@ -74,7 +74,7 @@ namespace gik299_project
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (TotalKeys.Contains(roomNr))
+                    else if (KeyPositions.Contains(roomNr))
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.Write("■ ");
@@ -143,15 +143,6 @@ namespace gik299_project
                     Console.ResetColor();
                     Console.WriteLine("     [{0}/{1}]", player.Steps, player.MaxSteps);
                 }
-                else if (y == 7)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("│");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("   POSITION");
-                    Console.ResetColor();
-                    Console.WriteLine("  [X-{0} Y-{1}]", player.Position[1], player.Position[0]);
-                }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -160,17 +151,17 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            menu.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
+            gui.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
             Console.ResetColor();
 
         }
 
         public string CheckForKey(Player player)
         {
-            if (TotalKeys.Contains(player.PlayerPosition()))
+            if (KeyPositions.Contains(player.PlayerPosition()))
             {
                 player.Keys++; //Adds a key to the player stats.
-                TotalKeys.Remove(player.PlayerPosition()); //Remove picked up key so it cannot be picked up again.
+                KeyPositions.Remove(player.PlayerPosition()); //Remove picked up key so it cannot be picked up again.
                 return $"ROOM {player.PlayerPosition()}: You found a keycard, you now have: {player.Keys}/{KeyAmount}";
             }
             return "";
@@ -213,7 +204,7 @@ namespace gik299_project
                 {
                     emptyRoomText[i] = "The holding cell where you started.";
                 }
-                else if (TotalKeys.Contains(i))
+                else if (KeyPositions.Contains(i))
                 {
                     emptyRoomText[i] = "You have picked up a keycard in this room earlier.\n        There is nothing more of use here.";
                 }
@@ -224,6 +215,5 @@ namespace gik299_project
             }
             return emptyRoomText;
         }
-
     }
 }

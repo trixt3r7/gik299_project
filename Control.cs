@@ -4,128 +4,110 @@ namespace gik299_project
 {
     class Control
     {
-        Menu menu = new Menu();
-        Map map = new Map();
+        GUI gui = new GUI();
 
         public string caseSwitch;
 
         public void PlayerInput(Player player)
         {
-            menu.TerColor();
-            menu.PadTextW($"{player.Name}: ");
-            menu.ResetColor();
+            gui.TertiaryColor();
+            gui.PadTextW($"{player.Name}: ");
+            gui.ResetColor();
             caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
+                case "u":
                 case "up":
                 case "goup":
-                    if (player.Position[0] == 0) //Om spelaren är högst upp i array 0 kan de inte gå högre.
+                    if (player.Position[0] != 0)
                     {
-                        Console.Beep(200, 150);
-                        player.Position.CopyTo(player.PrevPosition, 0);
-                    }
-                    else
-                    {
-                        player.Position.CopyTo(player.PrevPosition, 0);
+                        player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[0]--;
                         player.Steps++;
-                        menu.CenterText("Going up");
                     }
                     break;
+                case "r":
                 case "right":
                 case "goright":
-                    if (player.Position[1] == player.MapSize - 1)
+                    if (player.Position[1] != player.MapSize - 1)
                     {
-                        Console.Beep(200, 150);
-                        player.Position.CopyTo(player.PrevPosition, 0);
-                    }
-                    else
-                    {
-                        player.Position.CopyTo(player.PrevPosition, 0);
+                        player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[1]++;
                         player.Steps++;
-                        menu.CenterText("Going right");
                     }
                     break;
+                case "d":
                 case "down":
                 case "godown":
-                    if (player.Position[0] == 9)
+                    if (player.Position[0] != 9)
                     {
-                        Console.Beep(200, 150);
-                        player.Position.CopyTo(player.PrevPosition, 0);
-                    }
-                    else
-                    {
-                        player.Position.CopyTo(player.PrevPosition, 0);
+                        player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[0]++;
                         player.Steps++;
-                        menu.CenterText("Going down");
                     }
                     break;
+                case "l":
                 case "left":
                 case "goleft":
-                    if (player.Position[1] == 0)
+                    if (player.Position[1] != 0)
                     {
-                        Console.Beep(200, 150);
-                        player.Position.CopyTo(player.PrevPosition, 0);
-                    }
-                    else
-                    {
-                        player.Position.CopyTo(player.PrevPosition, 0);
+                        player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[1]--;
                         player.Steps++;
                     }
                     break;
                 case "attack":
-                    menu.CenterText("There is nothing to attack. Try another command.");
+                    gui.CenterText("There is nothing to attack. Try another command.");
                     break;
                 case "flee":
-                    menu.CenterText("There is nothing to flee from. Try another command.");
+                    gui.CenterText("There is nothing to flee from. Try another command.");
                     break;
                 case "menu":
-                    menu.InGameMenu();
+                    gui.InGameMenu();
                     break;
                 default:
-                    menu.CenterText("Unknown command, type 'help' to see a full list of commands.");
+                    gui.CenterText("Unknown command, type 'help' to see a full list of commands.");
                     break;
             }
 
             // Game Over if exeeding max steps taken
             if (player.Steps > player.MaxSteps)
             {
-                menu.LoseBoss();
+                gui.LoseBoss();
             }
 
-            if (player.VisitedPosition[player.PlayerPrevPosition() - 1] == false)
+            // Sets previous position to a visited position.
+            if (player.VisitedPosition[player.PlayerPreviousPosition() - 1] == false)
             {
-                player.VisitedPosition[player.PlayerPrevPosition() - 1] = true;
+                player.VisitedPosition[player.PlayerPreviousPosition() - 1] = true;
             }
         }
         public string PlayerAction(Player player)
         {
             string input;
-            menu.Indent();
+            gui.Indent();
             Console.Write($"{player.Name}: ");
             input = Console.ReadLine();
             switch (input)
             {
                 case "attack":
+                case "a":
                     player.Attack();
                     player.CheckHealth();
-                    menu.PadTextWL($"You kill an enemy.");
+                    gui.PadTextWL($"You kill an enemy.");
                     break;
                 case "flee":
+                case "f":
                     player.Flee();
-                    // menu.PadTextWL($"You successfully flee. You return to your previous position.");
                     break;
                 case "goup":
                 case "godown":
                 case "goleft":
                 case "goright":
-                    menu.PadTextWL("Movement is not allowed while in combat.");
+                    gui.PadTextWL("Movement is not allowed while in combat.");
                     break;
                 default:
-                    menu.PadTextWL("Invalid input, please try again.");
+                    gui.PadTextWL("Invalid input, please try again.");
                     break;
             }
             return input;

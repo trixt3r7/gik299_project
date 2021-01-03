@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace gik299_project
 {
-    class Menu
+    class GUI
     {
         public void WindowSettings()
         {
@@ -15,17 +15,17 @@ namespace gik299_project
             // Console.CursorVisible = false;
         }
         // Color Scheme
-        public void PriColor()
+        public void PrimaryColor()
         {
             // Primary Color
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
-        public void SecColor()
+        public void SecondaryColor()
         {
             // Secondary Color
             Console.ForegroundColor = ConsoleColor.Red;
         }
-        public void TerColor()
+        public void TertiaryColor()
         {
             // Tertiary Color
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -39,11 +39,12 @@ namespace gik299_project
         {
             Console.Write("        ");
         }
+        // Adds 8 spaces on the left side.
         public void PadTextW(string text)
         {
-
             Console.Write(text.PadLeft(text.Length + 8));
         }
+        // Adds 8 spaces on the left side.
         public void PadTextWL(string text)
         {
             Console.WriteLine(text.PadLeft(text.Length + 8));
@@ -57,34 +58,34 @@ namespace gik299_project
         }
         public void HrLine()
         {
-            TerColor(); PadTextW("»»"); ResetColor();
+            TertiaryColor(); PadTextW("»»"); ResetColor();
             Console.Write("-----------------------------------------------------------------------------");
-            TerColor(); Console.WriteLine("««"); ResetColor();
+            TertiaryColor(); Console.WriteLine("««"); ResetColor();
         }
         public void HrLine2()
         {
-            SecColor();
+            SecondaryColor();
             PadTextWL("---------------------------------------------------------------------------------");
             ResetColor();
         }
         public void GameLogo()
         {
-            PriColor(); PadTextWL("                              ______      __");
-            SecColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"    / ____/_  __/ /_  ___  _____       "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■");
-            PriColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"     / /   / / / / __ \/ _ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■■");
-            SecColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■"); PriColor(); Console.Write(@"      / /___/ /_/ / /_/ /  __/ /       "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■");
-            PriColor(); PadTextW("■■■■■■■■■■■■■■■"); SecColor(); Console.Write(@"    ____"); PriColor(); Console.WriteLine(@"    \____/\__, /_.___/\___/_/      ■■■■■■■■■■■■■■■■■■■■■■■");
-            SecColor(); PadTextW("■■■■■■■■■■■■■"); SecColor(); Console.Write(@"     / __ \__  ____"); PriColor(); Console.Write(@"/____/"); SecColor(); Console.WriteLine(@"__  ___  ____  ____  _____       ■■■■■■■■■■");
-            PriColor(); PadTextW("■■■■■■■■■■■"); SecColor(); Console.Write(@"      / / / / / / / __ \/ __ `/ _ \/ __ \/ __ \/ ___/     "); PriColor(); Console.WriteLine("■■■■■■■■■■■■");
-            SecColor(); PadTextW("■■■■■■■■■"); SecColor(); Console.Write(@"       / /_/ / /_/ / / / / /_/ /  __/ /_/ / / / (__  )    "); SecColor(); Console.WriteLine("■■■■■■■■■■■■■■");
-            PriColor(); PadTextW("■■■■■■■"); SecColor(); Console.Write(@"        /_____/\__,_/_/ /_/\__, /\___/\____/_/ /_/____/   "); PriColor(); Console.WriteLine("■■■■■■■■■■■■■■■■");
-            SecColor(); PadTextW("                                 /____/");
+            PrimaryColor(); PadTextWL("                              ______      __");
+            SecondaryColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■■■■■"); PrimaryColor(); Console.Write(@"    / ____/_  __/ /_  ___  _____       "); SecondaryColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■");
+            PrimaryColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■■■"); PrimaryColor(); Console.Write(@"     / /   / / / / __ \/ _ \/ ___/     "); PrimaryColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■■");
+            SecondaryColor(); PadTextW("■■■■■■■■■■■■■■■■■■■■■"); PrimaryColor(); Console.Write(@"      / /___/ /_/ / /_/ /  __/ /       "); SecondaryColor(); Console.WriteLine("■■■■■■■■■■■■■■■■■■■■■");
+            PrimaryColor(); PadTextW("■■■■■■■■■■■■■■■"); SecondaryColor(); Console.Write(@"    ____"); PrimaryColor(); Console.WriteLine(@"    \____/\__, /_.___/\___/_/      ■■■■■■■■■■■■■■■■■■■■■■■");
+            SecondaryColor(); PadTextW("■■■■■■■■■■■■■"); SecondaryColor(); Console.Write(@"     / __ \__  ____"); PrimaryColor(); Console.Write(@"/____/"); SecondaryColor(); Console.WriteLine(@"__  ___  ____  ____  _____       ■■■■■■■■■■");
+            PrimaryColor(); PadTextW("■■■■■■■■■■■"); SecondaryColor(); Console.Write(@"      / / / / / / / __ \/ __ `/ _ \/ __ \/ __ \/ ___/     "); PrimaryColor(); Console.WriteLine("■■■■■■■■■■■■");
+            SecondaryColor(); PadTextW("■■■■■■■■■"); SecondaryColor(); Console.Write(@"       / /_/ / /_/ / / / / /_/ /  __/ /_/ / / / (__  )    "); SecondaryColor(); Console.WriteLine("■■■■■■■■■■■■■■");
+            PrimaryColor(); PadTextW("■■■■■■■"); SecondaryColor(); Console.Write(@"        /_____/\__,_/_/ /_/\__, /\___/\____/_/ /_/____/   "); PrimaryColor(); Console.WriteLine("■■■■■■■■■■■■■■■■");
+            SecondaryColor(); PadTextW("                                 /____/");
             ResetColor();
             Console.WriteLine();
         }
         public void SmallGameLogo()
         {
-            PriColor();
+            PrimaryColor();
             CenterText(@"  _____     __             ___                                 ");
             CenterText(@" / ___/_ __/ /  ___ ____  / _ \__ _____  ___  ___ ___  ___  ___");
             CenterText(@"/ /__/ // / _ \/ -_) __/ / // / // / _ \/ _ `/ -_) _ \/ _ \(_-<");
@@ -92,39 +93,34 @@ namespace gik299_project
             CenterText(@" ≡≡ /___/ ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ /___/ ≡≡≡≡≡≡ 2021 ≡≡≡≡≡ ");
             ResetColor();
         }
-        public void WelcomeText()
-        {
-            Player player = new Player();
-            Console.WriteLine($"\nGreetings {player.Name}... Other Welcome Text");
-        }
 
         public void StoryText(Player player)
         {
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine($"Time to wake up {player.Name}.");
-            TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the hell? Feels like I have been run over by a truck.");
+            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine($"Time to wake up {player.Name}.");
+            TertiaryColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the hell? Feels like I have been run over by a truck.");
             PadTextWL("Where am I?.");
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor();
-            Console.WriteLine("You have been captured by 'The Nordstroms' and their boss Taserface");
+            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor();
+            Console.WriteLine("You have been captured by 'The Brunstroms' and their boss Laserface");
             PadTextWL("wants to take you out himself and is on his way here right now. They found ");
             PadTextWL("out that it was you that stole the Military Grade Droid for their");
             PadTextWL("rivalry faction 'Night Runners'. He wants to make an example of you.");
-            TerColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the...");
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural transplant");
+            TertiaryColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the...");
+            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("I have repaired you as much as possible. But your neural transplant");
             PadTextWL("is severely damaged and you need to seek out a Neurodoc ASAP.");
             Console.WriteLine();
-            PriColor(); PadTextWL("Press [Enter] key to go to next page..."); ResetColor();
+            PrimaryColor(); PadTextWL("Press any key to go to the next page..."); ResetColor();
             Console.CursorVisible = false;
-            Indent(); Console.ReadLine();
+            Indent(); Console.ReadKey();
 
             Console.Clear();
             GameLogo();
             HrLine();
 
-            PriColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at the north");
+            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at the north");
             PadTextWL("east exit. I have located a weapon outside this room that will be useful.");
             PadTextWL("List of objectives required to exit the base is listed below:");
             Console.WriteLine();
-            TerColor(); PadTextWL("[OBJECTIVES]"); ResetColor();
+            TertiaryColor(); PadTextWL("[OBJECTIVES]"); ResetColor();
             PadTextWL("1. Find the 10 keycards located in 10 different rooms. They could be located");
             PadTextWL("   in the same room as enemies.");
             PadTextWL("2. Reach the northeast exit before your health reaches 0 health, and in");
@@ -132,8 +128,8 @@ namespace gik299_project
             PadTextWL("3. Watch out for the faction members that are gathered in 10 different rooms.");
 
             Console.WriteLine();
-            PriColor(); PadTextWL("Press [Enter] to start playing."); ResetColor();
-            Indent(); Console.ReadLine();
+            PrimaryColor(); PadTextWL("Press any key to start playing."); ResetColor();
+            Indent(); Console.ReadKey();
             Console.CursorVisible = true;
             Console.Clear();
         }
@@ -142,9 +138,10 @@ namespace gik299_project
         {
             HrLine();
             CenterText("Welcome to Cyber Dungeons, a text-based action game.");
+            CenterText("Created and Published by: Group #1");
             HrLine();
 
-            PriColor();
+            PrimaryColor();
             CenterText(@"              _                           ");
             CenterText(@"  __ _  ___ _(_)__    __ _  ___ ___  __ __");
             CenterText(@" /  ' \/ _ `/ / _ \  /  ' \/ -_) _ \/ // /");
@@ -186,7 +183,7 @@ namespace gik299_project
         }
         public void ConfirmQuit()
         {
-            PadTextW("Do you really want to Quit? Type [Y] for Yes or [Any key] to cancel quit.");
+            PadTextW("Do you really want to Quit? Type [Y] for Yes or [Any other key] to cancel quit.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
@@ -202,7 +199,7 @@ namespace gik299_project
         }
         public void ConfirmToMainMenu()
         {
-            PadTextW("Confirm return to main menu by typing [Y] for Yes or [Any key] to cancel.");
+            PadTextW("Confirm return to main menu by typing [Y] for Yes or [Any other key] to cancel.");
             string caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
@@ -234,8 +231,11 @@ namespace gik299_project
 
         public void Credits()
         {
+            Console.Clear();
             Console.WriteLine("'Epic Credits'");
-            QuitGame();
+            Console.ReadKey();
+            Console.Clear();
+            Program.StartMenu();
         }
 
         public void QuitGame()
@@ -297,7 +297,7 @@ namespace gik299_project
             SmallGameLogo();
             Console.WriteLine();
             CenterText("You managed to unlock the door and escape.");
-            TerColor();
+            TertiaryColor();
             CenterText(@"__  __               _       ___       __");
             CenterText(@"\ \/ /___  __  __   | |     / (_)___  / /");
             CenterText(@" \  / __ \/ / / /   | | /| / / / __ \/ / ");
@@ -314,7 +314,7 @@ namespace gik299_project
             SmallGameLogo();
             Console.WriteLine();
             CenterText("Your health reached 0.");
-            SecColor();
+            SecondaryColor();
             CenterText(@"   ______                        ____                  __");
             CenterText(@"  / ____/___ _____ ___  ___     / __ \_   _____  _____/ /");
             CenterText(@" / / __/ __ `/ __ `__ \/ _ \   / / / / | / / _ \/ ___/ / ");
@@ -332,7 +332,7 @@ namespace gik299_project
             Console.WriteLine();
             CenterText("You didn't manage to escape in time.");
             CenterText("Taserface takes you out to the street and executes you in front of an audience.");
-            SecColor();
+            SecondaryColor();
             CenterText(@"   ______                        ____                  __");
             CenterText(@"  / ____/___ _____ ___  ___     / __ \_   _____  _____/ /");
             CenterText(@" / / __/ __ `/ __ `__ \/ _ \   / / / / | / / _ \/ ___/ / ");
@@ -355,7 +355,7 @@ namespace gik299_project
                 // Yield the rest of the time slice.
                 Thread.Sleep(25);
             }
-            PriColor(); Console.WriteLine("    [OK]"); ResetColor();
+            PrimaryColor(); Console.WriteLine("    [OK]"); ResetColor();
             PadTextWL("CONNECTION ESTABLISHED");
         }
         public void BootUp()
@@ -364,10 +364,9 @@ namespace gik299_project
             for (int i = 0; i < 20; i++)
             {
                 Console.Write($"#");
-                // Yield the rest of the time slice.
-                Thread.Sleep(25);
+                Thread.Sleep(25); // Speed of animation
             }
-            PriColor(); Console.Write("    [OK]"); ResetColor();
+            PrimaryColor(); Console.Write("    [OK]"); ResetColor();
             Indent(); Console.WriteLine("");
 
             Indent(); Console.Write("NEURAL LINK: ");
@@ -383,9 +382,8 @@ namespace gik299_project
                     Console.Write($"#");
                     Thread.Sleep(50); // Speed of animation
                 }
-
             }
-            SecColor(); Console.Write("    [DAMAGED]"); ResetColor();
+            SecondaryColor(); Console.Write("    [DAMAGED]"); ResetColor();
 
             //MEMORY CHECK
             Indent(); Console.WriteLine("");
@@ -393,13 +391,12 @@ namespace gik299_project
             Console.CursorVisible = false;
             for (int i = 0; i < 33; i++)
             {
-
                 Console.SetCursorPosition(22, Console.CursorTop);
                 Console.Write(i);
                 Thread.Sleep(50);
             }
             Console.Write(" TB");
-            PriColor(); Console.WriteLine("              [OK]"); ResetColor();
+            PrimaryColor(); Console.WriteLine("              [OK]"); ResetColor();
             Console.CursorVisible = true;
             string connect = ">";
             Indent(); Console.Write("INITIALIZING UPLINK: ");
@@ -422,7 +419,7 @@ namespace gik299_project
                 Console.Write("\b\b\b\b\b\b\b\b");
             }
             Console.Write(">>>>>>>>");
-            PriColor(); Console.WriteLine("    [OK]"); ResetColor();
+            PrimaryColor(); Console.WriteLine("    [OK]"); ResetColor();
             Indent(); Console.WriteLine("CONNECTION ESTABLISHED");
         }
     }
