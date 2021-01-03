@@ -442,6 +442,8 @@ namespace gik299_project
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
+            Console.SetWindowSize(99, 38);
+            Console.SetBufferSize(99, 38);
             Console.WriteLine(@"                                                                                                 
                                                                                                  
                                                                                                  
@@ -492,6 +494,8 @@ namespace gik299_project
 ");
             Console.ReadKey();
             ResetColor();
+            Console.SetWindowSize(97, 40);
+            Console.SetBufferSize(97, 40);
             Console.Clear();
         }
     }
