@@ -57,7 +57,6 @@ namespace gik299_project
             menu.HrLine();
             menu.QuickBootUp();  // Quick bootup for development
             menu.Indent();
-            player.ChooseCharacter();
 
             Console.Clear();
             menu.GameLogo();
@@ -66,6 +65,7 @@ namespace gik299_project
             map.MapSettings();
             map.GenerateMap();
             enemy.GenerateEnemies();
+            player.ChooseCharacter();
             // Commented out below for faster testing in development
             //menu.StoryText(player);
             Console.CursorVisible = true;
@@ -153,14 +153,5 @@ namespace gik299_project
             }
             Console.WriteLine();
         }
-
-        // Check health bör göras när man slåss mot fiender.
-        //public static void CheckHealth()
-        //{
-        //    if (player.Health < 1)
-        //    {
-        //        Lose();
-        //    }
-        //}
     }
 }

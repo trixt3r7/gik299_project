@@ -39,19 +39,6 @@ namespace gik299_project
             EnemiesKilled = 0;
         }
 
-        public void Movement()
-        {
-
-        }
-
-        public void SetName()
-        {
-            Console.Clear();
-            Console.CursorVisible = true;
-            menu.PadTextW("\n\n\nPlease tell me your name: ");
-            Name = Console.ReadLine();
-        }
-
         public void Attack()
         {
             AttackProbability();
@@ -87,15 +74,6 @@ namespace gik299_project
                 menu.PadTextWL($"The {enemy.GetRandomName()} hits you back and you lose 10 health points. You now have {Health} health points remaining.");
             }
             // https://social.msdn.microsoft.com/Forums/vstudio/en-US/26f951f7-8d3d-4926-8705-bddc8a5f8873/i-need-help-with-c-numbers-and-percentages-in-a-few-lines-of-code?forum=csharpgeneral
-        }
-
-        public void ShowPlayerStats()
-        {
-            menu.PadTextWL("---STATS---");
-            menu.PadTextWL($"Name: {Name}");
-            menu.PadTextWL($"Health: {Health}/100 HP");
-            menu.PadTextWL($"Keys collected: {Keys}/10");
-            menu.PadTextWL($"Steps taken: {Steps}");
         }
 
         public void ChooseCharacter()
@@ -156,6 +134,14 @@ namespace gik299_project
             if (prob < 1)
             {
                 Health -= 10;
+            }
+        }
+
+        public void CheckHealth()
+        {
+            if (Health < 1)
+            {
+                menu.Lose();
             }
         }
     }

@@ -15,7 +15,7 @@ namespace gik299_project
             string playerName = player.Name;
             int playerSteps = player.Steps *= 10;
             int playerKills = player.EnemiesKilled *= 10;
-            int playerHealth = (player.Health *= (int)0.0025) + 1;
+            int playerHealth = (player.Health *= (int)0.025) + 1;
             // multiplier ?
 
             int totalScore = playerHealth * (Score - playerSteps) + playerKills;

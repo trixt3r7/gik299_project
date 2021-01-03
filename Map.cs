@@ -5,7 +5,6 @@ namespace gik299_project
 {
     class Map
     {
-        //static Player player = new Player();
         Menu menu = new Menu();
 
         public int[,] MapArea;

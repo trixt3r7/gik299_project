@@ -111,6 +111,7 @@ namespace gik299_project
             {
                 case "attack":
                     player.Attack();
+                    player.CheckHealth();
                     menu.PadTextWL($"You kill an enemy.");
                     break;
                 case "flee":

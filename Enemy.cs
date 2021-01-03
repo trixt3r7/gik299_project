@@ -41,11 +41,6 @@ namespace gik299_project
             return enemyCount;
         }
 
-        public void ComparePos()
-        {
-
-        }
-
         public string CheckForEnemies(Player player)
         {
             string ActionEvent = "";
