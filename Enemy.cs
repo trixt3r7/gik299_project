@@ -9,7 +9,7 @@ namespace gik299_project
         public List<int> Positions;
         public int[] EnemyCounts = new int[10];
         private int MapSize;
-        private int count = 10;
+        public int Count = 10;
 
         Control control = new Control();
         GUI gui = new GUI();
@@ -22,9 +22,36 @@ namespace gik299_project
             return RandomName;
         }
 
-        public void Settings()
+        public void Settings(ConsoleKeyInfo difficulty)
         {
-            MapSize = 100;
+            
+            // EASY
+            if (difficulty.KeyChar == '0')
+            {
+                MapSize = 50;
+                Count = 5;
+            }
+
+            // MEDIUM
+            else if (difficulty.KeyChar == '1')
+            {
+                MapSize = 100;
+                Count = 10;
+            }
+
+            // HARD
+            else if (difficulty.KeyChar == '2')
+            {
+                MapSize = 150;
+                Count = 15;
+            }
+
+            else
+            {
+                MapSize = 30;
+                Count = 10;
+            }
+
             Positions = GenerateEnemies();
             EnemyCounts = EnemyAmount();
         }
@@ -32,8 +59,8 @@ namespace gik299_project
         public int[] EnemyAmount()
         {
             Random rnd = new Random();
-            int[] amount = new int[count];
-            for (int i = 0; i < count; i++)
+            int[] amount = new int[Count];
+            for (int i = 0; i < Count; i++)
             {
                 amount[i] = rnd.Next(1, 4);
             }
@@ -43,7 +70,7 @@ namespace gik299_project
         public string CheckForEnemies(Player player)
         {
             string actionEvent = "";
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 if (player.PlayerPosition() == Positions[i])
                 {
@@ -118,7 +145,7 @@ namespace gik299_project
             List<int> randomNumbers = new List<int>();
             Random rng = new Random();
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 int numberToAdd;
 

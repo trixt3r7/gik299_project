@@ -94,8 +94,11 @@ namespace gik299_project
             ResetColor();
         }
 
-        public void StoryText(Player player)
+        public void StoryText(Player player, Map map, Enemy enemy)
         {
+            Console.Clear();
+            GameLogo();
+            HrLine();
             PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine($"Time to wake up {player.Name}.");
             TertiaryColor(); PadTextW($"{player.Name}: "); ResetColor(); Console.WriteLine("What the hell? Feels like I have been run over by a truck.");
             PadTextWL("Where am I?.");
@@ -116,16 +119,16 @@ namespace gik299_project
             GameLogo();
             HrLine();
 
-            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine("There are 10 keycards in this base to unlock the door at the north");
+            PrimaryColor(); PadTextW("A.I. GHOST: "); ResetColor(); Console.WriteLine($"There are {map.KeyAmount} keycards in this base to unlock the door at the north");
             PadTextWL("east exit. I have located a weapon outside this room that will be useful.");
             PadTextWL("List of objectives required to exit the base is listed below:");
             Console.WriteLine();
             TertiaryColor(); PadTextWL("[OBJECTIVES]"); ResetColor();
-            PadTextWL("1. Find the 10 keycards located in 10 different rooms. They could be located");
+            PadTextWL($"1. Find the {map.KeyAmount} keycards located in {map.KeyAmount} different rooms. They could be located");
             PadTextWL("   in the same room as enemies.");
             PadTextWL("2. Reach the northeast exit before your health reaches 0 health, and in");
-            PadTextWL("   under 80 moves before Taserface and the rest of the faction arrives.");
-            PadTextWL("3. Watch out for the faction members that are gathered in 10 different rooms.");
+            PadTextWL($"   under {player.MaxSteps} moves before Taserface and the rest of the faction arrives.");
+            PadTextWL($"3. Watch out for the faction members that are gathered in {enemy.Count} different rooms.");
 
             Console.WriteLine();
             PrimaryColor(); PadTextWL("Press any key to start playing."); ResetColor();
@@ -425,6 +428,7 @@ namespace gik299_project
                 BSOD();
                 GameLogo();
                 HrLine();
+                PadTextWL($"Difficulty set to ");
                 Indent(); Console.Write("BOOTING: ");
                 for (int i = 0; i < 20; i++)
                 {

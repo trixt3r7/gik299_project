@@ -113,5 +113,42 @@ namespace gik299_project
             return input;
         }
 
+        public void SetDifficultyLevel(Player player, Enemy enemy, Map map)
+        {
+            
+            gui.PadTextWL("Choose difficulty level: ");
+            gui.PadTextWL("0: Easy | 1: Medium | 2: Hard");
+            gui.HrLine();
+            ConsoleKeyInfo difficulty = Console.ReadKey();
+            Console.Clear();
+            gui.GameLogo();
+
+            if (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
+            {
+                gui.HrLine();
+                gui.PadTextWL($"Invalid input, difficulty set to S U P E R E A S Y mode.");
+            }
+
+            else if (difficulty.KeyChar == '0')
+            {
+                gui.HrLine();
+                gui.PadTextWL("Difficulty set to E A S Y");
+            }
+
+            else if (difficulty.KeyChar == '1')
+            {
+                gui.HrLine();
+                gui.PadTextWL("Difficulty set to M E D I U M");
+            }
+
+            else if (difficulty.KeyChar == '2')
+            {
+                gui.HrLine();
+                gui.PadTextWL("Difficulty set to H A R D");
+            }
+            player.Settings(difficulty);
+            enemy.Settings(difficulty);
+            map.MapSettings(difficulty);
+        }
     }
 }
