@@ -434,6 +434,24 @@ namespace gik299_project
                 PrimaryColor(); Console.Write("    [OK]"); ResetColor();
             }
             Console.WriteLine();
+            Indent(); Console.Write("OPERATING SYSTEM: ");
+            Thread.Sleep(200);
+            Console.Write("L");
+            Thread.Sleep(200);
+            Console.Write("I");
+            Thread.Sleep(200);
+            Console.Write("N");
+            Thread.Sleep(200);
+            Console.Write("U");
+            Thread.Sleep(200);
+            Console.Write("S");
+            Thread.Sleep(200);
+            Console.Write("\b ");
+            Console.Write("\b");
+            Thread.Sleep(200);
+            Console.Write("X");
+            Thread.Sleep(200);
+            PrimaryColor(); Console.WriteLine("          [OK]"); ResetColor();
             Indent(); Console.Write("NEURAL LINK: ");
             for (int i = 0; i < 16; i++)
             {
