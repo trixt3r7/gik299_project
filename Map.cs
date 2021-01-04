@@ -12,10 +12,39 @@ namespace gik299_project
         public List<int> KeyPositions;
         public string[] RoomInformation;
 
-        public void MapSettings()
+        public void MapSettings(ConsoleKeyInfo difficulty)
         {
-            MapArea = new int[10, 10];
+            MapArea = new int[10, 10]; // andra värdet ska vara samma som MapSize i player
             KeyAmount = 10;
+
+            // EASY
+            if (difficulty.KeyChar == '0')
+            {
+                MapArea = new int[10, 5];
+                KeyAmount = 8;
+            }
+
+            // MEDIUM
+            else if (difficulty.KeyChar == '1')
+            {
+                MapArea = new int[10, 10];
+                KeyAmount = 10;
+            }
+
+            // HARD
+            else if (difficulty.KeyChar == '2')
+            {
+                MapArea = new int[10, 15];
+                KeyAmount = 13;
+            }
+
+            // SUPER EASY
+            else
+            {
+                MapArea = new int[10, 3];
+                KeyAmount = 5;
+            }
+
             KeyPositions = GenerateKeys();
             RoomInformation = AssignRooms();
         }

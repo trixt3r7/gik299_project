@@ -20,19 +20,54 @@ namespace gik299_project
         public bool[] VisitedPosition;
         public int EnemiesKilled;
 
-        public void Settings()
+        public void Settings(ConsoleKeyInfo difficulty)
         {
             Name = "";
-            Health = 100;
-            MaxHealth = 100;
             Keys = 0;
             Steps = 0;
-            MaxSteps = 95;
-            MapSize = 10;
             Position = new int[2] { 9, 0 };
             PreviousPosition = new int[2] { 9, 0 };
-            VisitedPosition = new bool[100];
             EnemiesKilled = 0;
+            
+            // EASY
+            if (difficulty.KeyChar == '0')
+            {
+                Health = 100;
+                MaxHealth = 100;
+                MaxSteps = 45;
+                VisitedPosition = new bool[50];
+                MapSize = 5;
+            }
+
+            // MEDIUM
+            else if (difficulty.KeyChar == '1')
+            {
+                Health = 100;
+                MaxHealth = 100;
+                MaxSteps = 95;
+                VisitedPosition = new bool[100];
+                MapSize = 10;
+            }
+
+            // HARD
+            else if (difficulty.KeyChar == '2')
+            {
+                Health = 50;
+                MaxHealth = 75;
+                MaxSteps = 130;
+                VisitedPosition = new bool[150];
+                MapSize = 15;
+            }
+
+            // SUPER EASY
+            else
+            {
+                Health = 1000;
+                MaxHealth = 1000;
+                MaxSteps = 300;
+                VisitedPosition = new bool[30];
+                MapSize = 3;
+            }
         }
 
         public void Attack()
