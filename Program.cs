@@ -33,31 +33,17 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
+                    gui.HighScore();
                     gui.HrLine2();
                     highscore.ShowHighScore();
                     gui.HrLine2();
                     gui.CenterText("Press any key");
                     Console.ReadKey();
                     Console.Clear();
-                    //highscore.ListPlayers(player); // Commented out
 
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
-                    player.Name = "Philip";
-                    player.Score = 1000;
-                    player.Health = 90;
-                    player.MaxHealth = 100;
-                    player.Keys = 4;
-                    player.Steps = 40;
-                    player.MaxSteps = 95;
-                    player.MapSize = 10;
-                    player.Position = new int[2] { 1, 1 };
-                    player.PreviousPosition = new int[2] { 9, 0 };
-                    player.VisitedPosition = new bool[100];
-                    player.EnemiesKilled = 8;
-                    highscore.AddHighScore(player);
-
                     gui.Credits();
                 }
                 else if (keypress.KeyChar == 'q' || keypress.KeyChar == 'Q')
@@ -77,14 +63,13 @@ namespace gik299_project
             Console.Clear();
             gui.GameLogo();
             gui.HrLine();
-            gui.QuickBootUp();  // Quick bootup for development
+            gui.BootUp();  // Quick bootup for development
             player.Settings();
             map.MapSettings();
             map.GenerateMap();
             enemy.Settings();
             player.SetName();
 
-            // Commented out below for faster testing in development
             gui.StoryText(player);
             Console.CursorVisible = true;
 
@@ -105,12 +90,10 @@ namespace gik299_project
                 gui.ActionMenu();
                 input.PlayerInput(player);
 
-                // Check if have all keys and are at exit
+                // Check if all keys are obtained and player is at exit.
                 if (player.PlayerPosition() == player.MapSize && player.Keys == map.KeyAmount)
                 {
-                    //Console.WriteLine(highscore.CalculateScore(player)); // ------------------------------------------ Commented out
-
-                    Console.ReadLine();
+                    highscore.AddHighScore(player);
                     gui.Win();
                 }
                 //Checks if the player is in the same spot as a key.

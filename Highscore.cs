@@ -5,7 +5,7 @@ using System.Text.Json;
 
 namespace gik299_project
 {
-    [Serializable] // Added Serializable
+    [Serializable]
     class Highscore
     {
         static GUI gui = new GUI();
@@ -13,33 +13,12 @@ namespace gik299_project
         // List will contain all names and scores
         static List<Highscore> highscoreList = new List<Highscore>();
 
-        // Path to file
+        // Path to savefile
         string path = "Highscore.json";
 
-        // Unknown about row below
-        //Player highscores = new Player();
-
-        // Added two variables that will be used for High Score
         public string Name { get; set; }
         public int Score { get; set; }
 
-        // Rewrite this method below (AddHighScore) [OLD]
-        //public string CalculateScore(Player player)
-        //{
-        //    int playerSteps = player.Steps *= 10;
-        //    int playerKills = player.EnemiesKilled *= 10;
-        //    int playerHealth = (player.Health *= (int)0.025) + 1;
-        //    // multiplier ?
-
-        //    int playerScore = player.Score;
-
-        //    int totalScore = playerHealth * (playerScore - playerSteps) + playerKills;
-
-        //    highscores.Name = player.Name;
-        //    highscores.Score = player.Score;
-
-        //    return "";
-        //}
         public void AddHighScore(Player player)
         {
             Highscore highscore = new Highscore();
@@ -64,7 +43,6 @@ namespace gik299_project
             }
         }
 
-        // New method based on below method with another name and with adjustments
         public void LoadFile()
         {
             if (!File.Exists(path))
@@ -78,26 +56,9 @@ namespace gik299_project
             }
             else
             {
-                Console.WriteLine("{0} has no saved data.", path);
+                //Console.WriteLine("No savedata found in {0}", path); //DEBUG
             }
         }
-
-        //public void ListPlayers(string path)
-        //{
-        //    if (!File.Exists(path))
-        //    {
-        //        var newFile = File.Create(path);
-        //        newFile.Close();
-        //        List<Player> playerList = new List<Player>();
-        //        playerList.Add(highscores);
-        //        var jsonData = ConvertToJson(playerList);
-        //        WriteAllText(jsonData);
-        //    }
-        //    if (new FileInfo(path).Length > 0)
-        //    {
-
-        //    }
-        //}
 
         // Read JSON-file and Deserialize to a List
         static List<Highscore> ReadFromFile(string path)
@@ -113,9 +74,8 @@ namespace gik299_project
             return json;
         }
 
-        static void WriteAllText(string path, string text) // Added path as parameter and commented it out below
+        static void WriteAllText(string path, string text)
         {
-            //string path = "Highscore.json"; 
             File.WriteAllText(path, text);
         }
         static void AppendAllText(string text)
