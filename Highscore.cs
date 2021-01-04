@@ -45,7 +45,7 @@ namespace gik299_project
             Highscore highscore = new Highscore();
             int playerSteps = player.Steps * 10;
             int playerKills = player.EnemiesKilled * 20;
-            int playerHealth = (player.Health * (int)0.025) + 1;
+            int playerHealth = (int)((player.Health * 0.025f) + 1);
 
             highscore.Name = player.Name;
             highscore.Score = playerHealth * (player.Score - playerSteps) + playerKills;
