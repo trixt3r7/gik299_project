@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Text.Json;
 
 namespace gik299_project
 {
+    [Serializable]
     class Highscore
     {
-        int Score = 1000;
-        const int StartingScore = 1000;
+        static GUI gui = new GUI();
 
         public string CalculateScore(Player player, ConsoleKeyInfo difficulty)
         {
@@ -24,19 +25,19 @@ namespace gik299_project
             }
 
             // MEDIUM
-            if (difficulty.KeyChar == '1')
+            else if (difficulty.KeyChar == '1')
             {
                 multiplier = 1.25f;
             }
 
             // HARD
-            if (difficulty.KeyChar == '2')
+            else if (difficulty.KeyChar == '2')
             {
                 multiplier = 1.5f;
             }
 
             // SUPEREASY
-            if (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
+            else (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
             {
                 multiplier = 0.25f;
             }
@@ -45,14 +46,73 @@ namespace gik299_project
             return ($"{playerName} | {totalScore}");
         }
 
-        public void ListPlayers()
-        {
+        // List will contain all names and scores
+        static List<Highscore> highscoreList = new List<Highscore>();
 
+        // Path to savefile
+        string path = "Highscore.json";
+
+        public string Name { get; set; }
+        public int Score { get; set; }
+
+        public void AddHighScore(Player player)
+        {
+            Highscore highscore = new Highscore();
+            int playerSteps = player.Steps * 10;
+            int playerKills = player.EnemiesKilled * 20;
+            int playerHealth = (int)((player.Health * 0.025f) + 1);
+
+            highscore.Name = player.Name;
+            highscore.Score = playerHealth * (player.Score - playerSteps) + playerKills;
+            highscoreList.Add(highscore);
+
+            var fileData = ConvertToJson(highscoreList);
+            WriteAllText(path, fileData);
         }
 
-        public void TopTenList()
+        public void ShowHighScore()
         {
+            gui.PadTextWL($"NAME\t\tSCORE");
+            foreach (Highscore score in highscoreList)
+            {
+                gui.PadTextWL($"{score.Name}\t\t{score.Score}");
+            }
+        }
 
+        public void LoadFile()
+        {
+            if (!File.Exists(path))
+            {
+                var myFile = File.Create(path);
+                myFile.Close();
+            }
+            if (new FileInfo(path).Length > 0)
+            {
+                highscoreList = ReadFromFile(path);
+            }
+            else
+            {
+                //Console.WriteLine("No savedata found in {0}", path); //DEBUG
+            }
+        }
+
+        // Read JSON-file and Deserialize to a List
+        static List<Highscore> ReadFromFile(string path)
+        {
+            string fileContent = File.ReadAllText(path);
+            List<Highscore> highscoreList = JsonSerializer.Deserialize<List<Highscore>>(fileContent);
+            return highscoreList;
+        }
+
+        static string ConvertToJson(List<Highscore> data)
+        {
+            string json = JsonSerializer.Serialize(data);
+            return json;
+        }
+
+        static void WriteAllText(string path, string text)
+        {
+            File.WriteAllText(path, text);
         }
     }
 }
