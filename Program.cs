@@ -32,8 +32,27 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
-                    highscore.CalculateScore(player);
-                    highscore.ListPlayers(player);
+                    highscore.LoadFile();
+
+                    player.Name = "Matteh";
+                    player.Score = 10000;
+                    player.Health = 50;
+                    player.MaxHealth = 100;
+                    player.Keys = 2;
+                    player.Steps = 50;
+                    player.MaxSteps = 95;
+                    player.MapSize = 10;
+                    player.Position = new int[2] { 5, 3 };
+                    player.PreviousPosition = new int[2] { 9, 0 };
+                    player.VisitedPosition = new bool[100];
+                    player.EnemiesKilled = 10;
+
+                    // Need to add name and score to 
+
+                    highscore.AddHighScore(player);
+                    highscore.ShowHighScore();
+                    //highscore.ListPlayers(player); // Created a LoadFile at 42 instead
+
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
@@ -87,7 +106,7 @@ namespace gik299_project
                 // Check if have all keys and are at exit
                 if (player.PlayerPosition() == player.MapSize && player.Keys == map.KeyAmount)
                 {
-                    Console.WriteLine(highscore.CalculateScore(player));
+                    //Console.WriteLine(highscore.CalculateScore(player)); // ------------------------------------------ Commented out
 
                     Console.ReadLine();
                     gui.Win();
