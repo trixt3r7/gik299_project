@@ -428,7 +428,6 @@ namespace gik299_project
                 BSOD();
                 GameLogo();
                 HrLine();
-                PadTextWL($"Difficulty set to ");
                 Indent(); Console.Write("BOOTING: ");
                 for (int i = 0; i < 20; i++)
                 {

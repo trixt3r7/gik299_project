@@ -63,17 +63,11 @@ namespace gik299_project
             Console.Clear();
             gui.GameLogo();
             gui.HrLine();
-            // gui.BootUp();  // Quick bootup for development
-            // player.Settings();
-            //map.MapSettings();
-            // enemy.Settings();
-            input.SetDifficultyLevel(player, enemy, map);
+
             gui.BootUp();
-            map.GenerateMap();
-
+            input.SetDifficultyLevel(player, enemy, map);
             player.SetName();
-
-            // Commented out below for faster testing in development
+            map.GenerateMap();
             gui.StoryText(player, map, enemy);
 
             Console.CursorVisible = true;

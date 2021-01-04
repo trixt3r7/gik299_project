@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace gik299_project
 {
@@ -115,36 +115,33 @@ namespace gik299_project
 
         public void SetDifficultyLevel(Player player, Enemy enemy, Map map)
         {
-            
-            gui.PadTextWL("Choose difficulty level: ");
-            gui.PadTextWL("0: Easy | 1: Medium | 2: Hard");
-            gui.HrLine();
-            ConsoleKeyInfo difficulty = Console.ReadKey();
-            Console.Clear();
-            gui.GameLogo();
 
+            gui.PrimaryColor();
+            gui.PadTextW("CHOOSE DIFFICULTY");
+            gui.ResetColor();
+            Console.Write(" [0: Easy | 1: Medium | 2: Hard]: ");
+            ConsoleKeyInfo difficulty = Console.ReadKey();
+            Console.WriteLine();
             if (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
             {
-                gui.HrLine();
-                gui.PadTextWL($"Invalid input, difficulty set to S U P E R E A S Y mode.");
+                gui.PrimaryColor();
+                gui.PadTextWL($"Invalid input, difficulty set to SUPER EASY mode.");
+                gui.ResetColor();
             }
 
             else if (difficulty.KeyChar == '0')
             {
-                gui.HrLine();
-                gui.PadTextWL("Difficulty set to E A S Y");
+                gui.PadTextWL("Difficulty set to EASY");
             }
 
             else if (difficulty.KeyChar == '1')
             {
-                gui.HrLine();
-                gui.PadTextWL("Difficulty set to M E D I U M");
+                gui.PadTextWL("Difficulty set to NORMAL");
             }
 
             else if (difficulty.KeyChar == '2')
             {
-                gui.HrLine();
-                gui.PadTextWL("Difficulty set to H A R D");
+                gui.PadTextWL("Difficulty set to HARD");
             }
             player.Settings(difficulty);
             enemy.Settings(difficulty);
