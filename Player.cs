@@ -2,13 +2,15 @@
 
 namespace gik299_project
 {
+    [Serializable]
     class Player
     {
         // Instansiering av klasser
         Enemy enemy = new Enemy();
         GUI gui = new GUI();
 
-        public string Name;
+        public string Name {get ; set;}
+        public int Score { get; set; }
         public int Health;
         public int MaxHealth;
         public int Keys;
@@ -23,6 +25,7 @@ namespace gik299_project
         public void Settings()
         {
             Name = "";
+            Score = 0;
             Health = 100;
             MaxHealth = 100;
             Keys = 0;

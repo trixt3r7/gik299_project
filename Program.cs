@@ -32,7 +32,8 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
-                    gui.PadTextWL("Show Highscore");
+                    highscore.CalculateScore(player);
+                    highscore.ListPlayers(player);
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
@@ -55,7 +56,7 @@ namespace gik299_project
             Console.Clear();
             gui.GameLogo();
             gui.HrLine();
-            gui.BootUp();  // Quick bootup for development
+            gui.QuickBootUp();  // Quick bootup for development
             player.Settings();
             map.MapSettings();
             map.GenerateMap();
@@ -87,7 +88,7 @@ namespace gik299_project
                 if (player.PlayerPosition() == player.MapSize && player.Keys == map.KeyAmount)
                 {
                     Console.WriteLine(highscore.CalculateScore(player));
-                    highscore.ListPlayers();
+
                     Console.ReadLine();
                     gui.Win();
                 }

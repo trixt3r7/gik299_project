@@ -1,35 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using System.Text.Json;
 
 namespace gik299_project
 {
     class Highscore
     {
-        int Score = 1000;
-        const int StartingScore = 1000;
 
+        List<Highscore> highscore = new List<Highscore>();
+        Player highscores = new Player();
+        string path = "Highscore.json";
 
         public string CalculateScore(Player player)
         {
-            string playerName = player.Name;
             int playerSteps = player.Steps *= 10;
             int playerKills = player.EnemiesKilled *= 10;
             int playerHealth = (player.Health *= (int)0.025) + 1;
             // multiplier ?
 
-            int totalScore = playerHealth * (Score - playerSteps) + playerKills;
-            return ($"{playerName} | {totalScore}");
+            int playerScore = player.Score;
+
+            int totalScore = playerHealth * (playerScore - playerSteps) + playerKills;
+
+            highscores.Name = player.Name;
+            highscores.Score = player.Score;
+
+            return ("");
         }
 
-        public void ListPlayers()
+        public void ListPlayers(Player player)
         {
+            if (!File.Exists(path))
+            {
+                var newFile = File.Create(path);
+                newFile.Close();
+                List<Player> playerList = new List<Player>();
+                playerList.Add(highscores);
+                var jsonData = ConvertToJson(playerList);
+                WriteAllText(jsonData);
+            }
+            if (new FileInfo(path).Length > 0)
+            {
 
+            }
         }
 
-        public void TopTenList()
+        static string ConvertToJson(List<Player> data)
         {
+            string json = JsonSerializer.Serialize<List<Player>>(data);
+            return json;
+        }
 
+        static void WriteAllText(string text)
+        {
+            string path = "Highscore.json";
+            File.WriteAllText(path, text);
+        }
+        static void AppendAllText(string text)
+        {
+            string path = "Highscore.json";
+            File.AppendAllText(path, text);
         }
     }
 }
