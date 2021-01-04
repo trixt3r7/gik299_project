@@ -413,7 +413,7 @@ namespace gik299_project
             for (int i = 0; i < 20; i++)
             {
                 Console.Write($"#");
-                Thread.Sleep(25); // Speed of animation
+                Thread.Sleep(20); // Speed of animation
             }
             PrimaryColor(); Console.Write("    [OK]"); ResetColor();
 
@@ -433,8 +433,7 @@ namespace gik299_project
                 }
                 PrimaryColor(); Console.Write("    [OK]"); ResetColor();
             }
-
-            Indent(); Console.WriteLine("");
+            Console.WriteLine();
             Indent(); Console.Write("NEURAL LINK: ");
             for (int i = 0; i < 16; i++)
             {
@@ -480,7 +479,7 @@ namespace gik299_project
                 {
                     Console.Write($"{connect}");
                     // Yield the rest of the time slice.
-                    Thread.Sleep(50);
+                    Thread.Sleep(40);
                 }
                 Console.Write("\b\b\b\b\b\b\b\b");
             }
@@ -492,7 +491,7 @@ namespace gik299_project
         public void BSOD()
         {
             Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetWindowSize(99, 38);
             Console.SetBufferSize(99, 38);

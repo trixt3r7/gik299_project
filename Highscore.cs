@@ -78,10 +78,5 @@ namespace gik299_project
         {
             File.WriteAllText(path, text);
         }
-        static void AppendAllText(string text)
-        {
-            string path = "Highscore.json";
-            File.AppendAllText(path, text);
-        }
     }
 }
