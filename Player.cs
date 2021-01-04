@@ -56,7 +56,7 @@ namespace gik299_project
             else if (difficulty.KeyChar == '2')
             {
                 Health = 50;
-                MaxHealth = 75;
+                MaxHealth = 80;
                 MaxSteps = 130;
                 VisitedPosition = new bool[150];
                 MapSize = 15;

@@ -37,7 +37,7 @@ namespace gik299_project
             }
 
             // SUPEREASY
-            else (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
+            else
             {
                 multiplier = 0.25f;
             }
