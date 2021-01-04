@@ -25,7 +25,7 @@ namespace gik299_project
         public void Settings()
         {
             Name = "";
-            Score = 0;
+            Score = 1000;
             Health = 100;
             MaxHealth = 100;
             Keys = 0;

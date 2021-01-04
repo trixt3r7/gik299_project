@@ -22,6 +22,7 @@ namespace gik299_project
             Console.CursorVisible = false;
             while (true)
             {
+                highscore.LoadFile();
                 gui.GameLogo();
                 gui.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
@@ -32,30 +33,31 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
-                    highscore.LoadFile();
-
-                    player.Name = "Matteh";
-                    player.Score = 10000;
-                    player.Health = 50;
-                    player.MaxHealth = 100;
-                    player.Keys = 2;
-                    player.Steps = 50;
-                    player.MaxSteps = 95;
-                    player.MapSize = 10;
-                    player.Position = new int[2] { 5, 3 };
-                    player.PreviousPosition = new int[2] { 9, 0 };
-                    player.VisitedPosition = new bool[100];
-                    player.EnemiesKilled = 10;
-
-                    // Need to add name and score to 
-
-                    highscore.AddHighScore(player);
+                    gui.HrLine2();
                     highscore.ShowHighScore();
-                    //highscore.ListPlayers(player); // Created a LoadFile at 42 instead
+                    gui.HrLine2();
+                    gui.CenterText("Press any key");
+                    Console.ReadKey();
+                    Console.Clear();
+                    //highscore.ListPlayers(player); // Commented out
 
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
+                    player.Name = "Philip";
+                    player.Score = 1000;
+                    player.Health = 90;
+                    player.MaxHealth = 100;
+                    player.Keys = 4;
+                    player.Steps = 40;
+                    player.MaxSteps = 95;
+                    player.MapSize = 10;
+                    player.Position = new int[2] { 1, 1 };
+                    player.PreviousPosition = new int[2] { 9, 0 };
+                    player.VisitedPosition = new bool[100];
+                    player.EnemiesKilled = 8;
+                    highscore.AddHighScore(player);
+
                     gui.Credits();
                 }
                 else if (keypress.KeyChar == 'q' || keypress.KeyChar == 'Q')

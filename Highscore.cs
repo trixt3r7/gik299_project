@@ -8,8 +8,10 @@ namespace gik299_project
     [Serializable] // Added Serializable
     class Highscore
     {
+        static GUI gui = new GUI();
+
         // List will contain all names and scores
-        List<Highscore> highscoreList = new List<Highscore>();
+        static List<Highscore> highscoreList = new List<Highscore>();
 
         // Path to file
         string path = "Highscore.json";
@@ -55,10 +57,10 @@ namespace gik299_project
 
         public void ShowHighScore()
         {
-            Console.WriteLine($"NAME\t\tSCORE");
+            gui.PadTextWL($"NAME\t\tSCORE");
             foreach (Highscore score in highscoreList)
             {
-                Console.WriteLine($"{score.Name}\t\t{score.Score}");
+                gui.PadTextWL($"{score.Name}\t\t{score.Score}");
             }
         }
 
