@@ -2,13 +2,15 @@
 
 namespace gik299_project
 {
+    //[Serializable] // Commented out this
     class Player
     {
         // Instansiering av klasser
         Enemy enemy = new Enemy();
         GUI gui = new GUI();
 
-        public string Name;
+        public string Name; // Removed Name get set
+        public int Score; // Removed Score get set
         public int Health;
         public int MaxHealth;
         public int Keys;
@@ -23,6 +25,7 @@ namespace gik299_project
         public void Settings()
         {
             Name = "";
+            Score = 1000;
             Health = 100;
             MaxHealth = 100;
             Keys = 0;
@@ -61,7 +64,8 @@ namespace gik299_project
                 if (Health < MaxHealth)
                 {
                     Health += 10;
-                    if (Health > MaxHealth) {
+                    if (Health > MaxHealth)
+                    {
                         Health = MaxHealth;
                     }
                     Console.WriteLine($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth} HP.");

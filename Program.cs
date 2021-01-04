@@ -22,6 +22,7 @@ namespace gik299_project
             Console.CursorVisible = false;
             while (true)
             {
+                highscore.LoadFile();
                 gui.GameLogo();
                 gui.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
@@ -32,7 +33,14 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
-                    gui.PadTextWL("Show Highscore");
+                    gui.HighScore();
+                    gui.HrLine2();
+                    highscore.ShowHighScore();
+                    gui.HrLine2();
+                    gui.CenterText("Press any key");
+                    Console.ReadKey();
+                    Console.Clear();
+
                 }
                 else if (keypress.KeyChar == 'c' || keypress.KeyChar == 'C')
                 {
@@ -62,7 +70,6 @@ namespace gik299_project
             enemy.Settings();
             player.SetName();
 
-            // Commented out below for faster testing in development
             gui.StoryText(player);
             Console.CursorVisible = true;
 
@@ -83,12 +90,10 @@ namespace gik299_project
                 gui.ActionMenu();
                 input.PlayerInput(player);
 
-                // Check if have all keys and are at exit
+                // Check if all keys are obtained and player is at exit.
                 if (player.PlayerPosition() == player.MapSize && player.Keys == map.KeyAmount)
                 {
-                    Console.WriteLine(highscore.CalculateScore(player));
-                    highscore.ListPlayers();
-                    Console.ReadLine();
+                    highscore.AddHighScore(player);
                     gui.Win();
                 }
                 //Checks if the player is in the same spot as a key.

@@ -9,8 +9,8 @@ namespace gik299_project
         {
             // Game Area = 8 spaces + 80 chars + 8 spaces
             Console.Title = "Cyber Dungeons";
-            Console.SetWindowSize(97, 40);
-            Console.SetBufferSize(97, 40); // Remove scrollbars
+            Console.SetWindowSize(98, 40);
+            Console.SetBufferSize(98, 40); // Remove scrollbars
 
             // Console.CursorVisible = false;
         }
@@ -152,6 +152,21 @@ namespace gik299_project
             CenterText("[S] Start Game   [H] Highscore   [C] Credits   [Q] Quit Game");
         }
 
+        public void HighScore()
+        {
+            Console.Clear();
+            GameLogo();
+            HrLine();
+            CenterText("Here you can view your local scoreboard.");
+            HrLine();
+            PrimaryColor();
+            CenterText(@"   __   _      __                         ");
+            CenterText(@"  / /  (_)__ _/ /    ___ _______  _______ ");
+            CenterText(@" / _ \/ / _ `/ _ \  (_-</ __/ _ \/ __/ -_)");
+            CenterText(@"/_//_/_/\_, /_//_/ /___/\__/\___/_/  \__/ ");
+            CenterText(@"       /___/                              ");
+            Console.WriteLine();
+        }
         public void InGameMenu()
         {
             bool active = true;
@@ -232,7 +247,44 @@ namespace gik299_project
         public void Credits()
         {
             Console.Clear();
-            Console.WriteLine("'Epic Credits'");
+            GameLogo();
+            HrLine();
+            CenterText("");
+            CenterText("");
+            PrimaryColor();
+            CenterText("Programmers");
+            ResetColor();
+            CenterText("Mattias Hedlund");
+            CenterText("Linus Nordström");
+            CenterText("Philip Sinnott");
+            CenterText("");
+            CenterText("");
+            CenterText("");
+            SecondaryColor();
+            CenterText("Graphics Designers");
+            ResetColor();
+            CenterText("UI and UX Designer | Mattias Hedlund");
+            CenterText("Map Designer | Linus Nordström");
+            CenterText("");
+            CenterText("");
+            CenterText("");
+            PrimaryColor();
+            CenterText("Narrative Designers");
+            ResetColor();
+            CenterText("Lead Story Designer | Mattias Hedlund");
+            CenterText("Room Designer | Philip Sinnott");
+            CenterText("Story Designer | Linus Nordström");
+            CenterText("");
+            CenterText("");
+            CenterText("");
+            TertiaryColor();
+            CenterText("Special Thanks");
+            ResetColor();
+            CenterText("Educator | Thomas Brunström");
+            CenterText("");
+            CenterText("");
+            CenterText("");
+            CenterText("Press any key to return to main menu.");
             Console.ReadKey();
             Console.Clear();
             Program.StartMenu();
