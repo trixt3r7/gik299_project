@@ -2,15 +2,13 @@
 
 namespace gik299_project
 {
-    //[Serializable] // Commented out this
     class Player
     {
-        // Instansiering av klasser
         Enemy enemy = new Enemy();
         GUI gui = new GUI();
 
-        public string Name; // Removed Name get set
-        public int Score; // Removed Score get set
+        public string Name;
+        public int Score;
         public int Health;
         public int MaxHealth;
         public int Keys;
@@ -61,7 +59,6 @@ namespace gik299_project
             // SUPER EASY
             else
             {
-
                 Health = 100;
                 MaxHealth = 100;
                 MaxSteps = 300;

@@ -163,10 +163,8 @@ namespace gik299_project
                 }
                 if (y == 1)
                 {
-                    gui.SecondaryColor();
-                    Console.Write("│");
-                    gui.PrimaryColor();
-                    Console.Write("   POSITION");
+                    gui.Write("│", "S");
+                    gui.Write("   POSITION", "P");
                     Console.ResetColor();
                     Console.WriteLine("  [X-{0} Y-{1}]", player.Position[1], player.Position[0]);
                 }

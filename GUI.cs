@@ -7,27 +7,22 @@ namespace gik299_project
     {
         public void WindowSettings()
         {
-            // Game Area = 8 spaces + 80 chars + 8 spaces
             Console.Title = "Cyber Dungeons";
+            // Game Area = 8 spaces + 80 chars + 8 spaces
             Console.SetWindowSize(98, 40);
-            // lägg in try catch ifall någon kör något annat. som inte klarar utan kod.
 
-            // Console.CursorVisible = false;
         }
         // Color Scheme
         public void PrimaryColor()
         {
-            // Primary Color
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
         public void SecondaryColor()
         {
-            // Secondary Color
             Console.ForegroundColor = ConsoleColor.Red;
         }
         public void TertiaryColor()
         {
-            // Tertiary Color
             Console.ForegroundColor = ConsoleColor.DarkYellow;
         }
         public void ResetColor()
@@ -49,7 +44,8 @@ namespace gik299_project
         {
             Console.WriteLine(text.PadLeft(text.Length + 8));
         }
-        public void PadTextW(string text, string color)
+
+        public void SetColor(string color)
         {
             switch (color)
             {
@@ -66,63 +62,25 @@ namespace gik299_project
                     Console.ResetColor();
                     break;
             }
+        }
+        public void PadTextW(string text, string color)
+        {
+            SetColor(color);
             Console.Write(text.PadLeft(text.Length + 8));
         }
         public void PadTextWL(string text, string color)
         {
-            switch (color)
-            {
-                case "P":
-                    PrimaryColor();
-                    break;
-                case "S":
-                    SecondaryColor();
-                    break;
-                case "T":
-                    TertiaryColor();
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-            }
+            SetColor(color);
             Console.WriteLine(text.PadLeft(text.Length + 8));
         }
         public void Write(string text, string color)
         {
-            switch (color)
-            {
-                case "P":
-                    PrimaryColor();
-                    break;
-                case "S":
-                    SecondaryColor();
-                    break;
-                case "T":
-                    TertiaryColor();
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-            }
+            SetColor(color);
             Console.Write(text);
         }
         public void WriteLine(string text, string color)
         {
-            switch (color)
-            {
-                case "P":
-                    PrimaryColor();
-                    break;
-                case "S":
-                    SecondaryColor();
-                    break;
-                case "T":
-                    TertiaryColor();
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-            }
+            SetColor(color);
             Console.WriteLine(text);
         }
 
@@ -132,6 +90,7 @@ namespace gik299_project
             Console.SetCursorPosition((96 - textToEnter.Length) / 2, Console.CursorTop);
             Console.WriteLine(textToEnter);
         }
+
         public void HrLine()
         {
             PadTextW("»»", "T");
@@ -139,12 +98,14 @@ namespace gik299_project
             WriteLine("««", "T");
             ResetColor();
         }
+
         public void HrLine2()
         {
             SecondaryColor();
             PadTextWL("---------------------------------------------------------------------------------");
             ResetColor();
         }
+
         public void GameLogo()
         {
             PadTextW("                         "); WriteLine("     ______      __", "P");
@@ -160,6 +121,7 @@ namespace gik299_project
             ResetColor();
             Console.WriteLine();
         }
+
         public void SmallGameLogo()
         {
             PrimaryColor();
@@ -322,11 +284,8 @@ namespace gik299_project
         public void ActionMenu()
         {
             PadTextWL("»»-----------------------------------------------------------------------------««");
-            PadTextWL("  Movement:  [left]/[a]  [up]/[w]  [right]/[d]  [down]/[s]  |  Settings: [menu]  ");
+            PadTextWL("  Movement:  [up]/[w]  [left]/[a]  [down]/[s]  [right]/[d]  |  Settings: [menu]  ");
             PadTextWL("»»-----------------------------------------------------------------------------««");
-            //PadTextWL("»»-----------------------------------------------------------------------------««");
-            //PadTextWL("      Movement: [goleft] [goup] [goright] [godown]  |  Settings: [menu] ");
-            //PadTextWL("»»-----------------------------------------------------------------------------««");
         }
 
         public void FightMenu()
@@ -471,8 +430,7 @@ namespace gik299_project
             for (int i = 0; i < 10; i++)
             {
                 Console.Write($"#");
-                // Yield the rest of the time slice.
-                Thread.Sleep(25);
+                Thread.Sleep(25); // Speed of animation
             }
             PadTextWL("    [OK]", "P");
             PadTextWL("CONNECTION ESTABLISHED", "");
@@ -488,7 +446,7 @@ namespace gik299_project
             Write("    [OK]", "P");
             ResetColor();
 
-            // Easter egg: Blue Screen Of Dead
+            // Easter egg: Blue Screen Of Death
             Random random = new Random();
             int bsod = random.Next(1, 100);
             if (bsod < 50)
@@ -571,8 +529,7 @@ namespace gik299_project
                 for (int j = 0; j < 8; j++)
                 {
                     Console.Write($"{connect}");
-                    // Yield the rest of the time slice.
-                    Thread.Sleep(40);
+                    Thread.Sleep(40); // Speed of animation
                 }
                 Console.Write("\b\b\b\b\b\b\b\b");
             }
