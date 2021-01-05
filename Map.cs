@@ -131,6 +131,12 @@ namespace gik299_project
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
+                    else if (KeyPositions.Contains(roomNr) && enemy.Positions.Contains(roomNr) && developer == true)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.Write("■ ");
+                        Console.ResetColor();
+                    }
                     else if (KeyPositions.Contains(roomNr) && developer == true)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
