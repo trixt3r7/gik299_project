@@ -65,6 +65,11 @@ namespace gik299_project
                 case "menu":
                     gui.InGameMenu();
                     break;
+                case "iddqd": // GOD MODE, doom reference
+                    player.Health = 2147483647;
+                    player.MaxHealth = 2147483647;
+                    player.MaxSteps = 2147483647;
+                    break;
                 default:
                     gui.CenterText("Unknown command, type 'help' to see a full list of commands.");
                     break;
