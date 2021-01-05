@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 
 namespace gik299_project
 {
     [Serializable]
-    class Highscore // : IComparer<Highscore>
+    class Highscore
     {
         static GUI gui = new GUI();
 
@@ -38,8 +39,8 @@ namespace gik299_project
 
         public void ShowHighScore()
         {
-            //highscoreList.Sort();
-            //highscoreList.Reverse();
+            highscoreList = highscoreList.OrderBy(x => x.Score).ToList(); //Sorts the list by the key: Score
+            highscoreList.Reverse(); //Reverses the list to display the highest score on top
             gui.HighScore();
             gui.HrLine();
             gui.TertiaryColor();
