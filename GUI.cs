@@ -7,52 +7,49 @@ namespace gik299_project
     {
         public void WindowSettings()
         {
-            Console.Title = "Cyber Dungeons";
             // Game Area = 8 spaces + 80 chars + 8 spaces
+            Console.Title = "Cyber Dungeons";
             Console.SetWindowSize(98, 40);
-        }
+            // lägg in try catch ifall någon kör något annat. som inte klarar utan kod.
 
-        // Color Scheme: Primary, Secondary, Tertiary, 3 methods
+            // Console.CursorVisible = false;
+        }
+        // Color Scheme
         public void PrimaryColor()
         {
+            // Primary Color
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
-
         public void SecondaryColor()
         {
+            // Secondary Color
             Console.ForegroundColor = ConsoleColor.Red;
         }
-
         public void TertiaryColor()
         {
+            // Tertiary Color
             Console.ForegroundColor = ConsoleColor.DarkYellow;
         }
-
         public void ResetColor()
         {
             Console.ResetColor();
         }
-
         // Indentation for ReadLine's
         public void Indent()
         {
             Console.Write("        ");
         }
-
         // Adds 8 spaces on the left side.
         public void PadTextW(string text)
         {
             Console.Write(text.PadLeft(text.Length + 8));
         }
-
         // Adds 8 spaces on the left side.
         public void PadTextWL(string text)
         {
             Console.WriteLine(text.PadLeft(text.Length + 8));
         }
-
-        // Used in methods with secondary parameter for color
-        public void SetColor(string color)
+        public void PadTextW(string text, string color)
         {
             switch (color)
             {
@@ -69,29 +66,63 @@ namespace gik299_project
                     Console.ResetColor();
                     break;
             }
-        }
-
-        public void PadTextW(string text, string color)
-        {
-            SetColor(color);
             Console.Write(text.PadLeft(text.Length + 8));
         }
-
         public void PadTextWL(string text, string color)
         {
-            SetColor(color);
+            switch (color)
+            {
+                case "P":
+                    PrimaryColor();
+                    break;
+                case "S":
+                    SecondaryColor();
+                    break;
+                case "T":
+                    TertiaryColor();
+                    break;
+                default:
+                    Console.ResetColor();
+                    break;
+            }
             Console.WriteLine(text.PadLeft(text.Length + 8));
         }
-
         public void Write(string text, string color)
         {
-            SetColor(color);
+            switch (color)
+            {
+                case "P":
+                    PrimaryColor();
+                    break;
+                case "S":
+                    SecondaryColor();
+                    break;
+                case "T":
+                    TertiaryColor();
+                    break;
+                default:
+                    Console.ResetColor();
+                    break;
+            }
             Console.Write(text);
         }
-
         public void WriteLine(string text, string color)
         {
-            SetColor(color);
+            switch (color)
+            {
+                case "P":
+                    PrimaryColor();
+                    break;
+                case "S":
+                    SecondaryColor();
+                    break;
+                case "T":
+                    TertiaryColor();
+                    break;
+                default:
+                    Console.ResetColor();
+                    break;
+            }
             Console.WriteLine(text);
         }
 
@@ -101,7 +132,6 @@ namespace gik299_project
             Console.SetCursorPosition((96 - textToEnter.Length) / 2, Console.CursorTop);
             Console.WriteLine(textToEnter);
         }
-
         public void HrLine()
         {
             PadTextW("»»", "T");
@@ -109,14 +139,12 @@ namespace gik299_project
             WriteLine("««", "T");
             ResetColor();
         }
-
         public void HrLine2()
         {
             SecondaryColor();
             PadTextWL("---------------------------------------------------------------------------------");
             ResetColor();
         }
-
         public void GameLogo()
         {
             PadTextW("                         "); WriteLine("     ______      __", "P");
@@ -132,7 +160,6 @@ namespace gik299_project
             ResetColor();
             Console.WriteLine();
         }
-
         public void SmallGameLogo()
         {
             PrimaryColor();
