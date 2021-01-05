@@ -24,34 +24,29 @@ namespace gik299_project
 
         public void Settings(ConsoleKeyInfo difficulty)
         {
-            
             // EASY
             if (difficulty.KeyChar == '0')
             {
                 MapSize = 50;
                 Count = 5;
             }
-
             // MEDIUM
-            else if (difficulty.KeyChar == '1')
+            else if (difficulty.KeyChar == '1' || difficulty.KeyChar == '9')
             {
                 MapSize = 100;
                 Count = 10;
             }
-
             // HARD
             else if (difficulty.KeyChar == '2')
             {
                 MapSize = 150;
                 Count = 15;
             }
-
             else
             {
                 MapSize = 30;
                 Count = 10;
             }
-
             Positions = GenerateEnemies();
             EnemyCounts = EnemyAmount();
         }

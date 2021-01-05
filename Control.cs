@@ -122,14 +122,8 @@ namespace gik299_project
             Console.Write(" [0: Easy | 1: Medium | 2: Hard]: ");
             ConsoleKeyInfo difficulty = Console.ReadKey();
             Console.WriteLine();
-            if (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
-            {
-                gui.PrimaryColor();
-                gui.PadTextWL($"Invalid input, Initializing SAFE MODE.");
-                gui.ResetColor();
-            }
 
-            else if (difficulty.KeyChar == '0')
+            if (difficulty.KeyChar == '0')
             {
                 gui.PadTextWL("Difficulty set to EASY");
             }
@@ -143,6 +137,17 @@ namespace gik299_project
             {
                 gui.PadTextWL("Difficulty set to HARD");
             }
+            else if (difficulty.KeyChar == '9')
+            {
+                gui.PadTextWL("Welcome Master [HACKER MODE] activated");
+            }
+            else
+            {
+                gui.PrimaryColor();
+                gui.PadTextWL($"Invalid input, Initializing SAFE MODE.");
+                gui.ResetColor();
+            }
+
             player.Settings(difficulty);
             enemy.Settings(difficulty);
             map.MapSettings(difficulty);

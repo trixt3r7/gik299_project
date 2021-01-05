@@ -8,40 +8,48 @@ namespace gik299_project
         GUI gui = new GUI();
 
         public int[,] MapArea;
-        public int KeyAmount = 10;
+        public int KeyAmount;
         public List<int> KeyPositions;
         public string[] RoomInformation;
+        private bool developer;
 
         public void MapSettings(ConsoleKeyInfo difficulty)
         {
-            MapArea = new int[10, 10]; // andra värdet ska vara samma som MapSize i player
-            KeyAmount = 10;
-
+            developer = false;
             // EASY
             if (difficulty.KeyChar == '0')
             {
                 MapArea = new int[10, 5];
+                RoomInformation = new string[51];
                 KeyAmount = 8;
             }
-
             // MEDIUM
             else if (difficulty.KeyChar == '1')
             {
                 MapArea = new int[10, 10];
+                RoomInformation = new string[101];
                 KeyAmount = 10;
             }
-
             // HARD
             else if (difficulty.KeyChar == '2')
             {
                 MapArea = new int[10, 15];
+                RoomInformation = new string[151];
                 KeyAmount = 13;
             }
-
+            // Developer
+            else if (difficulty.KeyChar == '9')
+            {
+                MapArea = new int[10, 10];
+                RoomInformation = new string[101];
+                KeyAmount = 10;
+                developer = true;
+            }
             // SUPER EASY
             else
             {
                 MapArea = new int[10, 3];
+                RoomInformation = new string[31];
                 KeyAmount = 5;
             }
 
@@ -123,13 +131,13 @@ namespace gik299_project
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (KeyPositions.Contains(roomNr))
+                    else if (KeyPositions.Contains(roomNr) && developer == true)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
-                    else if (enemy.Positions.Contains(roomNr))
+                    else if (enemy.Positions.Contains(roomNr) && developer == true)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("■ ");

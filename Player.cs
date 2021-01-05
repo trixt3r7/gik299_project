@@ -31,7 +31,6 @@ namespace gik299_project
             Position = new int[2] { 9, 0 };
             PreviousPosition = new int[2] { 9, 0 };
             EnemiesKilled = 0;
-            
             // EASY
             if (difficulty.KeyChar == '0')
             {
@@ -41,9 +40,8 @@ namespace gik299_project
                 VisitedPosition = new bool[50];
                 MapSize = 5;
             }
-
             // MEDIUM
-            else if (difficulty.KeyChar == '1')
+            else if (difficulty.KeyChar == '1' || difficulty.KeyChar == '9')
             {
                 Health = 100;
                 MaxHealth = 100;
@@ -51,7 +49,6 @@ namespace gik299_project
                 VisitedPosition = new bool[100];
                 MapSize = 10;
             }
-
             // HARD
             else if (difficulty.KeyChar == '2')
             {
@@ -61,7 +58,6 @@ namespace gik299_project
                 VisitedPosition = new bool[150];
                 MapSize = 15;
             }
-
             // SUPER EASY
             else
             {
