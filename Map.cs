@@ -138,7 +138,7 @@ namespace gik299_project
                     }
                     else if (KeyPositions.Contains(roomNr) && developer == true)
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
