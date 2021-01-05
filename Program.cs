@@ -73,8 +73,6 @@ namespace gik299_project
 
             while (true) //Game is running.
             {
-                enemyRoom = enemy.CheckForEnemies(player);
-
                 Console.Clear();
                 gui.SmallGameLogo();
                 gui.HrLine2();
@@ -91,8 +89,13 @@ namespace gik299_project
                     highscore.AddHighScore(player);
                     gui.Win();
                 }
-                //Checks if the player is in the same spot as a key.
-                keyRoom = map.CheckForKey(player);
+
+                enemyRoom = enemy.CheckForEnemies(player);
+                if (enemyRoom != "flee")
+                {
+                    //Checks if the player is in the same spot as a key.
+                    keyRoom = map.CheckForKey(player);
+                }
             }
         }
 
@@ -108,7 +111,14 @@ namespace gik299_project
             }
             else if (enemyRoom.Length > 0)
             {
-                gui.PadTextW($"ROOM {player.PlayerPosition()}: {enemyRoom}");
+                if (enemyRoom == "flee")
+                {
+                    gui.PadTextW($"ROOM {player.PlayerPosition()}: You successfully flee and rebound to your previous location.");
+                }
+                else
+                {
+                    gui.PadTextW($"ROOM {player.PlayerPosition()}: {enemyRoom}");
+                }
             }
             else if (keyRoom.Length == 0 && player.Steps > 0)
             {

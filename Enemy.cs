@@ -129,7 +129,7 @@ namespace gik299_project
                 }
                 else if (actionEvent == "flee" || actionEvent == "f")
                 {
-                    return ("You successfully flee and rebound to your previous location.");
+                    return "flee";
                 }
             }
             return "";
