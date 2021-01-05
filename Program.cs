@@ -91,6 +91,7 @@ namespace gik299_project
                 }
 
                 enemyRoom = enemy.CheckForEnemies(player);
+
                 if (enemyRoom != "flee")
                 {
                     //Checks if the player is in the same spot as a key.

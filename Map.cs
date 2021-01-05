@@ -91,7 +91,7 @@ namespace gik299_project
         public void DrawMap(Player player, Enemy enemy)
         {
             int roomNr = 0; // Used to check array values 1-100+
-            Console.ForegroundColor = ConsoleColor.Red;
+            gui.SecondaryColor();
             if (player.MapSize == 3)
             {
                 gui.PadTextWL("┌───────┬══─═══════──═════─═════──═■");
@@ -115,8 +115,7 @@ namespace gik299_project
 
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                gui.PadTextW("│ ");
+                gui.PadTextW("│ ", "S");
                 Console.ResetColor();
                 for (int x = 0; x < MapArea.GetLength(1); x++)
                 {
@@ -127,7 +126,7 @@ namespace gik299_project
 
                     if (player.Position[0] == y && player.Position[1] == x)
                     {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        gui.PrimaryColor();
                         Console.Write("■ ");
                         Console.ResetColor();
                     }
@@ -164,56 +163,55 @@ namespace gik299_project
                 }
                 if (y == 1)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    gui.SecondaryColor();
                     Console.Write("│");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    gui.PrimaryColor();
                     Console.Write("   POSITION");
                     Console.ResetColor();
                     Console.WriteLine("  [X-{0} Y-{1}]", player.Position[1], player.Position[0]);
                 }
                 else if (y == 3)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    gui.SecondaryColor();
                     Console.Write("├");
                     Console.WriteLine("═─═══──════──══─═══──══■");
                     Console.ResetColor();
                 }
                 else if (y == 5)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-
+                    gui.SecondaryColor();
                     Console.Write("│");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    gui.PrimaryColor();
                     Console.Write("   HEALTH");
                     Console.ResetColor();
                     Console.WriteLine("    [{0:D3}/{1}]", player.Health, player.MaxHealth);
                 }
                 else if (y == 6)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    gui.SecondaryColor();
                     Console.Write("│");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    gui.PrimaryColor();
                     Console.Write("   KEYS");
                     Console.ResetColor();
                     Console.WriteLine("      [{0}/{1}]", player.Keys, KeyAmount);
                 }
                 else if (y == 7)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    gui.SecondaryColor();
                     Console.Write("│");
-                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    gui.PrimaryColor();
                     Console.Write("   STEPS");
                     Console.ResetColor();
                     Console.WriteLine("     [{0}/{1}]", player.Steps, player.MaxSteps);
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    gui.SecondaryColor();
                     Console.WriteLine("│");
                     Console.ResetColor();
                 }
             }
-            Console.ForegroundColor = ConsoleColor.Red;
+            gui.SecondaryColor();
             if (player.MapSize == 3)
             {
                 gui.PadTextWL("└───────┴═──══─══──═══─══──══■");

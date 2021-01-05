@@ -120,10 +120,8 @@ namespace gik299_project
         {
             while (Name.Length < 1)
             {
-                gui.PrimaryColor();
-                gui.PadTextW("LOG IN");
-                gui.ResetColor();
-                Console.Write(" [USERNAME]: ");
+                gui.PadTextW("LOG IN", "P");
+                gui.Write(" [USERNAME]: ", "");
                 Name = Console.ReadLine();
             }
             if (Name == "Thomas")

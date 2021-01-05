@@ -90,8 +90,7 @@ namespace gik299_project
         public string PlayerAction(Player player)
         {
             string input;
-            gui.Indent();
-            Console.Write($"{player.Name}: ");
+            gui.PadTextW($"{player.Name}: ");
             input = Console.ReadLine();
             switch (input)
             {
@@ -120,8 +119,7 @@ namespace gik299_project
 
         public void SetDifficultyLevel(Player player, Enemy enemy, Map map)
         {
-            gui.PrimaryColor();
-            gui.PadTextW("CHOOSE DIFFICULTY");
+            gui.PadTextW("CHOOSE DIFFICULTY", "P");
             gui.ResetColor();
             Console.Write(" [0: Easy | 1: Medium | 2: Hard]: ");
             ConsoleKeyInfo difficulty = Console.ReadKey();
@@ -147,8 +145,7 @@ namespace gik299_project
             }
             else
             {
-                gui.PrimaryColor();
-                gui.PadTextWL($"Invalid input, Initializing SAFE MODE.");
+                gui.PadTextWL($"Invalid input, Initializing SAFE MODE.", "P");
                 gui.ResetColor();
             }
 

@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace gik299_project
 {
     [Serializable]
-    class Highscore //: IComparable<Highscore>
+    class Highscore // : IComparer<Highscore>
     {
         static GUI gui = new GUI();
 
@@ -26,7 +26,7 @@ namespace gik299_project
             int playerKills = player.EnemiesKilled * 20;
             int playerHealth = (int)((player.Health * 0.025f) + 1);
 
-            float multiplier = (player.MapSize / 10f)*2;
+            float multiplier = (player.MapSize / 10f) * 2;
 
             highscore.Name = player.Name;
             highscore.Score = (int)((playerHealth * (player.Score - playerSteps) + playerKills) * multiplier);
