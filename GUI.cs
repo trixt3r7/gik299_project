@@ -10,7 +10,7 @@ namespace gik299_project
             // Game Area = 8 spaces + 80 chars + 8 spaces
             Console.Title = "Cyber Dungeons";
             Console.SetWindowSize(98, 40);
-            Console.SetBufferSize(98, 40); // Remove scrollbars
+            // lägg in try catch ifall någon kör något annat. som inte klarar utan kod.
 
             // Console.CursorVisible = false;
         }
@@ -514,8 +514,7 @@ namespace gik299_project
             Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetWindowSize(99, 38);
-            Console.SetBufferSize(99, 38);
+            Console.SetWindowSize(96, 38);
             Console.WriteLine(@"                                                                                                 
                                                                                                  
                                                                                                  
@@ -566,8 +565,7 @@ namespace gik299_project
 ");
             Console.ReadKey();
             ResetColor();
-            Console.SetWindowSize(97, 40);
-            Console.SetBufferSize(97, 40);
+            Console.SetWindowSize(98, 40);
             Console.Clear();
         }
     }
