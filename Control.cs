@@ -16,7 +16,7 @@ namespace gik299_project
             caseSwitch = Console.ReadLine();
             switch (caseSwitch)
             {
-                case "u":
+                case "w":
                 case "up":
                 case "goup":
                     if (player.Position[0] != 0)
@@ -26,7 +26,7 @@ namespace gik299_project
                         player.Steps++;
                     }
                     break;
-                case "r":
+                case "d":
                 case "right":
                 case "goright":
                     if (player.Position[1] != player.MapSize - 1)
@@ -36,7 +36,7 @@ namespace gik299_project
                         player.Steps++;
                     }
                     break;
-                case "d":
+                case "s":
                 case "down":
                 case "godown":
                     if (player.Position[0] != 9)
@@ -46,7 +46,7 @@ namespace gik299_project
                         player.Steps++;
                     }
                     break;
-                case "l":
+                case "a":
                 case "left":
                 case "goleft":
                     if (player.Position[1] != 0)
@@ -120,7 +120,6 @@ namespace gik299_project
 
         public void SetDifficultyLevel(Player player, Enemy enemy, Map map)
         {
-
             gui.PrimaryColor();
             gui.PadTextW("CHOOSE DIFFICULTY");
             gui.ResetColor();
