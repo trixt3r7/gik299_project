@@ -65,8 +65,9 @@ namespace gik299_project
             // SUPER EASY
             else
             {
-                Health = 1000;
-                MaxHealth = 1000;
+
+                Health = 100;
+                MaxHealth = 100;
                 MaxSteps = 300;
                 VisitedPosition = new bool[30];
                 MapSize = 3;
@@ -103,7 +104,7 @@ namespace gik299_project
                     {
                         Health = MaxHealth;
                     }
-                    Console.WriteLine($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional health points. You now have {Health}/{MaxHealth} HP.");
+                    gui.PadTextWL($"As you kill an {enemy.GetRandomName()}, you are by good fortune granted with additional\n        health points. You now have {Health}/{MaxHealth} HP.");
                 }
             }
         }
@@ -115,7 +116,7 @@ namespace gik299_project
             if (result < 20)
             {
                 Health -= 10;
-                gui.PadTextWL($"The {enemy.GetRandomName()} hits you back and you lose 10 health points. You now have {Health} health points remaining.");
+                gui.PadTextWL($"The {enemy.GetRandomName()} hits you back and you lose 10 health points.\n        You now have {Health} health points remaining.");
             }
         }
 

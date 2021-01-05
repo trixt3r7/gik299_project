@@ -84,7 +84,27 @@ namespace gik299_project
         {
             int roomNr = 0; // Used to check array values 1-100+
             Console.ForegroundColor = ConsoleColor.Red;
-            gui.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
+            if (player.MapSize == 3)
+            {
+                gui.PadTextWL("┌───────┬══─═══════──═════─═════──═■");
+            }
+            else if (player.MapSize == 5)
+            {
+                gui.PadTextWL("┌───────────┬══─═══════──═════─═════──═■");
+            }
+            else if (player.MapSize == 10)
+            {
+                gui.PadTextWL("┌─────────────────────┬══─═══════──═════─═════──═■");
+            }
+            else if (player.MapSize == 15)
+            {
+                gui.PadTextWL("┌───────────────────────────────┬══─═══════──═════─═════──═■");
+            }
+            else
+            {
+                gui.PadTextWL("┌──────────────────────══─═══════──═════─═════──═■");
+            }
+
             for (int y = 0; y < MapArea.GetLength(0); y++)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -180,7 +200,26 @@ namespace gik299_project
                 }
             }
             Console.ForegroundColor = ConsoleColor.Red;
-            gui.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
+            if (player.MapSize == 3)
+            {
+                gui.PadTextWL("└───────┴═──══─══──═══─══──══■");
+            }
+            else if (player.MapSize == 5)
+            {
+                gui.PadTextWL("└───────────┴═──══─══──═══─══──══■");
+            }
+            else if (player.MapSize == 10)
+            {
+                gui.PadTextWL("└─────────────────────┴═──══─══──═══─══──══■");
+            }
+            else if (player.MapSize == 15)
+            {
+                gui.PadTextWL("└───────────────────────────────┴═──══─══──═══─══──══■");
+            }
+            else
+            {
+                gui.PadTextWL("└──────────────────────══─═══════──═════─═════──═■");
+            }
             Console.ResetColor();
 
         }

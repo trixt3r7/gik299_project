@@ -125,7 +125,7 @@ namespace gik299_project
             if (!(difficulty.KeyChar == '0' || difficulty.KeyChar == '1' || difficulty.KeyChar == '2'))
             {
                 gui.PrimaryColor();
-                gui.PadTextWL($"Invalid input, difficulty set to SUPER EASY mode.");
+                gui.PadTextWL($"Invalid input, Initializing SAFE MODE.");
                 gui.ResetColor();
             }
 

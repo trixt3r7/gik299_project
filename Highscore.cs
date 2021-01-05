@@ -6,45 +6,9 @@ using System.Text.Json;
 namespace gik299_project
 {
     [Serializable]
-    class Highscore
+    class Highscore //: IComparable<Highscore>
     {
         static GUI gui = new GUI();
-
-        public string CalculateScore(Player player, ConsoleKeyInfo difficulty)
-        {
-            string playerName = player.Name;
-            int playerSteps = player.Steps *= 10;
-            int playerKills = player.EnemiesKilled *= 10;
-            int playerHealth = (player.Health *= (int)0.025) + 1;
-            float multiplier = 1f;
-
-            // EASY
-            if (difficulty.KeyChar == '0')
-            {
-                multiplier = 1f;
-            }
-
-            // MEDIUM
-            else if (difficulty.KeyChar == '1')
-            {
-                multiplier = 1.25f;
-            }
-
-            // HARD
-            else if (difficulty.KeyChar == '2')
-            {
-                multiplier = 1.5f;
-            }
-
-            // SUPEREASY
-            else
-            {
-                multiplier = 0.25f;
-            }
-
-            float totalScore = multiplier * (playerHealth * (Score - playerSteps) + playerKills);
-            return ($"{playerName} | {totalScore}");
-        }
 
         // List will contain all names and scores
         static List<Highscore> highscoreList = new List<Highscore>();
@@ -62,8 +26,10 @@ namespace gik299_project
             int playerKills = player.EnemiesKilled * 20;
             int playerHealth = (int)((player.Health * 0.025f) + 1);
 
+            float multiplier = (player.MapSize / 10f)*2;
+
             highscore.Name = player.Name;
-            highscore.Score = playerHealth * (player.Score - playerSteps) + playerKills;
+            highscore.Score = (int)((playerHealth * (player.Score - playerSteps) + playerKills) * multiplier);
             highscoreList.Add(highscore);
 
             var fileData = ConvertToJson(highscoreList);
@@ -72,11 +38,25 @@ namespace gik299_project
 
         public void ShowHighScore()
         {
-            gui.PadTextWL($"NAME\t\tSCORE");
+            //highscoreList.Sort();
+            //highscoreList.Reverse();
+            gui.HighScore();
+            gui.HrLine();
+            gui.TertiaryColor();
+            gui.CenterText("NAME                SCORE   ");
+            gui.HrLine();
+            int x = 0;
             foreach (Highscore score in highscoreList)
             {
-                gui.PadTextWL($"{score.Name}\t\t{score.Score}");
+                if (x > 9)
+                {
+                    break;
+                }
+                gui.CenterText($"{score.Name,-20}{score.Score,-8}");
+                x++;
             }
+            gui.HrLine();
+            gui.CenterText("Press any key to return to main menu.");
         }
 
         public void LoadFile()

@@ -33,11 +33,7 @@ namespace gik299_project
                 }
                 else if (keypress.KeyChar == 'h' || keypress.KeyChar == 'H')
                 {
-                    gui.HighScore();
-                    gui.HrLine2();
                     highscore.ShowHighScore();
-                    gui.HrLine2();
-                    gui.CenterText("Press any key");
                     Console.ReadKey();
                     Console.Clear();
 
