@@ -412,7 +412,7 @@ namespace gik299_project
             SmallGameLogo();
             Console.WriteLine();
             CenterText("You didn't manage to escape in time.");
-            CenterText("aserface takes you out to the street and executes you in front of an audience.");
+            CenterText("Laserface takes you out to the street and executes you in front of an audience.");
             SecondaryColor();
             CenterText(@"   ______                        ____                  __");
             CenterText(@"  / ____/___ _____ ___  ___     / __ \_   _____  _____/ /");
