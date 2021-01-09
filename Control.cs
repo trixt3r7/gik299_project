@@ -25,6 +25,12 @@ namespace gik299_project
                         player.Position[0]--;
                         player.Steps++;
                     }
+                    else
+                    {
+                        gui.PadTextWL("You can't go any further up. Press any key and try another direction.");
+                        gui.Indent();
+                        Console.ReadKey();
+                    }
                     break;
                 case "d":
                 case "right":
@@ -34,6 +40,12 @@ namespace gik299_project
                         player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[1]++;
                         player.Steps++;
+                    }
+                    else
+                    {
+                        gui.PadTextWL("You can't go any further right. Press any key and try another direction.");
+                        gui.Indent();
+                        Console.ReadKey();
                     }
                     break;
                 case "s":
@@ -45,6 +57,12 @@ namespace gik299_project
                         player.Position[0]++;
                         player.Steps++;
                     }
+                    else
+                    {
+                        gui.PadTextWL("You can't go any further down. Press any key and try another direction.");
+                        gui.Indent();
+                        Console.ReadKey();
+                    }
                     break;
                 case "a":
                 case "left":
@@ -54,6 +72,12 @@ namespace gik299_project
                         player.Position.CopyTo(player.PreviousPosition, 0);
                         player.Position[1]--;
                         player.Steps++;
+                    }
+                    else
+                    {
+                        gui.PadTextWL("You can't go any further left. Press any key and try another direction.");
+                        gui.Indent();
+                        Console.ReadKey();
                     }
                     break;
                 case "attack":
