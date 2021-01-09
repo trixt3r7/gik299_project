@@ -173,7 +173,7 @@ namespace gik299_project
             PadTextWL($"1. Find the {map.KeyAmount} keycards located in {map.KeyAmount} different rooms. They could be located", "");
             PadTextWL("   in the same room as enemies.");
             PadTextWL("2. Reach the northeast exit before your health reaches 0 health, and in");
-            PadTextWL($"   under {player.MaxSteps} moves before Taserface and the rest of the faction arrives.");
+            PadTextWL($"   under {player.MaxSteps} moves before Laserface and the rest of the faction arrives.");
             PadTextWL($"3. Watch out for the faction members that are gathered in {enemy.Count} different rooms.");
 
             Console.WriteLine();
@@ -412,7 +412,7 @@ namespace gik299_project
             SmallGameLogo();
             Console.WriteLine();
             CenterText("You didn't manage to escape in time.");
-            CenterText("Taserface takes you out to the street and executes you in front of an audience.");
+            CenterText("aserface takes you out to the street and executes you in front of an audience.");
             SecondaryColor();
             CenterText(@"   ______                        ____                  __");
             CenterText(@"  / ____/___ _____ ___  ___     / __ \_   _____  _____/ /");
