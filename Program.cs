@@ -14,6 +14,7 @@ namespace gik299_project
         static void Main(string[] args)
         {
             gui.WindowSettings();
+            highscore.LoadFile();
             StartMenu();
         }
 
@@ -22,7 +23,6 @@ namespace gik299_project
             Console.CursorVisible = false;
             while (true)
             {
-                highscore.LoadFile();
                 gui.GameLogo();
                 gui.MainMenu();
                 ConsoleKeyInfo keypress = Console.ReadKey(true);
